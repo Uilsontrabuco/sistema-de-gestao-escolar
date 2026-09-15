@@ -150,10 +150,12 @@ class CloudStore(Store):
             failure.diagnostic_code = 'postgres_' + category
             raise failure from None
 
-    def auth_request(self, path, payload=None, method=None):
+    def auth_request(self, path, payload=None, method=None, user_token=None):
         body = None if payload is None else json.dumps(payload).encode()
         headers = {'apikey': self.auth_key, 'Content-Type': 'application/json'}
-        if self.auth_key.startswith('eyJ'):
+        if user_token:
+            headers['Authorization'] = 'Bearer ' + user_token
+        elif self.auth_key.startswith('eyJ'):
             headers['Authorization'] = 'Bearer ' + self.auth_key
         request = Request(self.auth_url + '/auth/v1/' + path, data=body,
                           method=method or ('POST' if body is not None else 'GET'),
@@ -165,6 +167,21 @@ class CloudStore(Store):
             raise PermissionError('Operação de autenticação não autorizada.') from None
         except (URLError, TimeoutError):
             raise RuntimeError('Autenticação temporariamente indisponível.') from None
+
+    def recover_master_password(self, token, password):
+        if not isinstance(token, str) or not token or len(token)>8192:
+            raise PermissionError('Link de recuperação inválido ou expirado.')
+        if not isinstance(password, str) or len(password)<12:
+            raise ValueError('Use uma senha com pelo menos 12 caracteres.')
+        identity = self.auth_request('user', user_token=token)
+        with self.db() as db:
+            user = next((u for u in self.users(db) if u['id']==identity.get('id') and u['active'] and u['isAdmin'] and not u['deleted']), None)
+        if not user:
+            raise PermissionError('Recuperação não autorizada para este perfil.')
+        self.auth_request('user', {'password':password}, method='PUT', user_token=token)
+        with self.db() as db:
+            db.execute('DELETE FROM sessions WHERE user_id=?', (user['id'],))
+        return True
 
     def users(self, db=None):
         if db is None:

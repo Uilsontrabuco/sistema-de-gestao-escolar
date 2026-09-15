@@ -5,6 +5,7 @@ import json
 import gzip
 import os
 import re
+from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 
 from cloud_store import CloudStore
@@ -26,6 +27,8 @@ class CloudHandler(Handler):
     def do_GET(self):
         path = urlparse(self.path).path
         try:
+            if path == '/auth/recovery':
+                return self.binary(Path(__file__).with_name('password_recovery.html').read_bytes(), 'text/html; charset=utf-8')
             if path == '/api/health':
                 self._health_stage = 'database'
                 self.store
@@ -89,6 +92,20 @@ class CloudHandler(Handler):
 
     def do_POST(self):
         path = urlparse(self.path).path
+        if path == '/api/recovery/complete':
+            try:
+                origin = self.headers.get('Origin')
+                if not origin or urlparse(origin).netloc != self.headers.get('Host'):
+                    raise PermissionError('Origem não autorizada.')
+                body = self.body()
+                self.store.recover_master_password(body.get('token'), body.get('password'))
+                return self.respond(200, {'ok':True})
+            except PermissionError:
+                return self.respond(403, {'error':'Link inválido, expirado ou perfil não autorizado. Solicite outro link de recuperação.'})
+            except ValueError:
+                return self.respond(400, {'error':'Use uma senha com pelo menos 12 caracteres.'})
+            except Exception:
+                return self.respond(503, {'error':'Não foi possível concluir a recuperação. Tente novamente.'})
         # Login local já foi substituído por CloudStore.login. Cookies de produção
         # sempre Secure, sem depender de configuração adicional no painel.
         if path == '/api/migrate':

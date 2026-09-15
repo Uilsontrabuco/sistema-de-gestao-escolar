@@ -8,6 +8,24 @@ from cloud_runtime import CloudHandler
 
 
 class CloudRuntimeTests(unittest.TestCase):
+    def test_recovery_requires_verified_master_and_changes_only_password(self):
+        from contextlib import nullcontext
+        from unittest.mock import Mock
+        store=object.__new__(cloud_store.CloudStore)
+        db=Mock()
+        master={'id':'fixture-id','active':True,'isAdmin':True,'deleted':False}
+        with patch.object(store,'db',return_value=nullcontext(db)), patch.object(store,'users',return_value=[master]), patch.object(store,'auth_request',side_effect=[{'id':'fixture-id'},{}]) as auth:
+            self.assertTrue(store.recover_master_password('fixture-token','fixture-password'))
+            self.assertEqual(auth.call_args.kwargs,{'method':'PUT','user_token':'fixture-token'})
+            self.assertEqual(auth.call_args.args,('user',{'password':'fixture-password'}))
+            db.execute.assert_called_once_with('DELETE FROM sessions WHERE user_id=?',('fixture-id',))
+        db.reset_mock()
+        with patch.object(store,'db',return_value=nullcontext(db)), patch.object(store,'users',return_value=[master]), patch.object(store,'auth_request',return_value={'id':'another-id'}) as auth:
+            with self.assertRaises(PermissionError):
+                store.recover_master_password('fixture-token','fixture-password')
+            self.assertEqual(auth.call_count,1)
+            db.execute.assert_not_called()
+
     def test_pooler_only_routes_the_verified_official_direct_host(self):
         options = cloud_store.connection_options(f'postgresql://postgres@db.{cloud_store.PROJECT}.supabase.co:5432/postgres')
         self.assertEqual(options['user'], f'postgres.{cloud_store.PROJECT}')
