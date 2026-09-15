@@ -1,0 +1,5 @@
+{
+  "name": "seven7-financial-port",
+  "private": true,
+  "scripts": { "test": "node --test tests/*.test.cjs" }
+}

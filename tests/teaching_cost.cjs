@@ -1,0 +1,18 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const ctx={financial:()=>'',App:{version:5},S:{classes:[{id:'c',name:'1º A'}]},M:{financialStats:()=>({total:10,classified:10,net:1000,tuition:100,unclassifiedFinancial:0})}};
+vm.createContext(ctx);vm.runInContext(fs.readFileSync(require('node:path').join(__dirname,'../break_even.js'),'utf8'),ctx);
+const plan={year:2027,delinquency:{officialPercent:0},mappings:[{operationalClassId:'c',status:'mapped',costMonthly:9999,sourceRowId:'b',budgetClassName:'1º A',costEvidence:{status:'verified'}}],officialBudget:{classRows:[{id:'b',className:'1º A',status:'recognized'}]}};
+ctx.plan=plan;
+assert.equal(vm.runInContext('beOperationalFinancial(plan)[0].breakEven',ctx),null);
+assert.equal(vm.runInContext('beOperationalFinancial(plan)[0].cost',ctx),null);
+console.log('PASS despesa total orçamentária não alimenta PE direto');
+vm.runInContext("teachingCostPreview={state_version:5,classes:[{class_id:'c',direct_cost_status:'VERIFIED',monthly_direct_cost:250}]}",ctx);
+assert.equal(vm.runInContext('beOperationalFinancial(plan)[0].breakEven',ctx),3);
+assert.equal(plan.mappings[0].costMonthly,9999);
+console.log('PASS PE usa somente custo direto mensal certificado, sem alterar despesas');
+vm.runInContext('App.version=6',ctx);
+assert.equal(vm.runInContext('beOperationalFinancial(plan)[0].breakEven',ctx),null);
+console.log('PASS custo de versão anterior não alimenta PE atual');
+vm.runInContext("App.version=5; teachingCostPreview.classes[0].direct_cost_status='PENDENTE'",ctx);
+assert.equal(vm.runInContext('beOperationalFinancial(plan)[0].cost',ctx),null);
+console.log('PASS custo parcial não vira PE definitivo');

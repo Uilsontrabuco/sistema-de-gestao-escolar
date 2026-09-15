@@ -1,0 +1,6 @@
+private/
+tests/
+review/
+*.md
+*.sql
+package.json
