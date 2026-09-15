@@ -300,7 +300,7 @@ CREATE TABLE IF NOT EXISTS outbox(id TEXT PRIMARY KEY,payload TEXT NOT NULL);'''
                 if not allowed(user,'financial'):s['academicYears']=[{'id':str(x['year']),'year':x['year'],'parameters':[],'classifications':{}} for x in s['academicYears']]
                 s['requests']=[r for r in s['requests'] if r.get('creatorId')==user['id'] or r.get('recipientId')==user['id']]
             s['users']=self.users(db) if user.get('isAdmin') else [dict(id=u['id'],name=u['name'],phone=u.get('phone',''),active=u['active'],isAdmin=u.get('isAdmin',False)) for u in self.users(db) if not u.get('deleted')]
-            s['audit']=[dict(id=r['id'],**json.loads(r['payload'])) for r in db.execute('SELECT * FROM audit ORDER BY id DESC LIMIT 2000')] if user.get('isAdmin') else []
+            s['audit']=[dict(json.loads(r['payload']),id=r['id']) for r in db.execute('SELECT * FROM audit ORDER BY id DESC LIMIT 2000')] if user.get('isAdmin') else []
             s['notifications']=[json.loads(r['payload']) for r in db.execute('SELECT payload FROM outbox') if user.get('isAdmin') or json.loads(r['payload']).get('userId')==user['id']]
             return {'state':s,'version':version,'user':user}
     def _check_list(self,user,module,old,new):
