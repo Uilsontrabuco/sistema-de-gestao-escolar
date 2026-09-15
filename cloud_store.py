@@ -117,11 +117,22 @@ class CloudStore(Store):
                     ('password authentication failed', 'authentication'),
                     ('tenant or user not found', 'tenant'),
                     ('network is unreachable', 'network'),
+                    ('cannot assign requested address', 'network'),
+                    ('connection refused', 'network'),
                     ('could not translate host name', 'dns'),
+                    ('failed to resolve host', 'dns'),
                     ('name or service not known', 'dns'),
                     ('timeout expired', 'timeout'),
                     ('connection timed out', 'timeout'),
                     ('invalid percent-encoded token', 'format'),
+                    ('invalid integer value', 'format'),
+                    ('invalid connection option', 'format'),
+                    ('missing "="', 'format'),
+                    ('ssl', 'tls'),
+                    ('certificate', 'tls'),
+                    ('authentication', 'authentication'),
+                    ('server closed the connection', 'closed'),
+                    ('circuit breaker', 'tenant'),
                 ):
                     if needle in message:
                         category = safe_code
