@@ -8,6 +8,17 @@ from cloud_runtime import CloudHandler
 
 
 class CloudRuntimeTests(unittest.TestCase):
+    def test_direct_configuration_never_mixes_marketplace_credentials(self):
+        env = {'SEVEN7_DATABASE_URL':'postgres://example/db',
+               'SEVEN7_SUPABASE_SECRET_KEY':'official-fixture',
+               'SUPABASE_SECRET_KEY':'other-fixture',
+               'SUPABASE_URL':'https://wrong.supabase.co'}
+        self.assertEqual(cloud_store.configuration(env),
+                         ('postgres://example/db', f'https://{cloud_store.PROJECT}.supabase.co', 'official-fixture'))
+        del env['SEVEN7_SUPABASE_SECRET_KEY']
+        with self.assertRaises(RuntimeError):
+            cloud_store.configuration(env)
+
     def test_missing_configuration_never_uses_local_database(self):
         with self.assertRaisesRegex(RuntimeError, 'não configurada'):
             cloud_store.configuration({})

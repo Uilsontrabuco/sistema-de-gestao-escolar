@@ -29,11 +29,12 @@ PROMOTORA = {
 
 def configuration(environ=None):
     env = os.environ if environ is None else environ
-    dsn = env.get('POSTGRES_URL') or env.get('DATABASE_URL')
-    key = env.get('SUPABASE_SECRET_KEY')
+    direct = any(name in env for name in ('SEVEN7_DATABASE_URL', 'SEVEN7_SUPABASE_SECRET_KEY', 'SEVEN7_SUPABASE_URL'))
+    dsn = env.get('SEVEN7_DATABASE_URL') if direct else env.get('POSTGRES_URL') or env.get('DATABASE_URL')
+    key = env.get('SEVEN7_SUPABASE_SECRET_KEY') if direct else env.get('SUPABASE_SECRET_KEY')
     if not dsn or not key:
         raise RuntimeError('Conexão de servidor ainda não configurada.')
-    url = env.get('SUPABASE_URL') or env.get('NEXT_PUBLIC_SUPABASE_URL') or f'https://{PROJECT}.supabase.co'
+    url = (env.get('SEVEN7_SUPABASE_URL') or f'https://{PROJECT}.supabase.co') if direct else (env.get('SUPABASE_URL') or env.get('NEXT_PUBLIC_SUPABASE_URL') or f'https://{PROJECT}.supabase.co')
     if url.rstrip('/') != f'https://{PROJECT}.supabase.co':
         raise RuntimeError('Projeto Supabase diferente do projeto recuperado.')
     parsed = urlparse(dsn)
