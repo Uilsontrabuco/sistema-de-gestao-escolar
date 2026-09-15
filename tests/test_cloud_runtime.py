@@ -8,6 +8,13 @@ from cloud_runtime import CloudHandler
 
 
 class CloudRuntimeTests(unittest.TestCase):
+    def test_pooler_only_routes_the_verified_official_direct_host(self):
+        options = cloud_store.connection_options(f'postgresql://postgres@db.{cloud_store.PROJECT}.supabase.co:5432/postgres')
+        self.assertEqual(options['user'], f'postgres.{cloud_store.PROJECT}')
+        self.assertEqual(options['port'], 6543)
+        self.assertNotIn('password', options)
+        self.assertEqual(cloud_store.connection_options('postgresql://postgres@db.other.supabase.co/postgres'), {})
+
     def test_direct_configuration_never_mixes_marketplace_credentials(self):
         env = {'SEVEN7_DATABASE_URL':'postgres://example/db',
                'SEVEN7_SUPABASE_SECRET_KEY':'official-fixture',

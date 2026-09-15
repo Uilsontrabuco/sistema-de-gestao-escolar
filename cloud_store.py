@@ -57,6 +57,15 @@ def translate(statement):
     return statement.replace('?', '%s')
 
 
+def connection_options(dsn):
+    """Rota IPv4 oficial para a conexão direta IPv6 do projeto recuperado."""
+    parsed = urlparse(dsn)
+    if parsed.hostname == f'db.{PROJECT}.supabase.co' and parsed.username == 'postgres':
+        return {'host':'aws-0-sa-east-1.pooler.supabase.com', 'port':6543,
+                'user':f'postgres.{PROJECT}'}
+    return {}
+
+
 class Connection:
     def __init__(self, connection):
         self.connection = connection
@@ -102,7 +111,8 @@ class CloudStore(Store):
         # Transaction pooler: não usar prepared statements ou pool persistente.
         try:
             with psycopg.connect(self.dsn, connect_timeout=10, sslmode='require',
-                                 prepare_threshold=None, row_factory=dict_row) as conn:
+                                 prepare_threshold=None, row_factory=dict_row,
+                                 **connection_options(self.dsn)) as conn:
                 self._transaction.connection = Connection(conn)
                 try:
                     yield self._transaction.connection
