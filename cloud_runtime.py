@@ -82,7 +82,7 @@ class CloudHandler(Handler):
                 }
                 code = known.get(str(error), 'dependency_missing' if isinstance(error,ModuleNotFoundError) else 'runtime_error')
                 db_code = getattr(error,'diagnostic_code','')
-                if re.fullmatch(r'postgres_(?:[A-Z0-9]{5}|connection)',db_code):
+                if re.fullmatch(r'postgres_(?:[A-Z0-9]{5}|connection|authentication|tenant|network|dns|timeout|format)',db_code):
                     code = db_code
                 response.update(stage=getattr(self,'_health_stage','initialization'),code=code)
             return self.respond(503, response)

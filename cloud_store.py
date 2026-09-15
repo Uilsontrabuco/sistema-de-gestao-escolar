@@ -110,7 +110,23 @@ class CloudStore(Store):
                     self._transaction.connection = None
         except psycopg.Error as error:
             failure = RuntimeError('Persistência indisponível; nenhuma alteração parcial foi confirmada.')
-            failure.diagnostic_code = 'postgres_' + (error.sqlstate or 'connection')
+            category = error.sqlstate or 'connection'
+            if not error.sqlstate:
+                message = str(error).lower()
+                for needle, safe_code in (
+                    ('password authentication failed', 'authentication'),
+                    ('tenant or user not found', 'tenant'),
+                    ('network is unreachable', 'network'),
+                    ('could not translate host name', 'dns'),
+                    ('name or service not known', 'dns'),
+                    ('timeout expired', 'timeout'),
+                    ('connection timed out', 'timeout'),
+                    ('invalid percent-encoded token', 'format'),
+                ):
+                    if needle in message:
+                        category = safe_code
+                        break
+            failure.diagnostic_code = 'postgres_' + category
             raise failure from None
 
     def auth_request(self, path, payload=None, method=None):
