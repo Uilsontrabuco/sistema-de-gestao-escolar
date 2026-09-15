@@ -27,7 +27,9 @@ class CloudHandler(Handler):
         path = urlparse(self.path).path
         try:
             if path == '/api/health':
+                self._health_stage = 'database'
                 self.store
+                self._health_stage = 'authentication'
                 auth = self.store.auth_request('admin/users?page=1&per_page=1')
                 if not isinstance(auth.get('users'), list):
                     raise RuntimeError('Serviço de autenticação não validado.')
@@ -67,8 +69,23 @@ class CloudHandler(Handler):
             return super().do_GET()
         except PermissionError:
             return self.respond(401, {'error':'Entre com um perfil autorizado.'})
-        except Exception:
-            return self.respond(503, {'error':'Serviço indisponível. A base não foi substituída nem reinicializada.'})
+        except Exception as error:
+            response = {'error':'Serviço indisponível. A base não foi substituída nem reinicializada.'}
+            if path == '/api/health':
+                known = {
+                    'Conexão de servidor ainda não configurada.':'missing_configuration',
+                    'Projeto Supabase diferente do projeto recuperado.':'unexpected_project',
+                    'Conexão Postgres inválida.':'invalid_postgres_configuration',
+                    'Identidade do banco não corresponde à recuperação aprovada.':'unexpected_database',
+                    'Base recuperada não instalada. Inicialização automática bloqueada.':'recovery_not_installed',
+                    'Schema privado exposto; inicialização bloqueada.':'private_schema_exposed',
+                }
+                code = known.get(str(error), 'dependency_missing' if isinstance(error,ModuleNotFoundError) else 'runtime_error')
+                db_code = getattr(error,'diagnostic_code','')
+                if re.fullmatch(r'postgres_(?:[A-Z0-9]{5}|connection)',db_code):
+                    code = db_code
+                response.update(stage=getattr(self,'_health_stage','initialization'),code=code)
+            return self.respond(503, response)
 
     def do_POST(self):
         path = urlparse(self.path).path

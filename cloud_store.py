@@ -107,8 +107,10 @@ class CloudStore(Store):
                     yield self._transaction.connection
                 finally:
                     self._transaction.connection = None
-        except psycopg.Error:
-            raise RuntimeError('Persistência indisponível; nenhuma alteração parcial foi confirmada.') from None
+        except psycopg.Error as error:
+            failure = RuntimeError('Persistência indisponível; nenhuma alteração parcial foi confirmada.')
+            failure.diagnostic_code = 'postgres_' + (error.sqlstate or 'connection')
+            raise failure from None
 
     def auth_request(self, path, payload=None, method=None):
         body = None if payload is None else json.dumps(payload).encode()
