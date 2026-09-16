@@ -3,6 +3,7 @@ import base64,copy,http.cookiejar,io,json,sys,tempfile,threading,unittest,urllib
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from server import serve,Handler
+from services import financial_import_workbook
 from types import SimpleNamespace
 
 class HttpTests(unittest.TestCase):
@@ -55,6 +56,11 @@ class HttpTests(unittest.TestCase):
         before=self.server.store.state();code,xlsx=self.request('/api/financial-classifications/template',{});self.assertEqual(code,200,xlsx);self.assertTrue(xlsx.startswith(b'PK'));self.assertEqual(self.server.store.state(),before)
         from openpyxl import load_workbook
         book=load_workbook(io.BytesIO(xlsx),data_only=True);self.assertEqual(book.sheetnames,['Nominal','Consolidada por turma','Instruções']);book.close()
+    def test_financial_discount_button_to_http_preview_uses_multisheet_reader_without_writes(self):
+        before=self.server.store.state();code,interface=self.request('/professional.js');self.assertEqual(code,200);self.assertIn(b'Baixar modelo de planilha',interface);self.assertIn(b"api('financial-classifications/preview'",interface)
+        fixture=financial_import_workbook(homologation=True);code,body=self.request('/api/financial-classifications/preview',{'name':'HOMOLOGACAO-FICTICIA-NAO-CONFIRMAR.xlsx','year':2027,'content':base64.b64encode(fixture).decode()});self.assertEqual(code,200,body)
+        self.assertNotIn('inadimplência',body.decode().lower());preview=json.loads(body);self.assertEqual(preview['sheet'],'Nominal, Consolidada por turma');self.assertEqual(len(preview['classSummary']),41);self.assertEqual(self.server.store.state(),before)
+        g2=next(row for row in preview['classSummary'] if row['className']=='G2 A');g3=next(row for row in preview['classSummary'] if row['className']=='G3 A');self.assertTrue(any(row['percent']==16 and row['quantity']==1 for row in g2['variables']));self.assertEqual(g3['fixed']['markingLives45'],1);self.assertEqual(g3['fixed']['philanthropic50'],1);self.assertEqual(g2['status'],'blocked');self.assertGreaterEqual(preview['pending'],3)
     def test_two_users_share_state_and_revocation(self):
         user=self.server.store.create_user('Lívia','livia@fixture.invalid','Test-only-password-2026',{'benefits':['view','create','edit']},actor=self.admin);other=urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()));self.client,adminclient=other,self.client;_,body=self.request('/api/login',{'email':user['email'],'password':'Test-only-password-2026'});self.csrf,admincsrf=json.loads(body)['csrf'],self.csrf;_,body=self.request('/api/state');state=json.loads(body);code,body=self.request('/api/state',{'module':'benefits','action':'create','version':state['version'],'changes':{'benefits':[{'id':'b','name':'Fixture','quantity':1,'type':'Fixture','active':True}]}});self.assertEqual(code,200,body)
         self.client=adminclient;self.csrf=admincsrf;_,body=self.request('/api/state');self.assertEqual(json.loads(body)['state']['benefits'][0]['name'],'Fixture');self.request('/api/users',{'action':'edit','user':dict(user,active=False)});self.client=other;self.assertEqual(self.request('/api/state')[0],401)
