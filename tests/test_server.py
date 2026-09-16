@@ -105,10 +105,17 @@ class ServerTests(unittest.TestCase):
         self.patch({'academicYears':updated['academicYears'],'imports':updated['imports']},module='financial');saved,_=self.store.state();_,rows=report_rows(saved,'financial');row=next(x for x in rows if x[1]=='G2 A');self.assertEqual(row[3],9);self.assertEqual(row[13],4);self.assertEqual(round(row[14],2),4653.45);self.assertEqual(round(row[15],2),1079.60);self.assertEqual(round(row[16],2),3573.85);self.assertEqual(round(row[17],2),714.77);self.assertEqual(len(saved['classes']),41)
     def test_financial_discount_import_flags_unknown_student_percent_and_duplicates(self):
         state,_=self.store.state();content='Turma;Benefício;Percentual;Quantidade;Aluno\nG2 A;Desconto variável;16;1;\nG2 A;Desconto variável;16;1;\nTurma inexistente;Sem desconto;0;1;\nG2 A;Sem desconto;120;1;\nG2 A;Sem desconto;0;1;Aluno fixture\n'.encode()
-        preview=financial_classification_preview('pendencias.csv',content,state,2027);self.assertEqual(preview['duplicates'],1);self.assertEqual(preview['pending'],2);self.assertEqual(len(preview['invalid']),1)
-        self.assertTrue(any('aluno individual' in item['reason'] for item in preview['rows'] if item['status']=='pending_review'))
+        preview=financial_classification_preview('pendencias.csv',content,state,2027);self.assertEqual(preview['duplicates'],1);self.assertEqual(preview['pending'],1);self.assertEqual(len(preview['invalid']),1)
         individual=next(item for item in preview['rows'] if item.get('student'))
-        with self.assertRaises(ValueError):apply_financial_classification_preview(state,preview,[{'id':individual['id'],'action':'accept'}],self.admin)
+        self.assertEqual(individual['status'],'ready');self.assertEqual(individual['quantity'],1)
+        applied=apply_financial_classification_preview(state,preview,[{'id':individual['id'],'action':'accept'}],self.admin);g2=next(x for x in applied['classes'] if x['name']=='G2 A');self.assertEqual(next(x for x in applied['academicYears'] if x['year']==2027)['classifications'][g2['id']]['fixed']['noDiscount'],1)
+    def test_financial_discount_preview_has_all_classes_and_blocks_class_overflow(self):
+        state,_=self.store.state();content='Aluno;Turma;Benefício;Percentual\nAluno A;G2 A;Bolsa filantrópica;100\nAluno B;G2 A;Desconto;16\nAluno sem turma;;Sem desconto;0\n'.encode()
+        preview=financial_classification_preview('nominal.csv',content,state,2027);self.assertEqual(len(preview['classSummary']),41);self.assertEqual(preview['unrecognized'],1);self.assertTrue(preview['canConfirm'])
+        g2=next(x for x in preview['classSummary'] if x['className']=='G2 A');self.assertEqual(g2['fixed']['philanthropic100'],1);self.assertEqual(g2['variables'],[{'percent':16.0,'quantity':1}]);self.assertEqual(g2['pending'],0)
+        overflow='Turma;Benefício;Percentual;Quantidade\nG2 A;Sem desconto;0;999\n'.encode();blocked=financial_classification_preview('excesso.csv',overflow,state,2027);self.assertFalse(blocked['canConfirm']);self.assertEqual(next(x for x in blocked['classSummary'] if x['className']=='G2 A')['status'],'blocked')
+        decision={'id':blocked['rows'][0]['id'],'action':'accept'}
+        with self.assertRaisesRegex(ValueError,'excede os matriculados'):apply_financial_classification_preview(state,blocked,[decision],self.admin)
     def test_financial_discount_import_reads_xlsx_pdf_and_requires_administrator(self):
         state,_=self.store.state();xlsx=xlsx_report(['Turma','Benefício','Percentual','Quantidade'],[['G2 A','Sem desconto',0,2]])
         self.assertEqual(financial_classification_preview('descontos.xlsx',xlsx,state,2027)['automatic'],1)

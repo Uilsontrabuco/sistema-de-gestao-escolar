@@ -9,7 +9,7 @@ SCHOOL='Colégio Adventista de Juazeiro'
 ADDRESS='R. Antônio Pedro, 263 - Centro, Juazeiro - BA, 48903-660'
 CNPJ='CNPJ: 07.114.699/0047-42'
 ALIASES={'code':['codigo','cod','codigo da conta','conta codigo'],'category':['categoria','conta','nome da conta','categoria/conta'],'subaccount':['subconta'],'description':['descricao','historico'],'purpose':['finalidade'],'budget':['orcado','orcamento','valor orcado'],'value':['valor','realizado','valor realizado','valor pago'],'date':['data','data pagamento','data de pagamento'],'document':['documento','id','numero documento','identificador'],'month':['mes','competencia'],'financialPercent':['financeira','inadimplencia financeira','financeira (%)','inadimplencia financeira (%)'],'accountingPercent':['contabil','inadimplencia contabil','contabil (%)','inadimplencia contabil (%)'],'debt':['divida','valor da divida','divida financeira'],'students':['alunos','alunos afetados'],'guardians':['responsaveis','responsaveis afetados']}
-FINANCIAL_IMPORT_ALIASES={'className':['turma','classe','turma/serie'],'category':['beneficio','benefício','tipo','categoria','bolsa/desconto'],'percent':['percentual','percentual de desconto','desconto (%)','percentual (%)'],'quantity':['quantidade','qtd','alunos','quantidade de alunos'],'student':['aluno','nome do aluno','matricula','matrícula']}
+FINANCIAL_IMPORT_ALIASES={'className':['turma','classe','turma/serie','turma/série'],'grade':['serie','série','ano','serie/ano','série/ano'],'category':['beneficio','benefício','tipo','categoria','bolsa/desconto','tipo de beneficio','tipo de benefício'],'percent':['percentual','percentual de desconto','desconto (%)','percentual (%)','desconto','% desconto'],'quantity':['quantidade','qtd','alunos','quantidade de alunos','qtde'],'student':['aluno','nome do aluno','nome','matricula','matrícula']}
 REVENUE_IMPORT_ALIASES={'studentId':['id aluno','identificador unico','identificador único','matricula','matrícula','codigo aluno','código aluno'],'externalId':['id lancamento','id lançamento','id financeiro','documento','referencia','referência'],'className':['turma','classe','turma/serie'],'eventType':['tipo','evento','tipo de lancamento','tipo de lançamento'],'date':['data','data matricula','data matrícula','competencia','competência'],'gross':['valor bruto','bruto','valor'],'discount':['desconto','valor desconto'],'status':['status','situacao','situação'],'settledAmount':['baixa financeira','valor baixado','valor recebido','recebido'],'reversalOf':['estorno de','reversao de','reversão de','lancamento original','lançamento original'],'fromClassName':['turma origem','classe origem']}
 FINANCIAL_FIXED={
     ('sem desconto',0):'noDiscount',('bolsa filantropica',100):'philanthropic100',('bolsa filantropica',50):'philanthropic50',
@@ -440,11 +440,43 @@ def mapped(rows,mapping=None,aliases=ALIASES):
     raise ValueError('Cabeçalho não reconhecido. Use colunas Código, Categoria, Orçado ou Data, Descrição, Valor; inadimplência: Mês, Financeira (%), Contábil (%), Dívida, Alunos, Responsáveis. PDFs devem possuir colunas textuais legíveis.')
 
 def _financial_category(category,percent):
-    label=fold(category)
+    label=fold(category).replace('bolsista ','bolsa ').replace('colaborador','funcionario').replace('funcionário','funcionario')
+    aliases={'filantropica':'bolsa filantropica','filantropico':'bolsa filantropica','filantropica integral':'bolsa filantropica','filantropica parcial':'bolsa filantropica','filho funcionario':'filho de funcionario','filho obreiro':'filho de obreiro','marcando vidas':'projeto marcando vidas','sem beneficio':'sem desconto','sem benefício':'sem desconto','integral':'sem desconto'}
+    label=aliases.get(label,label)
     if (label,percent) in FINANCIAL_FIXED:return FINANCIAL_FIXED[(label,percent)]
-    if label in ['desconto variavel','outros descontos variaveis','outro desconto','desconto']:
+    if label in ['desconto variavel','outros descontos variaveis','outro desconto','desconto'] or (not label and 0<percent<100):
         return 'variable'
     return None
+
+def _financial_percent(category,value):
+    if value not in [None,'']:return decimal(value)
+    label=fold(category).replace('bolsista ','bolsa ').replace('colaborador','funcionario').replace('funcionário','funcionario')
+    label={'filantropica':'bolsa filantropica','filantropico':'bolsa filantropica','filantropica integral':'bolsa filantropica','filantropica parcial':'bolsa filantropica','filho funcionario':'filho de funcionario','filho obreiro':'filho de obreiro','marcando vidas':'projeto marcando vidas','sem beneficio':'sem desconto','sem benefício':'sem desconto','integral':'sem desconto'}.get(label,label)
+    candidates={percent for (name,percent),_ in FINANCIAL_FIXED.items() if name==label}
+    if len(candidates)==1:return float(next(iter(candidates)))
+    raise ValueError('Percentual ausente ou ambíguo para a categoria informada.')
+
+def _financial_preview_summary(state,year,rows,invalid):
+    """Projeta a importação nas 41 turmas sem alterar o estado persistido."""
+    from server import FINANCIAL_CATEGORIES
+    rooms={str(room['id']):room for room in state.get('classes',[])};academic=next(item for item in state.get('academicYears',[]) if int(item['year'])==int(year));pending_by_class={};unassigned=0
+    imported={}
+    for item in rows:
+        if item.get('status')=='ready':
+            marker=(str(item['classId']),item['classificationKey'],float(item['percent']))
+            imported[marker]=imported.get(marker,0)+int(item['quantity'])
+        elif item.get('classId'):pending_by_class[str(item['classId'])]=pending_by_class.get(str(item['classId']),0)+1
+        else:unassigned+=1
+    summary=[]
+    for room in state.get('classes',[]):
+        class_id=str(room['id']);current=copy.deepcopy(academic.get('classifications',{}).get(class_id,{}));fixed={key:int((current.get('fixed') or {}).get(key,0)) for key,_,_ in FINANCIAL_CATEGORIES};variables={float(row.get('percent',0)):int(row.get('quantity',0)) for row in current.get('variables',[])}
+        for (target,key,percent),quantity in imported.items():
+            if target!=class_id:continue
+            if key=='variable':variables[percent]=quantity
+            else:fixed[key]=quantity
+        classified=sum(fixed.values())+sum(variables.values());enrolled=int(room.get('students',0));divergence=max(0,classified-enrolled)
+        summary.append({'classId':class_id,'className':room['name'],'enrolled':enrolled,'fixed':fixed,'variables':[{'percent':percent,'quantity':quantity} for percent,quantity in sorted(variables.items()) if quantity],'classified':classified,'unclassified':max(0,enrolled-classified),'pending':pending_by_class.get(class_id,0),'duplicates':sum(1 for item in rows if str(item.get('classId'))==class_id and item.get('status')=='duplicate'),'unrecognized':pending_by_class.get(class_id,0),'divergence':divergence,'status':'blocked' if divergence else 'complete' if classified==enrolled else 'pending'})
+    return summary,unassigned+len(invalid),not any(item['divergence'] for item in summary)
 
 def financial_classification_preview(name,content,state,year):
     """Prévia conservadora de bolsas/descontos; nunca altera o estado recebido."""
@@ -457,29 +489,29 @@ def financial_classification_preview(name,content,state,year):
     if any(item.get('fileHash')==result['fileHash'] and item.get('kind')==result['kind'] for item in state.get('imports',[])):raise ValueError('Este arquivo já foi confirmado para descontos e benefícios.')
     seen=set()
     for line,raw_item in enumerate(records,2):
-        item={'id':secrets.token_hex(12),'line':line,'className':str(raw_item.get('className') or '').strip(),'category':str(raw_item.get('category') or '').strip(),'student':str(raw_item.get('student') or '').strip(),'source':{key:str(value or '').strip() for key,value in raw_item.items()}}
+        item={'id':secrets.token_hex(12),'line':line,'className':str(raw_item.get('className') or raw_item.get('grade') or '').strip(),'grade':str(raw_item.get('grade') or '').strip(),'category':str(raw_item.get('category') or '').strip(),'student':str(raw_item.get('student') or '').strip(),'source':{key:str(value or '').strip() for key,value in raw_item.items()}}
         try:
-            item['percent']=decimal(raw_item.get('percent'));item['quantity']=decimal(raw_item.get('quantity'))
+            item['percent']=_financial_percent(item['category'],raw_item.get('percent'));quantity_raw=raw_item.get('quantity');item['quantity']=1 if item['student'] and quantity_raw in [None,''] else decimal(quantity_raw)
             if not 0<=item['percent']<=100:raise ValueError('Percentual fora de 0% a 100%.')
             if item['quantity']<0 or not item['quantity'].is_integer():raise ValueError('Quantidade deve ser inteiro não negativo.')
             item['quantity']=int(item['quantity']);room=rooms.get(fold(item['className']));item['classId']=room['id'] if room else None;item['classificationKey']=_financial_category(item['category'],item['percent'])
-            if item['student']:
-                item.update(status='pending_review',reason='Arquivo informa aluno individual, mas este módulo trabalha somente com quantitativos por turma.')
-            elif not room:
+            if not room:
                 item.update(status='pending_review',reason='Turma inexistente ou não identificada exatamente.')
             elif not item['classificationKey']:
                 item.update(status='pending_review',reason='Tipo de benefício/desconto e percentual não correspondem a uma faixa configurada.')
             else:
-                signature=(item['classId'],item['classificationKey'],item['percent'])
+                signature=(item['classId'],fold(item['student']),item['classificationKey'],item['percent']) if item['student'] else (item['classId'],item['classificationKey'],item['percent'])
                 if signature in seen:
                     item.update(status='duplicate',reason='Duplicidade dentro do arquivo.');result['duplicates']+=1
                 else:
-                    seen.add(signature);item.update(status='ready',reason='Turma e faixa reconhecidas exatamente.');result['automatic']+=1
+                    seen.add(signature)
+                    item.update(status='ready',reason='Aluno, turma e faixa reconhecidos.' if item['student'] else 'Turma e faixa reconhecidas exatamente.');result['automatic']+=1
             if item['status']=='pending_review':result['pending']+=1
             result['rows'].append(item)
         except (ValueError,TypeError) as error:
             result['invalid'].append({'line':line,'error':str(error),'source':item['source']})
     if not result['rows'] and not result['invalid']:raise ValueError('Nenhuma linha encontrada no arquivo.')
+    result['classSummary'],result['unrecognized'],result['canConfirm']=_financial_preview_summary(state,year,result['rows'],result['invalid'])
     return result
 
 def apply_financial_classification_preview(state,preview,decisions,user):
@@ -498,7 +530,6 @@ def apply_financial_classification_preview(state,preview,decisions,user):
         if action in ['edit','ignore'] and not reason:raise ValueError('Editar ou ignorar exige justificativa.')
         if action=='ignore':continue
         if original.get('status')!='ready' and action!='edit':raise ValueError('Item pendente exige edição com justificativa ou deve ser ignorado.')
-        if original.get('student'):raise ValueError('Linhas com aluno individual não podem ser aplicadas neste módulo quantitativo.')
         class_id=str(decision.get('classId') or original.get('classId') or '');category=str(decision.get('category') or original.get('category') or '');percent=decimal(decision.get('percent',original.get('percent')));quantity=decimal(decision.get('quantity',original.get('quantity')))
         if class_id not in rooms:raise ValueError('Turma selecionada não existe.')
         if not 0<=percent<=100 or quantity<0 or not quantity.is_integer():raise ValueError('Percentual ou quantidade inválidos.')
@@ -508,8 +539,8 @@ def apply_financial_classification_preview(state,preview,decisions,user):
     grouped={}
     for item in selections:
         marker=(item['classId'],item['key'],item['percent'])
-        if marker in grouped:raise ValueError('A prévia possui duas decisões para a mesma turma e faixa.')
-        grouped[marker]=item
+        if marker in grouped:grouped[marker]['quantity']+=item['quantity']
+        else:grouped[marker]=item
     by_class={}
     for item in grouped.values():by_class.setdefault(item['classId'],[]).append(item)
     for class_id,items in by_class.items():
