@@ -13,3 +13,7 @@ test('atalho abre a tela existente sem criar outro módulo ou cálculo',()=>{
   assert.match(breakEven,/function breakEvenView\(\)/);
   assert.match(breakEven,/api\(`financial\/teaching-integration\?year=/);
 });
+
+test('Parâmetros financeiros encerra o estado visual do PE antes de navegar',()=>{
+  assert.match(professional,/target==='financial'.*breakEvenOpen=false;page=target/);
+});
