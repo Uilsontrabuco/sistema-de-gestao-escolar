@@ -39,7 +39,10 @@ class CloudHandler(Handler):
                 return self.respond(200, {'available':True, 'configured':True,
                     'persistence':'postgres', 'authentication':'supabase',
                     'backendRevision':'seven7-recovery-625-v1',
-                    'commit':os.environ.get('VERCEL_GIT_COMMIT_SHA','') if re.fullmatch(r'[0-9a-f]{40}',os.environ.get('VERCEL_GIT_COMMIT_SHA','')) else None})
+                    'commit':next((value for value in (
+                        os.environ.get('VERCEL_GIT_COMMIT_SHA',''),
+                        os.environ.get('APP_COMMIT',''),
+                    ) if re.fullmatch(r'[0-9a-f]{40}', value)), None)})
             if path == '/api/events':
                 try:
                     self.current()
