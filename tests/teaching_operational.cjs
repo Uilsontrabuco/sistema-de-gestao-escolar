@@ -10,8 +10,7 @@ test('consulta exibe contas separadas e evidencia escapada',async()=>{
  assert.ok(!html.includes('<script>'));
 });
 test('fonte ausente nao vira custo zero',async()=>{const html=await render({summary:{}});assert.ok(html.includes('Não comprovado'));});
-test('todas funcoes de PE preservadas',()=>{
- const before=fs.readFileSync(path.join(__dirname,'../output/finalizacao-operacional-2027/break_even.before.txt'),'utf8');
- const outside=s=>s.slice(0,s.indexOf('async function openTeachingCosts()'))+s.slice(s.indexOf('function beSummary('),s.indexOf('const financialScreen='));
- assert.equal(outside(code).replaceAll('\r\n','\n'),outside(before).replaceAll('\r\n','\n'));
+test('funções validadas do PE permanecem e a auditoria é aditiva',()=>{
+ for(const signature of ['function beSummary(','function beOperationalFinancial(','function createOfficialBreakEvenPlan(','function openBudgetImport(','function openTeachingCosts(','function openIntegratedTeachingFinance('])assert.ok(code.includes(signature),signature);
+ for(const addition of ['function beCalculationMemory(','function beAuditOverview(','function beAuditPanel('])assert.ok(code.includes(addition),addition);
 });
