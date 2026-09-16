@@ -430,10 +430,13 @@ def read_rows(name,content,kind):
     if ext=='.xls':raise ValueError('Excel .xls antigo ainda não suportado. Salve como .xlsx; nenhum dado foi importado.')
     raise ValueError('Formato permitido: XLSX, CSV ou PDF textual.')
 
-def financial_import_records(name,content):
+def financial_import_records(name,content,selected_sheet=None):
     """Lê uma ou as duas modalidades do modelo, ignorando apenas a aba de instruções."""
     if Path(name).suffix.lower()!='.xlsx':
-        raw,sheet=read_rows(name,content,'financial_classifications');records,_=mapped(raw,aliases=FINANCIAL_IMPORT_ALIASES);return records,sheet
+        raw,sheet=read_rows(name,content,'financial_classifications')
+        try:records,_=mapped(raw,aliases=FINANCIAL_IMPORT_ALIASES)
+        except ValueError as error:raise ValueError('Colunas de descontos e benefícios não reconhecidas no arquivo.') from error
+        return records,sheet
     from openpyxl import load_workbook
     with zipfile.ZipFile(io.BytesIO(content)) as archive:
         if sum(item.file_size for item in archive.infolist())>40*1024*1024:raise ValueError('Planilha descompactada excede 40 MB.')
@@ -448,9 +451,12 @@ def financial_import_records(name,content):
             if normalized_title in expected_names:expected.append(candidate)
         except ValueError:pass
     book.close()
-    selected=expected or candidates
+    if selected_sheet:
+        selected=[candidate for candidate in candidates if candidate[0]==selected_sheet]
+        if not selected:raise ValueError('A aba selecionada não existe ou não contém colunas compatíveis de descontos e benefícios.')
+    else:selected=expected or candidates
     if not selected:raise ValueError('Nenhuma aba com colunas de descontos e benefícios foi reconhecida. Verifique Aluno, Turma, Série/Ano, Categoria/Benefício, Percentual e Quantidade.')
-    if not expected and len(selected)>1:raise ValueError('Mais de uma aba candidata foi encontrada ('+', '.join(title for title,_ in selected)+'). Renomeie a aba desejada para Nominal ou Consolidada por turma; nenhuma aba foi escolhida automaticamente.')
+    if not selected_sheet and not expected and len(selected)>1:return None,[title for title,_ in selected]
     records=[item for _,items in selected for item in items]
     return records,', '.join(title for title,_ in selected)
 
@@ -521,9 +527,10 @@ def _financial_preview_summary(state,year,rows,invalid):
         summary.append({'classId':class_id,'className':room['name'],'enrolled':enrolled,'fixed':fixed,'variables':[{'percent':percent,'quantity':quantity} for percent,quantity in sorted(variables.items()) if quantity],'classified':classified,'unclassified':max(0,enrolled-classified),'pending':pending_by_class.get(class_id,0),'duplicates':sum(1 for item in rows if str(item.get('classId'))==class_id and item.get('status')=='duplicate'),'unrecognized':pending_by_class.get(class_id,0),'divergence':divergence,'status':'blocked' if divergence else 'complete' if classified==enrolled else 'pending'})
     return summary,unassigned+len(invalid),not any(item['divergence'] for item in summary)
 
-def financial_classification_preview(name,content,state,year):
+def financial_classification_preview(name,content,state,year,selected_sheet=None):
     """Prévia conservadora de bolsas/descontos; nunca altera o estado recebido."""
-    records,sheet=financial_import_records(name,content)
+    records,sheet=financial_import_records(name,content,selected_sheet)
+    if records is None:return {'name':name,'kind':'financial_classifications','year':int(year),'needsSheetSelection':True,'sheetCandidates':sheet,'fileHash':hashlib.sha256(content).hexdigest()}
     target_year=next((item for item in state.get('academicYears',[]) if int(item.get('year',0))==int(year)),None)
     if not target_year:raise ValueError('Ano letivo financeiro não encontrado.')
     rooms={fold(item['name']):item for item in state.get('classes',[])}
@@ -943,7 +950,7 @@ def api_service(handler,user,path,p):
         if p.get('format')=='xlsx':return handler.binary(xlsx_report(columns,rows),'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','relatorio-caj.xlsx')
         raise ValueError('Formato de exportação inválido.')
     if path=='/api/financial-classifications/preview':
-        require(user,'financial','edit');state,version=store.state();preview=financial_classification_preview(p['name'],base64.b64decode(p['content'],validate=True),state,p.get('year'))
+        require(user,'financial','edit');state,version=store.state();preview=financial_classification_preview(p['name'],base64.b64decode(p['content'],validate=True),state,p.get('year'),p.get('sheetName'))
         token=secrets.token_urlsafe(28);preview['version']=version
         with store.db() as db:db.execute('DELETE FROM previews WHERE expires<?',(time.time(),));db.execute('INSERT INTO previews VALUES(?,?,?,?,?)',(token,user['id'],version,json.dumps(preview),time.time()+1800))
         return handler.respond(200,dict(preview,token=token))

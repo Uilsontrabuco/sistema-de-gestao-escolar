@@ -132,8 +132,8 @@ class ServerTests(unittest.TestCase):
             buffer=io.BytesIO();book.save(buffer);book.close();return buffer.getvalue()
         state,_=self.store.state();valid=[['Turma','Categoria/Benefício','Percentual','Quantidade'],['G2 A','Sem desconto',0,1]]
         content=workbook([('Dados',valid),('Instruções',[['Texto auxiliar sem dados']])]);preview=financial_classification_preview('com-instrucoes.xlsx',content,state,2027);self.assertEqual(preview['sheet'],'Dados');self.assertEqual(preview['automatic'],1)
-        ambiguous=workbook([('Janeiro',valid),('Fevereiro',valid),('Instruções',[['Ignore esta aba']])])
-        with self.assertRaisesRegex(ValueError,'Mais de uma aba candidata.*Janeiro, Fevereiro'):financial_classification_preview('ambiguo.xlsx',ambiguous,state,2027)
+        ambiguous=workbook([('Janeiro',valid),('Fevereiro',valid),('Instruções',[['Ignore esta aba']])]);selection=financial_classification_preview('ambiguo.xlsx',ambiguous,state,2027);self.assertTrue(selection['needsSheetSelection']);self.assertEqual(selection['sheetCandidates'],['Janeiro','Fevereiro'])
+        selected=financial_classification_preview('ambiguo.xlsx',ambiguous,state,2027,'Fevereiro');self.assertEqual(selected['sheet'],'Fevereiro');self.assertEqual(selected['automatic'],1)
         invalid=workbook([('Instruções',[['Leia antes']]),('Apoio',[['Sem colunas financeiras']])])
         with self.assertRaises(ValueError) as context:financial_classification_preview('invalido.xlsx',invalid,state,2027)
         self.assertNotIn('inadimplência',str(context.exception).lower());self.assertIn('descontos e benefícios',str(context.exception).lower())

@@ -55,7 +55,7 @@ class HttpTests(unittest.TestCase):
     def test_financial_discount_template_download_is_read_only(self):
         before=self.server.store.state();code,xlsx=self.request('/api/financial-classifications/template',{});self.assertEqual(code,200,xlsx);self.assertTrue(xlsx.startswith(b'PK'));self.assertEqual(self.server.store.state(),before)
         from openpyxl import load_workbook
-        book=load_workbook(io.BytesIO(xlsx),data_only=True);self.assertEqual(book.sheetnames,['Nominal','Consolidada por turma','Instruções']);book.close()
+        book=load_workbook(io.BytesIO(xlsx));self.assertEqual(book.sheetnames,['Nominal','Consolidada por turma','Instruções']);book['Nominal'].append(['ALUNO MODELO FICTÍCIO','G2 A','Grupo 2','Sem desconto',0,'Teste de reimportação']);buffer=io.BytesIO();book.save(buffer);book.close();code,body=self.request('/api/financial-classifications/preview',{'name':'modelo-preenchido.xlsx','year':2027,'content':base64.b64encode(buffer.getvalue()).decode()});self.assertEqual(code,200,body);self.assertEqual(json.loads(body)['automatic'],1);self.assertEqual(self.server.store.state(),before)
     def test_financial_discount_button_to_http_preview_uses_multisheet_reader_without_writes(self):
         before=self.server.store.state();code,interface=self.request('/professional.js');self.assertEqual(code,200);self.assertIn(b'Baixar modelo de planilha',interface);self.assertIn(b"api('financial-classifications/preview'",interface)
         fixture=financial_import_workbook(homologation=True);code,body=self.request('/api/financial-classifications/preview',{'name':'HOMOLOGACAO-FICTICIA-NAO-CONFIRMAR.xlsx','year':2027,'content':base64.b64encode(fixture).decode()});self.assertEqual(code,200,body)
