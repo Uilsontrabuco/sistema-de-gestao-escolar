@@ -3,7 +3,7 @@ import copy, io, json, sys, tempfile, unittest, zipfile
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from server import Store,blank,validate,recalculate,upgrade_enrollment_classes,LEGACY_CORE_CLASSES
-from services import build_preview,apply_preview,classify,report_rows,xlsx_report,pdf_report,_budget_class_rows,financial_classification_preview,apply_financial_classification_preview,revenue_preview,apply_revenue_preview,revenue_year,teaching_load_preview,normalize_teaching_class_code,extract_teaching_occurrence,teaching_load_positional_pilot,teaching_load_geometric_preview,build_teaching_weekly_cost_audit,build_teaching_weekly_cost_with_shared_rateio_audit
+from services import build_preview,apply_preview,classify,report_rows,xlsx_report,pdf_report,_budget_class_rows,financial_classification_preview,apply_financial_classification_preview,financial_import_workbook,revenue_preview,apply_revenue_preview,revenue_year,teaching_load_preview,normalize_teaching_class_code,extract_teaching_occurrence,teaching_load_positional_pilot,teaching_load_geometric_preview,build_teaching_weekly_cost_audit,build_teaching_weekly_cost_with_shared_rateio_audit
 
 class ServerTests(unittest.TestCase):
     def setUp(self):
@@ -116,6 +116,26 @@ class ServerTests(unittest.TestCase):
         overflow='Turma;Benefício;Percentual;Quantidade\nG2 A;Sem desconto;0;999\n'.encode();blocked=financial_classification_preview('excesso.csv',overflow,state,2027);self.assertFalse(blocked['canConfirm']);self.assertEqual(next(x for x in blocked['classSummary'] if x['className']=='G2 A')['status'],'blocked')
         decision={'id':blocked['rows'][0]['id'],'action':'accept'}
         with self.assertRaisesRegex(ValueError,'excede os matriculados'):apply_financial_classification_preview(state,blocked,[decision],self.admin)
+    def test_financial_discount_template_and_isolated_homologation_fixture(self):
+        from openpyxl import load_workbook
+        model=financial_import_workbook();book=load_workbook(io.BytesIO(model),data_only=True);self.assertEqual(book.sheetnames,['Nominal','Consolidada por turma','Instruções']);self.assertEqual([cell.value for cell in book['Nominal'][1]],['Aluno','Turma','Série/Ano','Categoria/Benefício','Percentual','Observação']);self.assertIn('Projeto Marcando Vidas — 45%',[row[0].value for row in book['Instruções']]);book.close()
+        state,_=self.store.state();before=copy.deepcopy(state);fixture=financial_import_workbook(homologation=True);preview=financial_classification_preview('HOMOLOGACAO-FICTICIA-NAO-CONFIRMAR.xlsx',fixture,state,2027)
+        self.assertEqual(state,before);self.assertEqual(len(preview['classSummary']),41);self.assertFalse(preview['canConfirm']);self.assertTrue(any(row['classificationKey']=='variable' and row['percent']==16 for row in preview['rows']));self.assertTrue(any(row['className']=='TURMA FICTÍCIA INEXISTENTE' and row['status']=='pending_review' for row in preview['rows']));self.assertTrue(any(row['classId'] is None and row['source'].get('className','')=='' and row['status']=='pending_review' for row in preview['rows']));self.assertTrue(any(row['category']=='Categoria ambígua' and row['status']=='pending_review' for row in preview['rows']))
+        g2=next(row for row in preview['classSummary'] if row['className']=='G2 A');self.assertEqual(g2['status'],'blocked');self.assertGreater(g2['classified'],g2['enrolled']);self.assertEqual(state,before)
+    def test_financial_discount_duplicate_invalid_cancel_and_recalculation_chain(self):
+        from financial_integration import integration_snapshot
+        state,_=self.store.state();year=next(row for row in state['academicYears'] if row['year']==2027)
+        for room in state['classes']:year['classifications'][room['id']]={'fixed':{'noDiscount':room['students'],'philanthropic100':0,'philanthropic50':0,'staffChild100':0,'staffChild80':0,'workerChild100':0,'markingLives45':0},'variables':[]}
+        source=[];mappings=[]
+        for room in state['classes']:
+            source.append({'id':'source-'+room['id'],'className':room['name'],'status':'recognized'});mappings.append({'operationalClassId':room['id'],'budgetClassName':room['name'],'sourceRowId':'source-'+room['id'],'status':'mapped','costMonthly':5000,'costEvidence':{'status':'verified'}})
+        state['breakEven']={'plans':[{'id':'fixture-pe','year':2027,'officialBudget':{'classRows':source,'totals':{'totalExpensesMonthly':205000}},'mappings':mappings,'delinquency':{'scenarioPercent':0}}]};ledger={'target_year':2027,'conflicted_cost_cents':0,'unassigned_cost_cents':0,'validated_cost_cents':4100,'classes':[{'class_id':room['id'],'weekly_cost':1} for room in state['classes']]}
+        before=integration_snapshot(state,ledger,2027);g2=next(room for room in state['classes'] if room['name']=='G2 A');content=f'Turma;Categoria/Benefício;Percentual;Quantidade\nG2 A;Sem desconto;0;{g2["students"]-1}\nG2 A;Desconto variável;16;1\n'.encode();preview=financial_classification_preview('recalculo.csv',content,state,2027);self.assertEqual(len(preview['classSummary']),41)
+        self.assertEqual(state['imports'],[])
+        with self.assertRaises(ValueError):financial_classification_preview('invalido.csv',b'cabecalho desconhecido\nvalor',state,2027)
+        decisions=[{'id':row['id'],'action':'accept'} for row in preview['rows']];updated=apply_financial_classification_preview(state,preview,decisions,self.admin);after=integration_snapshot(updated,ledger,2027);before_g2=next(row for row in before['classes'] if row['name']=='G2 A');after_g2=next(row for row in after['classes'] if row['name']=='G2 A')
+        self.assertLess(after_g2['netRevenueMonthly'],before_g2['netRevenueMonthly']);self.assertLess(after_g2['netTicketMonthly'],before_g2['netTicketMonthly']);self.assertGreaterEqual(after_g2['breakEvenStudents'],before_g2['breakEvenStudents']);self.assertLess(after['recurringNetRevenueMonthly'],before['recurringNetRevenueMonthly']);self.assertGreaterEqual(after['breakEvenStudents'],before['breakEvenStudents'])
+        with self.assertRaisesRegex(ValueError,'já foi confirmado'):financial_classification_preview('mesmo-arquivo.csv',content,updated,2027)
     def test_financial_discount_import_reads_xlsx_pdf_and_requires_administrator(self):
         state,_=self.store.state();xlsx=xlsx_report(['Turma','Benefício','Percentual','Quantidade'],[['G2 A','Sem desconto',0,2]])
         self.assertEqual(financial_classification_preview('descontos.xlsx',xlsx,state,2027)['automatic'],1)

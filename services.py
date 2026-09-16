@@ -9,7 +9,7 @@ SCHOOL='Colégio Adventista de Juazeiro'
 ADDRESS='R. Antônio Pedro, 263 - Centro, Juazeiro - BA, 48903-660'
 CNPJ='CNPJ: 07.114.699/0047-42'
 ALIASES={'code':['codigo','cod','codigo da conta','conta codigo'],'category':['categoria','conta','nome da conta','categoria/conta'],'subaccount':['subconta'],'description':['descricao','historico'],'purpose':['finalidade'],'budget':['orcado','orcamento','valor orcado'],'value':['valor','realizado','valor realizado','valor pago'],'date':['data','data pagamento','data de pagamento'],'document':['documento','id','numero documento','identificador'],'month':['mes','competencia'],'financialPercent':['financeira','inadimplencia financeira','financeira (%)','inadimplencia financeira (%)'],'accountingPercent':['contabil','inadimplencia contabil','contabil (%)','inadimplencia contabil (%)'],'debt':['divida','valor da divida','divida financeira'],'students':['alunos','alunos afetados'],'guardians':['responsaveis','responsaveis afetados']}
-FINANCIAL_IMPORT_ALIASES={'className':['turma','classe','turma/serie','turma/série'],'grade':['serie','série','ano','serie/ano','série/ano'],'category':['beneficio','benefício','tipo','categoria','bolsa/desconto','tipo de beneficio','tipo de benefício'],'percent':['percentual','percentual de desconto','desconto (%)','percentual (%)','desconto','% desconto'],'quantity':['quantidade','qtd','alunos','quantidade de alunos','qtde'],'student':['aluno','nome do aluno','nome','matricula','matrícula']}
+FINANCIAL_IMPORT_ALIASES={'className':['turma','classe','turma/serie','turma/série'],'grade':['serie','série','ano','serie/ano','série/ano'],'category':['beneficio','benefício','tipo','categoria','categoria/beneficio','categoria/benefício','bolsa/desconto','tipo de beneficio','tipo de benefício'],'percent':['percentual','percentual de desconto','desconto (%)','percentual (%)','desconto','% desconto'],'quantity':['quantidade','qtd','alunos','quantidade de alunos','qtde'],'student':['aluno','nome do aluno','nome','matricula','matrícula'],'note':['observacao','observação','obs']}
 REVENUE_IMPORT_ALIASES={'studentId':['id aluno','identificador unico','identificador único','matricula','matrícula','codigo aluno','código aluno'],'externalId':['id lancamento','id lançamento','id financeiro','documento','referencia','referência'],'className':['turma','classe','turma/serie'],'eventType':['tipo','evento','tipo de lancamento','tipo de lançamento'],'date':['data','data matricula','data matrícula','competencia','competência'],'gross':['valor bruto','bruto','valor'],'discount':['desconto','valor desconto'],'status':['status','situacao','situação'],'settledAmount':['baixa financeira','valor baixado','valor recebido','recebido'],'reversalOf':['estorno de','reversao de','reversão de','lancamento original','lançamento original'],'fromClassName':['turma origem','classe origem']}
 FINANCIAL_FIXED={
     ('sem desconto',0):'noDiscount',('bolsa filantropica',100):'philanthropic100',('bolsa filantropica',50):'philanthropic50',
@@ -429,6 +429,43 @@ def read_rows(name,content,kind):
         return lines,None
     if ext=='.xls':raise ValueError('Excel .xls antigo ainda não suportado. Salve como .xlsx; nenhum dado foi importado.')
     raise ValueError('Formato permitido: XLSX, CSV ou PDF textual.')
+
+def financial_import_records(name,content):
+    """Lê uma ou as duas modalidades do modelo, ignorando apenas a aba de instruções."""
+    if Path(name).suffix.lower()!='.xlsx':
+        raw,sheet=read_rows(name,content,'financial_classifications');records,_=mapped(raw,aliases=FINANCIAL_IMPORT_ALIASES);return records,sheet
+    from openpyxl import load_workbook
+    with zipfile.ZipFile(io.BytesIO(content)) as archive:
+        if sum(item.file_size for item in archive.infolist())>40*1024*1024:raise ValueError('Planilha descompactada excede 40 MB.')
+    book=load_workbook(io.BytesIO(content),read_only=True,data_only=True);records=[];used=[];errors=[]
+    for sheet in book.worksheets:
+        if fold(sheet.title)=='instrucoes':continue
+        rows=[[cell.value*100 if isinstance(cell.value,(int,float)) and '%' in cell.number_format else cell.value for cell in row] for row in sheet.iter_rows()]
+        if not any(any(value not in [None,''] for value in row) for row in rows):continue
+        try:items,_=mapped(rows,aliases=FINANCIAL_IMPORT_ALIASES);records.extend(items);used.append(sheet.title)
+        except ValueError as error:errors.append(sheet.title+': '+str(error))
+    book.close()
+    if not records:raise ValueError('Nenhuma aba nominal ou consolidada reconhecida. '+(' '.join(errors) if errors else ''))
+    return records,', '.join(used)
+
+def financial_import_workbook(homologation=False):
+    """Modelo seguro sem fórmulas/macros; a variante de homologação contém somente nomes fictícios."""
+    from openpyxl import Workbook
+    from openpyxl.styles import Font,PatternFill,Alignment
+    book=Workbook();nominal=book.active;nominal.title='Nominal';consolidated=book.create_sheet('Consolidada por turma');instructions=book.create_sheet('Instruções')
+    nominal.append(['Aluno','Turma','Série/Ano','Categoria/Benefício','Percentual','Observação'])
+    consolidated.append(['Turma','Série/Ano','Categoria/Benefício','Percentual','Quantidade','Observação'])
+    if homologation:
+        nominal_rows=[['ALUNO FICTÍCIO 001','G2 A','Grupo 2','Sem desconto',0,'TESTE — não confirmar'],['ALUNO FICTÍCIO 002','G2 A','Grupo 2','Desconto variável',16,'TESTE — faixa variável'],['ALUNO FICTÍCIO 003','G3 A','Grupo 3','Projeto Marcando Vidas',45,'TESTE'],['ALUNO FICTÍCIO 004','G3 A','Grupo 3','Bolsa filantrópica',50,'TESTE'],['ALUNO FICTÍCIO 005','1º A','1º ano','Filho de funcionário',100,'TESTE'],['ALUNO FICTÍCIO 006','TURMA FICTÍCIA INEXISTENTE','—','Sem desconto',0,'TESTE — turma inexistente'],['ALUNO FICTÍCIO 007','','—','Sem desconto',0,'TESTE — turma ausente'],['ALUNO FICTÍCIO 008','G2 A','Grupo 2','Categoria ambígua',35,'TESTE — não presumir']]
+        for row in nominal_rows:nominal.append(row)
+        for row in [['G2 A','Grupo 2','Bolsa filantrópica',100,999,'TESTE — divergência proposital']]:consolidated.append(row)
+    instructions.append(['MODELO 7&7 — BOLSAS, BENEFÍCIOS E DESCONTOS']);instructions.append(['Preencha a aba Nominal (uma linha por aluno), a aba Consolidada por turma (uma linha por combinação turma/desconto), ou ambas.']);instructions.append(['Turma é obrigatória. Registros sem turma ou ambíguos ficam pendentes; nunca são distribuídos entre turmas.']);instructions.append(['Categorias reconhecidas']);
+    for label in ['Sem desconto — 0%','Bolsa filantrópica — 100%','Bolsa filantrópica — 50%','Filho de funcionário — 100%','Filho de funcionário — 80%','Filho de obreiro — 100%','Projeto Marcando Vidas — 45%','Outros descontos variáveis — informe um percentual entre 0% e 100%']:instructions.append([label])
+    for sheet in [nominal,consolidated,instructions]:
+        sheet.freeze_panes='A2';sheet.auto_filter.ref=sheet.dimensions
+        for cell in sheet[1]:cell.font=Font(bold=True,color='FFFFFF');cell.fill=PatternFill('solid',fgColor='075EAF');cell.alignment=Alignment(wrap_text=True)
+        for column in sheet.columns:sheet.column_dimensions[column[0].column_letter].width=min(55,max(16,max(len(str(cell.value or '')) for cell in column)+2))
+    stream=io.BytesIO();book.save(stream);book.close();return stream.getvalue()
 def mapped(rows,mapping=None,aliases=ALIASES):
     for idx,row in enumerate(rows[:80]):
         headers=[fold(x) for x in row]
@@ -480,8 +517,7 @@ def _financial_preview_summary(state,year,rows,invalid):
 
 def financial_classification_preview(name,content,state,year):
     """Prévia conservadora de bolsas/descontos; nunca altera o estado recebido."""
-    raw,sheet=read_rows(name,content,'financial_classifications')
-    records,_=mapped(raw,aliases=FINANCIAL_IMPORT_ALIASES)
+    records,sheet=financial_import_records(name,content)
     target_year=next((item for item in state.get('academicYears',[]) if int(item.get('year',0))==int(year)),None)
     if not target_year:raise ValueError('Ano letivo financeiro não encontrado.')
     rooms={fold(item['name']):item for item in state.get('classes',[])}
@@ -489,7 +525,7 @@ def financial_classification_preview(name,content,state,year):
     if any(item.get('fileHash')==result['fileHash'] and item.get('kind')==result['kind'] for item in state.get('imports',[])):raise ValueError('Este arquivo já foi confirmado para descontos e benefícios.')
     seen=set()
     for line,raw_item in enumerate(records,2):
-        item={'id':secrets.token_hex(12),'line':line,'className':str(raw_item.get('className') or raw_item.get('grade') or '').strip(),'grade':str(raw_item.get('grade') or '').strip(),'category':str(raw_item.get('category') or '').strip(),'student':str(raw_item.get('student') or '').strip(),'source':{key:str(value or '').strip() for key,value in raw_item.items()}}
+        item={'id':secrets.token_hex(12),'line':line,'className':str(raw_item.get('className') or '').strip(),'grade':str(raw_item.get('grade') or '').strip(),'category':str(raw_item.get('category') or '').strip(),'student':str(raw_item.get('student') or '').strip(),'source':{key:str(value or '').strip() for key,value in raw_item.items()}}
         try:
             item['percent']=_financial_percent(item['category'],raw_item.get('percent'));quantity_raw=raw_item.get('quantity');item['quantity']=1 if item['student'] and quantity_raw in [None,''] else decimal(quantity_raw)
             if not 0<=item['percent']<=100:raise ValueError('Percentual fora de 0% a 100%.')
@@ -890,6 +926,8 @@ def api_service(handler,user,path,p):
     if path=='/api/budget-version/preview':
         require(user,'financial','edit')
         return handler.respond(200,budget_version_preview(p['name'],base64.b64decode(p['content'],validate=True)))
+    if path=='/api/financial-classifications/template':
+        require(user,'financial','edit');return handler.binary(financial_import_workbook(),'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','modelo-descontos-7e7.xlsx')
     if path=='/api/export':
         require(user,'reports');kind=p['kind']
         if kind=='audit':require(user,'users')

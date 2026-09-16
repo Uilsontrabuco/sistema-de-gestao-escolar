@@ -540,7 +540,7 @@ class Handler(BaseHTTPRequestHandler):
                 content=base64.b64decode(p['content'],validate=True)
                 if len(content)>2*1024*1024:raise ValueError('Logo excede 2 MB.')
                 img=Image.open(io.BytesIO(content));img.verify();img=Image.open(io.BytesIO(content));img.thumbnail((1600,1600));img.save(Path(self.store.path).parent/'logo.png','PNG');return self.respond(200,{'ok':True})
-            if path in ['/api/import/preview','/api/import/confirm','/api/export','/api/budget-version/preview','/api/financial-classifications/preview','/api/financial-classifications/confirm','/api/revenue-2027/preview','/api/revenue-2027/confirm','/api/teaching-load/preview']:
+            if path in ['/api/import/preview','/api/import/confirm','/api/export','/api/budget-version/preview','/api/financial-classifications/template','/api/financial-classifications/preview','/api/financial-classifications/confirm','/api/revenue-2027/preview','/api/revenue-2027/confirm','/api/teaching-load/preview']:
                 from services import api_service
                 return api_service(self,user,path,p)
             return self.respond(404,{'error':'Rota não encontrada.'})
