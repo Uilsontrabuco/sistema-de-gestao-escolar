@@ -1,0 +1,6 @@
+private/
+node_modules/
+__pycache__/
+.env
+.env.*
+.vercel/

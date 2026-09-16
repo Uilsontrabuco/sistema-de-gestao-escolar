@@ -1,0 +1,11 @@
+{
+  "framework": null,
+  "buildCommand": "",
+  "functions": {
+    "api/index.py": {
+      "maxDuration": 60,
+      "excludeFiles": "{recovery,references,output,tmp,tests,supabase-port,.git}/**"
+    }
+  },
+  "routes": [{"src": "/(.*)", "dest": "/api/index"}]
+}

@@ -1,0 +1,10 @@
+{
+  "framework": null,
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "routes": [
+    { "src": "/(?:private|tests|review)(?:/.*)?", "status": 404 },
+    { "src": "/.*\\.(?:sql|md)$", "status": 404 },
+    { "handle": "filesystem" }
+  ]
+}

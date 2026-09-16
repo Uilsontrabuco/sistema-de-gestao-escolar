@@ -1,0 +1,3 @@
+-- CANCELADO. Não executar: nenhuma alteração de perfis é necessária nesta proposta.
+-- A autorização usa exclusivamente public.is_master() já existente.
+-- Arquivo mantido como aviso para impedir a aplicação da proposta anterior.
