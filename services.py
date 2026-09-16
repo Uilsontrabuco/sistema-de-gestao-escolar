@@ -437,16 +437,22 @@ def financial_import_records(name,content):
     from openpyxl import load_workbook
     with zipfile.ZipFile(io.BytesIO(content)) as archive:
         if sum(item.file_size for item in archive.infolist())>40*1024*1024:raise ValueError('Planilha descompactada excede 40 MB.')
-    book=load_workbook(io.BytesIO(content),read_only=True,data_only=True);records=[];used=[];errors=[]
+    book=load_workbook(io.BytesIO(content),read_only=True,data_only=True);candidates=[];expected=[];expected_names={'nominal','consolidada por turma','consolidada'};auxiliary_names={'instrucoes','instrucao','leia me','notas','apoio','auxiliar'}
     for sheet in book.worksheets:
-        if fold(sheet.title)=='instrucoes':continue
+        normalized_title=fold(sheet.title)
+        if normalized_title in auxiliary_names:continue
         rows=[[cell.value*100 if isinstance(cell.value,(int,float)) and '%' in cell.number_format else cell.value for cell in row] for row in sheet.iter_rows()]
         if not any(any(value not in [None,''] for value in row) for row in rows):continue
-        try:items,_=mapped(rows,aliases=FINANCIAL_IMPORT_ALIASES);records.extend(items);used.append(sheet.title)
-        except ValueError as error:errors.append(sheet.title+': '+str(error))
+        try:
+            items,_=mapped(rows,aliases=FINANCIAL_IMPORT_ALIASES);candidate=(sheet.title,items);candidates.append(candidate)
+            if normalized_title in expected_names:expected.append(candidate)
+        except ValueError:pass
     book.close()
-    if not records:raise ValueError('Nenhuma aba nominal ou consolidada reconhecida. '+(' '.join(errors) if errors else ''))
-    return records,', '.join(used)
+    selected=expected or candidates
+    if not selected:raise ValueError('Nenhuma aba com colunas de descontos e benefícios foi reconhecida. Verifique Aluno, Turma, Série/Ano, Categoria/Benefício, Percentual e Quantidade.')
+    if not expected and len(selected)>1:raise ValueError('Mais de uma aba candidata foi encontrada ('+', '.join(title for title,_ in selected)+'). Renomeie a aba desejada para Nominal ou Consolidada por turma; nenhuma aba foi escolhida automaticamente.')
+    records=[item for _,items in selected for item in items]
+    return records,', '.join(title for title,_ in selected)
 
 def financial_import_workbook(homologation=False):
     """Modelo seguro sem fórmulas/macros; a variante de homologação contém somente nomes fictícios."""

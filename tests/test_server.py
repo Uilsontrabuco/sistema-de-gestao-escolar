@@ -122,6 +122,21 @@ class ServerTests(unittest.TestCase):
         state,_=self.store.state();before=copy.deepcopy(state);fixture=financial_import_workbook(homologation=True);preview=financial_classification_preview('HOMOLOGACAO-FICTICIA-NAO-CONFIRMAR.xlsx',fixture,state,2027)
         self.assertEqual(state,before);self.assertEqual(len(preview['classSummary']),41);self.assertFalse(preview['canConfirm']);self.assertTrue(any(row['classificationKey']=='variable' and row['percent']==16 for row in preview['rows']));self.assertTrue(any(row['className']=='TURMA FICTÍCIA INEXISTENTE' and row['status']=='pending_review' for row in preview['rows']));self.assertTrue(any(row['classId'] is None and row['source'].get('className','')=='' and row['status']=='pending_review' for row in preview['rows']));self.assertTrue(any(row['category']=='Categoria ambígua' and row['status']=='pending_review' for row in preview['rows']))
         g2=next(row for row in preview['classSummary'] if row['className']=='G2 A');self.assertEqual(g2['status'],'blocked');self.assertGreater(g2['classified'],g2['enrolled']);self.assertEqual(state,before)
+    def test_financial_discount_xlsx_ignores_instructions_and_never_uses_delinquency_error(self):
+        from openpyxl import Workbook
+        def workbook(sheets):
+            book=Workbook();book.remove(book.active)
+            for title,rows in sheets:
+                sheet=book.create_sheet(title)
+                for row in rows:sheet.append(row)
+            buffer=io.BytesIO();book.save(buffer);book.close();return buffer.getvalue()
+        state,_=self.store.state();valid=[['Turma','Categoria/Benefício','Percentual','Quantidade'],['G2 A','Sem desconto',0,1]]
+        content=workbook([('Dados',valid),('Instruções',[['Texto auxiliar sem dados']])]);preview=financial_classification_preview('com-instrucoes.xlsx',content,state,2027);self.assertEqual(preview['sheet'],'Dados');self.assertEqual(preview['automatic'],1)
+        ambiguous=workbook([('Janeiro',valid),('Fevereiro',valid),('Instruções',[['Ignore esta aba']])])
+        with self.assertRaisesRegex(ValueError,'Mais de uma aba candidata.*Janeiro, Fevereiro'):financial_classification_preview('ambiguo.xlsx',ambiguous,state,2027)
+        invalid=workbook([('Instruções',[['Leia antes']]),('Apoio',[['Sem colunas financeiras']])])
+        with self.assertRaises(ValueError) as context:financial_classification_preview('invalido.xlsx',invalid,state,2027)
+        self.assertNotIn('inadimplência',str(context.exception).lower());self.assertIn('descontos e benefícios',str(context.exception).lower())
     def test_financial_discount_duplicate_invalid_cancel_and_recalculation_chain(self):
         from financial_integration import integration_snapshot
         state,_=self.store.state();year=next(row for row in state['academicYears'] if row['year']==2027)
