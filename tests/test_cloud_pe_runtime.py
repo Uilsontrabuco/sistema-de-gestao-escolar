@@ -35,6 +35,13 @@ class CloudPeRuntimeTests(unittest.TestCase):
         self.assertEqual(ledger['professors'],[])
         self.assertEqual(ledger['operational_allocations'],[])
 
+    def test_snapshot_uses_canonical_class_name_not_local_fixture_id(self):
+        classes=blank()['classes']
+        for index,room in enumerate(classes):room['id']=f'id-migrado-{index}'
+        ledger=__import__('teaching_cost_snapshot').packaged_ledger(classes)
+        self.assertEqual(len(ledger['classes']),41)
+        self.assertEqual(ledger['classes'][0]['class_id'],'id-migrado-0')
+
 
 if __name__=='__main__':
     unittest.main()

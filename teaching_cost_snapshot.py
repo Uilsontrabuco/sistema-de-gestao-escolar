@@ -4,6 +4,8 @@ Não contém nomes de professores, credenciais nem registros documentais. A font
 completa permanece fora do artefato público; este arquivo guarda somente os
 totais por turma já reconciliados e o hash da extração auditada.
 """
+import re
+import unicodedata
 
 SOURCE_HASH = '27115a2931183095d800989a7c700db61fbdb511e7a972e36e0d2d378c5088da'
 WEEKLY_TOTAL_CENTS = 2567735
@@ -38,7 +40,9 @@ SUMMARY = {
 def packaged_ledger(classes):
     rows=[]
     for room in classes:
-        suffix=str(room['id']).removeprefix('caj-2027-caj-')
+        label=unicodedata.normalize('NFKD',str(room['name'])).encode('ascii','ignore').decode().lower()
+        suffix=re.sub(r'[^a-z0-9]+','-',label).strip('-').replace('-em','-em')
+        suffix=suffix.replace('o-','-').replace('grupo-','g')
         if suffix not in CLASS_TOTALS:
             raise ValueError(f'Turma ausente no snapshot docente sanitizado: {room["id"]}')
         minutes,cost=CLASS_TOTALS[suffix]
