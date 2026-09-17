@@ -44,3 +44,11 @@ test('contrato do frontend usa fator 4,5 e estados assíncronos determinísticos
   assert(!code.includes('semanal × 4,0'));
   for(const field of ['teachingCostWeekly','teachingCostMonthly','otherDirectCostsMonthly','indirectExpensesMonthly','totalCostMonthly','structuralTicketMonthly','breakEvenStudents','breakEvenPercentCapacity','physicalMarginStudents'])assert(code.includes(field),field);
 });
+
+test('navegação autenticada do menu dispara a API estrutural do PE',()=>{
+  const code=fs.readFileSync(path.join(__dirname,'../professional.js'),'utf8');
+  assert(code.includes("breakEvenOpen&&typeof showBreakEven==='function')await showBreakEven()"));
+  const pe=fs.readFileSync(path.join(__dirname,'../break_even.js'),'utf8');
+  assert(pe.includes("api('teaching-load/costs')"));
+  assert(pe.includes("api(`break-even/integrated?year=${encodeURIComponent(breakEvenYear)}`)"));
+});

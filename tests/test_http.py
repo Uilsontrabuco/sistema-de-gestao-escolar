@@ -40,6 +40,9 @@ class HttpTests(unittest.TestCase):
             data=json.loads(body);self.assertEqual(data['teachingCostWeekly'],25677.35)
             self.assertEqual(data['teachingCostMonthly'],115548.16);self.assertEqual(data['monthlyFactor'],4.5);self.assertIsNone(data['breakEvenStudents'])
             self.assertEqual(data['classBreakEvenCounts']['undetermined'],0);self.assertEqual(len(data['classes']),41)
+            g2=next(row for row in data['classes'] if row['name']=='G2 A')
+            self.assertEqual(g2['teachingCostWeekly'],532.80);self.assertEqual(g2['teachingCostMonthly'],2397.60)
+            self.assertEqual(g2['breakEvenStudents'],3);self.assertEqual(g2['physicalMarginStudents'],15)
         self.assertEqual(self.server.store.state(),before)
         self.assertEqual(self.request('/api/financial/teaching-integration?year=2028')[0],400)
     def test_sse_windows_disconnect_is_normal(self):
