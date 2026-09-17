@@ -16,6 +16,8 @@ MODULES=['dashboard','enrollments','classes','benefits','requests','budget','del
 MUTABLE={'meta','classes','enrollments','benefits','requests','budget','delinquency','guardians','tasks','imports','classificationRules','reviewQueue','academicYears','activeAcademicYear','academicDataYear','breakEven','revenuePlanning','teachingLoad'}
 FINANCIAL_SEGMENTS=[('early','Educação Infantil'),('fundamental1','Fundamental I'),('fundamental2','Fundamental II'),('secondary12','1º e 2º ano do Ensino Médio'),('secondary3','3º ano do Ensino Médio')]
 FINANCIAL_CATEGORIES=[('noDiscount','Sem desconto',0),('philanthropic100','Bolsa filantrópica',100),('philanthropic50','Bolsa filantrópica',50),('staffChild100','Filho de funcionário',100),('staffChild80','Filho de funcionário',80),('workerChild100','Filho de obreiro',100),('markingLives45','Projeto Marcando Vidas',45)]
+from teaching_cost import load_documentary_costs
+from financial_integration import integration_snapshot
 INITIAL_TUITION={'early':930.69,'fundamental1':964.67,'fundamental2':1239.81,'secondary12':1425.59,'secondary3':1461.05}
 PERSONNEL_COST_AUDIT_2027={
     'source':'Orçamento 2027',
@@ -471,8 +473,6 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/state':return self.respond(200,self.store.snapshot(self.current()))
             if path in ('/api/financial/teaching-integration','/api/break-even/integrated'):
                 require(self.current(),'financial','view')
-                from teaching_cost import load_documentary_costs
-                from financial_integration import integration_snapshot
                 state,version=self.store.state()
                 year=int(parse_qs(urlparse(self.path).query).get('year',[state.get('activeAcademicYear',2027)])[0])
                 result=integration_snapshot(state,load_documentary_costs(state['classes']),year)
@@ -480,7 +480,6 @@ class Handler(BaseHTTPRequestHandler):
                 return self.respond(200,result)
             if path=='/api/teaching-load/costs':
                 require(self.current(),'financial','view')
-                from teaching_cost import load_documentary_costs
                 state,version=self.store.state()
                 result=load_documentary_costs(state['classes'])
                 result['state_version']=version
