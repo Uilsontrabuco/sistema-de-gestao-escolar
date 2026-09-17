@@ -38,7 +38,7 @@ class HttpTests(unittest.TestCase):
         for path in ('/api/financial/teaching-integration?year=2027','/api/break-even/integrated?year=2027'):
             status,body=self.request(path);self.assertEqual(status,200)
             data=json.loads(body);self.assertEqual(data['teachingCostWeekly'],25677.35)
-            self.assertIsNone(data['teachingCostMonthly']);self.assertIsNone(data['breakEvenStudents'])
+            self.assertEqual(data['teachingCostMonthly'],115548.16);self.assertIsNone(data['breakEvenStudents'])
         self.assertEqual(self.server.store.state(),before)
         self.assertEqual(self.request('/api/financial/teaching-integration?year=2028')[0],400)
     def test_sse_windows_disconnect_is_normal(self):

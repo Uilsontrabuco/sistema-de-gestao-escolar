@@ -17,17 +17,19 @@ test('fonte oficial 2027 é vinculada somente para consulta quando não há vers
   assert.equal(JSON.stringify(ctx.S),before);
 });
 
-test('41 turmas e 752 alunos sem classificação permanecem pendentes e não viram desconto zero',()=>{
+test('41 turmas sem custo mensal ficam estruturalmente pendentes e não classificados não viram desconto zero',()=>{
   const ctx=runtime();ctx.plan=vm.runInContext('bePlan()',ctx);
   const audit=vm.runInContext('beAuditOverview(plan)',ctx);
   assert.equal(audit.rows.length,41);assert.equal(audit.students,752);assert.equal(audit.definitive,0);assert.equal(audit.pending.length,41);
   assert.equal(audit.discounts,null);assert.equal(audit.net,null);assert.equal(audit.effective,null);assert.equal(audit.result,null);
-  assert(audit.rows.every(row=>row.calculationStatus==='PENDENTE — classificação financeira dos alunos'));
+  assert(audit.rows.every(row=>row.calculationStatus.includes('integração estrutural ainda não carregada')));
 });
 
 test('resumo geral é soma das turmas quando a classificação e os custos ficam completos',()=>{
   const ctx=runtime();ctx.M.financialStats=(_state,room)=>({id:room.id,name:room.name,capacity:room.capacity,total:1,classified:1,unclassifiedFinancial:0,tuition:100,potential:100,knownGross:100,discounts:10,net:90,groups:[{quantity:1,percent:10}],segmentLabel:'Segmento'});
   ctx.plan=vm.runInContext('bePlan()',ctx);ctx.plan.mappings=ctx.S.classes.map(room=>({operationalClassId:room.id,status:'mapped',costMonthly:50,costEvidence:{status:'verified'}}));
+  ctx.integrated=ctx.S.classes.map(room=>({class_id:room.id,totalCostMonthly:50,teachingCostWeekly:10,teachingCostMonthly:null,structuralTicketMonthly:90,structuralDiscountPercent:10,structuralDiscountOrigin:'fixture',breakEvenStudents:1,breakEvenPercentCapacity:100/room.capacity,physicalMarginStudents:room.capacity-1,structuralPendingReasons:[]}));
+  vm.runInContext('breakEvenIntegrated={classes:integrated}',ctx);
   const audit=vm.runInContext('beAuditOverview(plan)',ctx);
   assert.equal(audit.net,3690);assert.equal(audit.totalCost,2050);assert(Math.abs(audit.result-1473.95)<0.000001);
   assert.equal(audit.definitive,41);assert.equal(audit.pending.length,0);
