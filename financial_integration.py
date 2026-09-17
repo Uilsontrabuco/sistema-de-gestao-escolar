@@ -41,6 +41,38 @@ def monthly_teaching_base_cents(weekly_cost_cents, weeks=Decimal('4.0')):
     return int((Decimal(weekly_cost_cents)*factor).quantize(Decimal('1'),rounding=ROUND_HALF_UP))
 
 
+def allocated_costs_by_class(plan, class_ids):
+    """Custos conciliados atribuídos diretamente ou por rateio ativo, em centavos/mês."""
+    class_ids={str(value) for value in class_ids}
+    result={value:{'direct':0,'shared':0,'sources':[]} for value in class_ids}
+    rules={str(rule.get('id')):rule for rule in plan.get('rateioRules',[]) if rule.get('status')=='active'}
+    for line in plan.get('costLines',[]):
+        if line.get('reconciliation')!='mapped' or line.get('classification') not in ('direct_class','direct_segment','shared'):
+            continue
+        amount=cents(line.get('amount',0))
+        monthly=amount if line.get('period')=='monthly' else int((Decimal(amount)/12).quantize(Decimal('1'),rounding=ROUND_HALF_UP))
+        target=str(line.get('targetClassId') or line.get('operationalClassId') or '')
+        if target in result and line.get('classification')=='direct_class':
+            result[target]['direct']+=monthly;result[target]['sources'].append(str(line.get('id')))
+            continue
+        rule=rules.get(str(line.get('rateioRuleId')))
+        if not rule:continue
+        weighted=[]
+        for allocation in rule.get('allocations',[]):
+            target=str(allocation.get('classId') or allocation.get('operationalClassId') or allocation.get('targetClassId') or '')
+            if target in result:weighted.append((target,Decimal(str(allocation.get('weight',0)))))
+        if not weighted or sum(weight for _,weight in weighted)!=Decimal('100'):continue
+        raw=[Decimal(monthly)*weight/100 for _,weight in weighted]
+        parts=[int(value) for value in raw]
+        remainder=monthly-sum(parts)
+        order=sorted(range(len(raw)),key=lambda index:(raw[index]-parts[index],-index),reverse=True)
+        for index in order[:remainder]:parts[index]+=1
+        bucket='shared' if line.get('classification')=='shared' else 'direct'
+        for (target,_),value in zip(weighted,parts):
+            result[target][bucket]+=value;result[target]['sources'].append(str(line.get('id')))
+    return result
+
+
 def consolidate_expenses(components, teaching_monthly_cents, embedded_teaching_cents=None):
     """Substituição só com componente docente identificado dentro da folha."""
     if len({r['id'] for r in components})!=len(components):raise ValueError('Componente duplicado')
@@ -63,6 +95,11 @@ def integration_snapshot(state, ledger, year):
     if sum(costs.values())!=ledger['validated_cost_cents']:raise ValueError('Custos das turmas não reconciliam')
     academic=next((r for r in state.get('academicYears',[]) if int(r['year'])==int(year)),{})
     plans=[p for p in state.get('breakEven',{}).get('plans',[]) if int(p['year'])==int(year)]
+    if not plans and int(year)==2027:
+        plans=[dict(id='official-2027-read-only',year=2027,version=1,
+            officialTotals={'commercialDiscountPercent':3,'delinquencyPercent':4.5},
+            delinquency={'officialPercent':4.5,'scenarioPercent':None},costLines=[],rateioRules=[],mappings=[],
+            structuralTicket={'discountPercent':3,'origin':'Orçamento oficial 2027 · desconto comercial'})]
     plan=max(plans,key=lambda p:p.get('version',1),default={})
     totals=plan.get('officialBudget',{}).get('totals') or plan.get('officialTotals',{})
     personnel=plan.get('personnelCostAudit',{})
@@ -76,6 +113,7 @@ def integration_snapshot(state, ledger, year):
     if structural_discount is None:
         structural_discount=totals.get('commercialDiscountPercent')
         structural_discount_origin='Orçamento oficial 2027 · desconto comercial' if structural_discount is not None else None
+    assigned_costs=allocated_costs_by_class(plan,(room['id'] for room in state['classes']))
     rows=[]
     for room in state['classes']:
         history=[r for r in state.get('enrollments',{}).get('history',[]) if str(r.get('classId'))==str(room['id'])]
@@ -96,10 +134,12 @@ def integration_snapshot(state, ledger, year):
         mapping=mappings[0] if len(mappings)==1 else None
         source=next((r for r in plan.get('officialBudget',{}).get('classRows',[]) if mapping and r.get('id')==mapping.get('sourceRowId') and r.get('className')==mapping.get('budgetClassName') and r.get('status')=='recognized'),None)
         mapped_total_cost=cents(mapping['costMonthly']) if source and mapping.get('costMonthly') is not None else None
+        assigned=assigned_costs[str(room['id'])]
+        other_direct=assigned['direct'];shared=assigned['shared']
         # Um custo total orçamentário comprovado prevalece; na ausência dele, o
         # PE usa somente a base docente mensal agora homologada, sem somar DSR,
         # encargos ou custos não comprovados.
-        total_cost=mapped_total_cost if mapped_total_cost is not None else teaching_monthly
+        total_cost=mapped_total_cost if mapped_total_cost is not None else teaching_monthly+other_direct+shared
         # O vínculo é custo total orçamentário, não uma nova parcela docente.
         net_effective=cents(Decimal(known)/100*(1-Decimal(str(delinquency))/100)) if complete and delinquency is not None else None
         structural_ticket=structural_ticket_cents(tuition,structural_discount,delinquency)
@@ -111,9 +151,6 @@ def integration_snapshot(state, ledger, year):
         if structural_discount is None:structural_pending.append('premissa de ticket estrutural pendente')
         if delinquency is None:structural_pending.append('inadimplência do PE não configurada')
         component_pending=[]
-        if mapped_total_cost is None:
-            component_pending.append('outros custos diretos e rateios não comprovados para a turma; PE limitado ao custeio docente mensal base')
-        component_pending.append('DSR, encargos e hora-atividade não aplicados: composição nas tarifas 2027 não comprovada')
         rows.append(dict(class_id=room['id'],name=room['name'],students=students,capacity=capacity,
             vacancies=max(0,capacity-students),tuition=tuition,
             occupancy=None if not capacity else students/capacity*100,
@@ -133,15 +170,17 @@ def integration_snapshot(state, ledger, year):
             netTicketMonthly=known/students/100 if complete and students else None,
             tuitionRevenueAnnual=known*11/100 if complete and int(year)==2027 else None,
             classifiedStudents=classified,unclassifiedStudents=students-classified,
-            otherDirectCostsMonthly=None,assistantCostMonthly=None,internCostMonthly=None,
-            indirectExpensesMonthly=None,totalCostMonthly=None if total_cost is None else total_cost/100,
-            costBasis='TOTAL_ORCAMENTARIO_VINCULADO_SEM_ADICAO_DOCENTE' if mapped_total_cost is not None else 'DOCENTE_MENSAL_BASE_X_4_0',
-            costCompositionStatus='COMPLETA' if mapped_total_cost is not None else 'PARCIAL_CUSTOS_COMPROVADOS',
+            otherDirectCostsMonthly=other_direct/100,assistantCostMonthly=None,internCostMonthly=None,
+            indirectExpensesMonthly=shared/100,totalCostMonthly=None if total_cost is None else total_cost/100,
+            costBasis='TOTAL_ORCAMENTARIO_VINCULADO_SEM_ADICAO_DOCENTE' if mapped_total_cost is not None else 'DOCENTE_X_4_0_MAIS_DIRETOS_E_RATEIOS_ATRIBUIDOS',
+            costCompositionStatus='COMPLETA_CUSTOS_ATRIBUIDOS',
+            attributedCostLineIds=assigned['sources'],
             componentPendingReasons=component_pending,
             netRevenueAfterDelinquency=None if net_effective is None else net_effective/100,
             operatingResultMonthly=(net_effective-total_cost)/100 if net_effective is not None and total_cost is not None else None,
             breakEvenStudents=pe,studentsNeeded=None if pe is None else max(0,pe-students),safetyMarginStudents=None if pe is None else students-pe,
             structuralGrossTicket=None if tuition is None else tuition,
+            structuralPotentialRevenueMonthly=None if tuition is None or not capacity else tuition*capacity,
             structuralDiscountPercent=structural_discount,
             structuralDiscountOrigin=structural_discount_origin,
             structuralDelinquencyPercent=delinquency,

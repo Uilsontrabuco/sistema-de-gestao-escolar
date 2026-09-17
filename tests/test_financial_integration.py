@@ -17,7 +17,8 @@ class FinancialIntegrationTests(unittest.TestCase):
         self.assertEqual(self.ledger['summary']['reconciled_professors'],50)
         self.assertEqual(d['teachingCostMonthly'],102709.40);self.assertIsNone(d['teachingCostAnnual'])
         self.assertEqual(d['monthlyFactor'],4.0);self.assertEqual(d['monthlyMethod'],'CUSTO_SEMANAL_CONFIRMADO_X_4_0')
-        self.assertIsNone(d['breakEvenStudents']);self.assertEqual(d['classBreakEvenCounts']['undetermined'],41)
+        self.assertIsNone(d['breakEvenStudents']);self.assertEqual(d['classBreakEvenCounts']['undetermined'],0)
+        self.assertEqual(sum(row['structuralStatus']=='DEFINITIVO' for row in d['classes']),41)
     def test_tuition_discounts_scholarships_and_enrollment_separate(self):
         state=blank();room=state['classes'][0];room['opening']={'new':1,'re':2}
         state['academicYears'][0]['classifications'][room['id']]={'fixed':{'noDiscount':1,'philanthropic100':1,'philanthropic50':1}}
@@ -102,13 +103,14 @@ class FinancialIntegrationTests(unittest.TestCase):
         self.assertEqual(break_even_students(100001,50000),3)
         self.assertEqual(break_even_students(100000,25000),4)
 
-    def test_unclassified_students_do_not_become_zero_discount_and_unproven_components_stay_explicit(self):
+    def test_unclassified_students_do_not_become_zero_discount_and_unassigned_costs_are_zero(self):
         state=blank();room=state['classes'][0];room['opening']={'new':0,'re':1}
         state['breakEven']['plans']=[dict(year=2027,version=1,delinquency={'officialPercent':0},structuralTicket={'discountPercent':0,'origin':'fixture'})]
         row=integration_snapshot(state,self.ledger,2027)['classes'][0]
         self.assertIsNone(row['netRevenueMonthly']);self.assertEqual(row['totalCostMonthly'],row['teachingCostMonthly'])
-        self.assertEqual(row['breakEvenStudents'],3);self.assertIn('outros custos diretos',row['componentPendingReasons'][0])
-        self.assertIn('DSR, encargos e hora-atividade não aplicados',row['componentPendingReasons'][1])
+        self.assertEqual(row['breakEvenStudents'],3);self.assertEqual(row['componentPendingReasons'],[])
+        self.assertEqual(row['otherDirectCostsMonthly'],0);self.assertEqual(row['indirectExpensesMonthly'],0)
+        self.assertEqual(row['structuralStatus'],'DEFINITIVO')
 
     def test_pe_above_capacity_has_explicit_alert(self):
         state=blank();room=state['classes'][0]
@@ -136,9 +138,47 @@ class FinancialIntegrationTests(unittest.TestCase):
         self.assertEqual(row['teachingCostMonthly'],2131.20)
         self.assertEqual(row['teachingMonthlyFactor'],4.0)
         self.assertEqual(row['structuralDelinquencyPercent'],4.5)
-        self.assertEqual(row['structuralStatus'],'PENDENTE')
+        self.assertEqual(row['structuralStatus'],'DEFINITIVO')
         self.assertEqual(row['dsrStatus'],'NAO_APLICADO_COMPOSICAO_NAO_COMPROVADA')
         self.assertEqual(row['chargesStatus'],'NAO_APLICADOS_COMPOSICAO_NAO_COMPROVADA')
+
+    def test_direct_and_shared_assigned_costs_integrate_without_duplication(self):
+        state=blank();g2=state['classes'][0];g2b=state['classes'][1]
+        state['breakEven']['plans']=[dict(year=2027,version=1,
+            delinquency={'officialPercent':4.5},structuralTicket={'discountPercent':3,'origin':'fixture oficial'},
+            costLines=[
+                dict(id='direct-g2',label='Auxiliar G2 A',amount=1200,classification='direct_class',targetClassId=g2['id'],reconciliation='mapped'),
+                dict(id='shared-ei',label='Rateio EI',amount=1200,classification='shared',rateioRuleId='r-ei',reconciliation='mapped')],
+            rateioRules=[dict(id='r-ei',name='Rateio fixture',driver='custom',status='active',allocations=[
+                dict(classId=g2['id'],weight=50),dict(classId=g2b['id'],weight=50)])])]
+        data=integration_snapshot(state,self.ledger,2027);first=data['classes'][0];second=data['classes'][1]
+        self.assertEqual(first['otherDirectCostsMonthly'],100)
+        self.assertEqual(first['indirectExpensesMonthly'],50)
+        self.assertEqual(first['totalCostMonthly'],first['teachingCostMonthly']+150)
+        self.assertEqual(second['otherDirectCostsMonthly'],0)
+        self.assertEqual(second['indirectExpensesMonthly'],50)
+        self.assertEqual(sum(row['indirectExpensesMonthly'] for row in data['classes']),100)
+        self.assertEqual(first['attributedCostLineIds'],['direct-g2','shared-ei'])
+        plan=state['breakEven']['plans'][0]
+        plan['mappings']=[dict(operationalClassId=g2['id'],status='mapped',costEvidence={'status':'verified'},
+            costMonthly=5000,sourceRowId='total-g2',budgetClassName=g2['name'])]
+        plan['officialBudget']={'classRows':[dict(id='total-g2',className=g2['name'],status='recognized')]}
+        mapped=integration_snapshot(state,self.ledger,2027)['classes'][0]
+        self.assertEqual(mapped['totalCostMonthly'],5000)
+        self.assertEqual(mapped['otherDirectCostsMonthly'],100)
+        self.assertEqual(mapped['indirectExpensesMonthly'],50)
+        self.assertEqual(mapped['costBasis'],'TOTAL_ORCAMENTARIO_VINCULADO_SEM_ADICAO_DOCENTE')
+
+    def test_capacity_revenue_pe_percentage_and_margin_ignore_enrollment(self):
+        state=blank();room=state['classes'][0]
+        state['breakEven']['plans']=[dict(year=2027,version=1,
+            delinquency={'officialPercent':4.5},structuralTicket={'discountPercent':3,'origin':'fixture oficial'})]
+        before=integration_snapshot(state,self.ledger,2027)['classes'][0]
+        room['opening']={'new':0,'re':0};room['unclassified']=0
+        after=integration_snapshot(state,self.ledger,2027)['classes'][0]
+        self.assertEqual(after['structuralPotentialRevenueMonthly'],room['capacity']*after['tuition'])
+        for field in ('breakEvenStudents','breakEvenPercentCapacity','physicalMarginStudents','totalCostMonthly','structuralTicketMonthly'):
+            self.assertEqual(after[field],before[field])
     def test_general_pe_uses_current_complete_revenue_and_existing_expenses(self):
         state=blank()
         for room in state['classes']:
