@@ -11,6 +11,7 @@ import json
 import math
 from pathlib import Path
 import re
+from teaching_cost_snapshot import packaged_ledger
 
 CENT = Decimal('0.01')
 ROOT = Path(__file__).resolve().parent
@@ -563,7 +564,6 @@ def direct_break_even(monthly_direct_cost, net_ticket, *, costs_complete, revenu
 def load_documentary_costs(classes):
     path = ROOT/'output/auditoria-carga-horaria/extracao.json'
     if not path.exists():
-        from teaching_cost_snapshot import packaged_ledger
         return packaged_ledger(classes)
     preview = json.loads(path.read_text(encoding='utf-8'))
     result = build_cost_ledger(preview, classes)
