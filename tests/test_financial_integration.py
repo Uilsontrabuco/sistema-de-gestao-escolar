@@ -15,8 +15,8 @@ class FinancialIntegrationTests(unittest.TestCase):
         self.assertEqual(sum(r['teachingCostWeeklyCents'] for r in d['classes']),2567735)
         self.assertEqual(len(d['classes']),41)
         self.assertEqual(self.ledger['summary']['reconciled_professors'],50)
-        self.assertEqual(d['teachingCostMonthly'],102709.40);self.assertIsNone(d['teachingCostAnnual'])
-        self.assertEqual(d['monthlyFactor'],4.0);self.assertEqual(d['monthlyMethod'],'CUSTO_SEMANAL_CONFIRMADO_X_4_0')
+        self.assertEqual(d['teachingCostMonthly'],115548.16);self.assertIsNone(d['teachingCostAnnual'])
+        self.assertEqual(d['monthlyFactor'],4.5);self.assertEqual(d['monthlyMethod'],'CUSTO_SEMANAL_CONFIRMADO_X_4_5')
         self.assertIsNone(d['breakEvenStudents']);self.assertEqual(d['classBreakEvenCounts']['undetermined'],0)
         self.assertEqual(sum(row['structuralStatus']=='DEFINITIVO' for row in d['classes']),41)
     def test_tuition_discounts_scholarships_and_enrollment_separate(self):
@@ -71,7 +71,7 @@ class FinancialIntegrationTests(unittest.TestCase):
         self.assertEqual(r['breakEvenStudents'],11)
         self.assertEqual(r['studentsNeeded'],1)
         self.assertAlmostEqual(r['operatingResultMonthly'],-693.10)
-        self.assertEqual(r['teachingCostMonthly'],2131.20)
+        self.assertEqual(r['teachingCostMonthly'],2397.60)
         self.assertLess(r['safetyMarginStudents'],0)
 
     def test_structural_pe_does_not_depend_on_current_students_or_classifications(self):
@@ -131,12 +131,12 @@ class FinancialIntegrationTests(unittest.TestCase):
         self.assertEqual(structural_ticket_cents(930.69,3,4.5),86214)
 
     def test_official_monthly_factor_is_exact_and_adds_no_dsr_or_charges(self):
-        self.assertEqual(monthly_teaching_base_cents(53280),213120)
+        self.assertEqual(monthly_teaching_base_cents(53280),239760)
         state=blank();state['breakEven']['plans']=[dict(year=2027,version=1,
             delinquency={'officialPercent':4.5},structuralTicket={'discountPercent':3,'origin':'fixture oficial'})]
         row=integration_snapshot(state,self.ledger,2027)['classes'][0]
-        self.assertEqual(row['teachingCostMonthly'],2131.20)
-        self.assertEqual(row['teachingMonthlyFactor'],4.0)
+        self.assertEqual(row['teachingCostMonthly'],2397.60)
+        self.assertEqual(row['teachingMonthlyFactor'],4.5)
         self.assertEqual(row['structuralDelinquencyPercent'],4.5)
         self.assertEqual(row['structuralStatus'],'DEFINITIVO')
         self.assertEqual(row['dsrStatus'],'NAO_APLICADO_COMPOSICAO_NAO_COMPROVADA')
@@ -187,5 +187,5 @@ class FinancialIntegrationTests(unittest.TestCase):
         d=integration_snapshot(state,self.ledger,2027)
         self.assertIsNotNone(d['breakEvenStudents'])
         self.assertEqual(d['totalExpensesMonthly'],841486.96)
-        self.assertEqual(d['teachingCostMonthly'],102709.40)
+        self.assertEqual(d['teachingCostMonthly'],115548.16)
         self.assertEqual(d['additionalExpenseCents'],0)

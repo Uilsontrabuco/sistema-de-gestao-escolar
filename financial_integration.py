@@ -31,7 +31,7 @@ def structural_ticket_cents(tuition, discount_percent, delinquency_percent):
     return cents(gross*(1-Decimal(str(discount_percent))/100)*(1-Decimal(str(delinquency_percent))/100))
 
 
-def monthly_teaching_base_cents(weekly_cost_cents, weeks=Decimal('4.0')):
+def monthly_teaching_base_cents(weekly_cost_cents, weeks=Decimal('4.5')):
     """Mensalização oficial do PE 2027, sem DSR, encargos ou outras verbas."""
     if not isinstance(weekly_cost_cents,int) or weekly_cost_cents < 0:
         raise ValueError('Custo docente semanal inválido')
@@ -97,7 +97,8 @@ def integration_snapshot(state, ledger, year):
     plans=[p for p in state.get('breakEven',{}).get('plans',[]) if int(p['year'])==int(year)]
     if not plans and int(year)==2027:
         plans=[dict(id='official-2027-read-only',year=2027,version=1,
-            officialTotals={'commercialDiscountPercent':3,'delinquencyPercent':4.5},
+            officialTotals={'commercialDiscountPercent':3,'delinquencyPercent':4.5,'totalExpensesMonthly':841486.96,
+                            'netRevenueMonthly':905152.16,'breakEvenStudents':1000},
             delinquency={'officialPercent':4.5,'scenarioPercent':None},costLines=[],rateioRules=[],mappings=[],
             structuralTicket={'discountPercent':3,'origin':'Orçamento oficial 2027 · desconto comercial'})]
     plan=max(plans,key=lambda p:p.get('version',1),default={})
@@ -151,14 +152,20 @@ def integration_snapshot(state, ledger, year):
         if structural_discount is None:structural_pending.append('premissa de ticket estrutural pendente')
         if delinquency is None:structural_pending.append('inadimplência do PE não configurada')
         component_pending=[]
+        component_contracts={
+            'teachingWeekly':dict(value=weekly/100,status='loaded',source='Carga horária 2026 conciliada com tarifas 2027',reason=None),
+            'teachingMonthly':dict(value=teaching_monthly/100,status='loaded',source='Custo semanal confirmado × 4,5',reason=None),
+            'otherDirect':dict(value=other_direct/100,status='loaded' if other_direct else 'zero_real',source='Linhas de custo atribuídas e conciliadas do plano',reason=None),
+            'sharedAllocation':dict(value=shared/100,status='loaded' if shared else 'zero_real',source='Rateios ativos com alocações explícitas de 100%',reason=None),
+        }
         rows.append(dict(class_id=room['id'],name=room['name'],students=students,capacity=capacity,
             vacancies=max(0,capacity-students),tuition=tuition,
             occupancy=None if not capacity else students/capacity*100,
             teachingCostWeekly=weekly/100,teachingCostWeeklyCents=weekly,
             teachingSharePercent=weekly/ledger['validated_cost_cents']*100,
             teachingCostMonthly=teaching_monthly/100,teachingCostAnnual=None,
-            teachingMonthlyFactor=4.0,
-            teachingMonthlyMethod='CUSTO_SEMANAL_CONFIRMADO_X_4_0',
+            teachingMonthlyFactor=4.5,
+            teachingMonthlyMethod='CUSTO_SEMANAL_CONFIRMADO_X_4_5',
             teachingMonthlyOrigin='Regra oficial confirmada pelo responsável financeiro para o PE 2027',
             dsrStatus='NAO_APLICADO_COMPOSICAO_NAO_COMPROVADA',
             chargesStatus='NAO_APLICADOS_COMPOSICAO_NAO_COMPROVADA',
@@ -172,9 +179,10 @@ def integration_snapshot(state, ledger, year):
             classifiedStudents=classified,unclassifiedStudents=students-classified,
             otherDirectCostsMonthly=other_direct/100,assistantCostMonthly=None,internCostMonthly=None,
             indirectExpensesMonthly=shared/100,totalCostMonthly=None if total_cost is None else total_cost/100,
-            costBasis='TOTAL_ORCAMENTARIO_VINCULADO_SEM_ADICAO_DOCENTE' if mapped_total_cost is not None else 'DOCENTE_X_4_0_MAIS_DIRETOS_E_RATEIOS_ATRIBUIDOS',
+            costBasis='TOTAL_ORCAMENTARIO_VINCULADO_SEM_ADICAO_DOCENTE' if mapped_total_cost is not None else 'DOCENTE_X_4_5_MAIS_DIRETOS_E_RATEIOS_ATRIBUIDOS',
             costCompositionStatus='COMPLETA_CUSTOS_ATRIBUIDOS',
             attributedCostLineIds=assigned['sources'],
+            componentContracts=component_contracts,
             componentPendingReasons=component_pending,
             netRevenueAfterDelinquency=None if net_effective is None else net_effective/100,
             operatingResultMonthly=(net_effective-total_cost)/100 if net_effective is not None and total_cost is not None else None,
@@ -199,13 +207,16 @@ def integration_snapshot(state, ledger, year):
     imported={kind:sum(cents(r.get('net',0))*r.get('direction',1) for r in revenues if r.get('eventType')==kind)/100 for kind in ('enrollment','tuition')}
     monthly_total=sum(monthly_teaching_base_cents(cost) for cost in costs.values())
     monthly_global_reference=monthly_teaching_base_cents(ledger['validated_cost_cents'])
+    attributed_total=sum(cents(row['totalCostMonthly']) for row in rows if row['totalCostMonthly'] is not None)
+    official_cents=cents(expense) if expense is not None else None
+    pending_official=None if official_cents is None else max(0,official_cents-attributed_total)
     return dict(year=int(year),status='MONTHLY_BASE_INTEGRATED',teachingCostWeekly=ledger['validated_cost_cents']/100,
-        teachingCostMonthly=monthly_total/100,teachingCostAnnual=None,monthlyMethod='CUSTO_SEMANAL_CONFIRMADO_X_4_0',
-        monthlyFactor=4.0,
+        teachingCostMonthly=monthly_total/100,teachingCostAnnual=None,monthlyMethod='CUSTO_SEMANAL_CONFIRMADO_X_4_5',
+        monthlyFactor=4.5,
         monthlyRounding='HALF_UP_EM_CENTAVOS_POR_TURMA',
         monthlyGlobalReference=monthly_global_reference/100,
         monthlyClassRoundingDifferenceCents=monthly_total-monthly_global_reference,
-        monthlyDecision='Regra oficial do PE 2027: custo semanal confirmado × 4,0. DSR, encargos e hora-atividade não aplicados sem comprovação de composição.',
+        monthlyDecision='Regra oficial do PE 2027: custo semanal confirmado × 4,5. DSR, encargos e hora-atividade não aplicados sem comprovação de composição.',
         totalExpensesMonthlyBefore=expense,totalExpensesMonthly=expense,totalExpensesMonthlyDifference=0 if expense is not None else None,
         totalExpensesStatus='OFFICIAL_REFERENCE_UNCHANGED' if expense is not None else 'NO_OFFICIAL_PLAN_IN_STATE',
         nonTeachingPayrollMonthly=None,chargesMonthly=personnel.get('personalChargesAndBenefitsMonthly'),
@@ -226,4 +237,10 @@ def integration_snapshot(state, ledger, year):
         maxDeficit=min((r['operatingResultMonthly'] for r in rows if r['operatingResultMonthly'] is not None and r['operatingResultMonthly']<0),default=None),
         maxSurplus=max((r['operatingResultMonthly'] for r in rows if r['operatingResultMonthly'] is not None and r['operatingResultMonthly']>0),default=None),classes=rows,weeklyDifferenceCents=0,
         teachingAlreadyInPayroll='NOT_SEPARATELY_IDENTIFIED',additionalExpenseCents=0,
-        source=dict(weekly='Carga horária conciliada',monthly='Regra oficial confirmada pelo responsável financeiro: × 4,0 semanas; sem DSR ou adicionais',officialPlanId=plan.get('id')))
+        contractVersion='pe-2027-v1',integrationStatus='loaded',
+        expenseReconciliation=dict(official=None if official_cents is None else official_cents/100,
+            attributed=attributed_total/100,institutionalNonAttributable=None,
+            pendingClassification=None if pending_official is None else pending_official/100,
+            difference=0 if official_cents is not None else None,
+            reason='Saldo oficial ainda não possui critério comprovado de atribuição por turma; não foi rateado artificialmente.'),
+        source=dict(weekly='Carga horária conciliada',monthly='Regra oficial confirmada pelo responsável financeiro: × 4,5 semanas; sem DSR ou adicionais',officialPlanId=plan.get('id')))

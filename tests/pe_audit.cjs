@@ -34,3 +34,13 @@ test('resumo geral é soma das turmas quando a classificação e os custos ficam
   assert.equal(audit.net,3690);assert.equal(audit.totalCost,2050);assert(Math.abs(audit.result-1473.95)<0.000001);
   assert.equal(audit.definitive,41);assert.equal(audit.pending.length,0);
 });
+
+test('contrato do frontend usa fator 4,5 e estados assíncronos determinísticos',()=>{
+  const code=fs.readFileSync(path.join(__dirname,'../break_even.js'),'utf8');
+  assert(code.includes('Promise.allSettled'));
+  assert(code.includes("status:'loading'"));
+  assert(code.includes("status:Object.keys(errors).length"));
+  assert(code.includes('semanal × 4,5'));
+  assert(!code.includes('semanal × 4,0'));
+  for(const field of ['teachingCostWeekly','teachingCostMonthly','otherDirectCostsMonthly','indirectExpensesMonthly','totalCostMonthly','structuralTicketMonthly','breakEvenStudents','breakEvenPercentCapacity','physicalMarginStudents'])assert(code.includes(field),field);
+});

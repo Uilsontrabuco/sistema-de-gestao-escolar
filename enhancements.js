@@ -86,7 +86,8 @@ function syncMenuState(){const mobile=typeof matchMedia==='function'&&matchMedia
 function applyTableFilters(){const search=($('#tableSearch')?.value||'').toLocaleLowerCase('pt-BR'),status=$('#tableStatus')?.value||'',root=$('#page');
   // Em Matrículas, o primeiro quadro é a lista de turmas; o histórico é uma
   // tabela independente e não pode compor o total de registros encontrados.
-  const rows=page==='enrollments'?(root.querySelector('table tbody')?.querySelectorAll('tr')||[]):root.querySelectorAll('tbody tr');let visible=0;
+  const primary=(page==='financial'&&breakEvenOpen?root.querySelector('#pe-turmas table tbody'):root.querySelector('table tbody'));
+  const rows=(page==='enrollments'||(page==='financial'&&breakEvenOpen))?(primary?.querySelectorAll('tr')||[]):root.querySelectorAll('tbody tr');let visible=0;
   rows.forEach(row=>{if(row.querySelector('.empty'))return;const text=row.textContent.toLocaleLowerCase('pt-BR');row.hidden=!text.includes(search)||(status&&!Array.from(row.querySelectorAll('.pill')).some(p=>p.textContent===status));if(!row.hidden)visible++;});if($('#filterResult'))$('#filterResult').textContent=visible+' registro(s) encontrado(s)';}
 render=function(){originalRender();syncMenuState();document.title=`${$('#page h1')?.textContent||'Gestão escolar'} · 7&7 CAJ`;$('#nav').querySelectorAll('button').forEach(button=>{button.setAttribute('aria-label',button.textContent);button.title=button.textContent;if(button.classList.contains('active'))button.setAttribute('aria-current','page');});$('#menu').setAttribute('aria-expanded','false');
   const profile=S.users[0];$('.profile b').textContent=profile?.name||'Perfil local';$('.profile small').textContent=profile?.role||'Gestão escolar';

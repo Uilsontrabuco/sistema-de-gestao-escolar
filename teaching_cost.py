@@ -563,7 +563,8 @@ def direct_break_even(monthly_direct_cost, net_ticket, *, costs_complete, revenu
 def load_documentary_costs(classes):
     path = ROOT/'output/auditoria-carga-horaria/extracao.json'
     if not path.exists():
-        return {'status':'SOURCE_UNAVAILABLE','classes':[], 'summary':{}, 'accounting':{'additional_expense':0}}
+        from teaching_cost_snapshot import packaged_ledger
+        return packaged_ledger(classes)
     preview = json.loads(path.read_text(encoding='utf-8'))
     result = build_cost_ledger(preview, classes)
     result['extraction_sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
