@@ -47,7 +47,8 @@ test('contrato do frontend usa fator 4,5 e estados assíncronos determinísticos
 
 test('navegação autenticada do menu dispara a API estrutural do PE',()=>{
   const code=fs.readFileSync(path.join(__dirname,'../professional.js'),'utf8');
-  assert(code.includes("breakEvenOpen&&typeof showBreakEven==='function')await showBreakEven()"));
+  assert(code.includes('button[aria-label="Ponto de Equilíbrio 2027"]'));
+  assert(code.includes('refreshShared().then(showBreakEven)'));
   const pe=fs.readFileSync(path.join(__dirname,'../break_even.js'),'utf8');
   assert(pe.includes("api('teaching-load/costs')"));
   assert(pe.includes("api(`break-even/integrated?year=${encodeURIComponent(breakEvenYear)}`)"));

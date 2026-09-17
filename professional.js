@@ -160,6 +160,14 @@ render=function(){if(App.mode!=='shared'){showSharedRequired();return;}if(!App.u
 openTask=function(){modal('Nova tarefa',form([['title','Nome da tarefa','text'],['person','Responsável','text'],['date','Prazo','date']])+actions('saveTask()'));};
 function saveTask(){commit('tasks','create',s=>{if(!val('title'))throw Error('Informe a tarefa.');s.tasks.push({id:uid(),title:val('title'),person:val('person'),date:val('date'),status:'todo'});});}
 cycleTask=function(value){commit('tasks','edit',s=>{const task=findBy(s.tasks,value);task.status=task.status==='todo'?'doing':task.status==='doing'?'done':'todo';});};
+// O atalho lateral precisa executar a integração; apenas abrir a visão deixa
+// breakEvenIntegrated nulo e todos os valores estruturais como pendentes.
+document.addEventListener('click',event=>{
+  const button=event.target.closest('button[aria-label="Ponto de Equilíbrio 2027"]');
+  if(!button)return;
+  event.preventDefault();event.stopImmediatePropagation();page='financial';
+  refreshShared().then(showBreakEven).catch(error=>toast(error.message));
+},true);
 // O listener legado de storage não deve substituir dados da base autenticada.
 window.addEventListener('storage',event=>{if(event.key===key)event.stopImmediatePropagation();},true);
 bootstrapShared();
