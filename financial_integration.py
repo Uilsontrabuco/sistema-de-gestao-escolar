@@ -31,7 +31,7 @@ def structural_ticket_cents(tuition, discount_percent, delinquency_percent):
     return cents(gross*(1-Decimal(str(discount_percent))/100)*(1-Decimal(str(delinquency_percent))/100))
 
 
-def monthly_teaching_base_cents(weekly_cost_cents, weeks=Decimal('4.5')):
+def monthly_teaching_base_cents(weekly_cost_cents, weeks=Decimal('4.0')):
     """Mensalização oficial do PE 2027, sem DSR, encargos ou outras verbas."""
     if not isinstance(weekly_cost_cents,int) or weekly_cost_cents < 0:
         raise ValueError('Custo docente semanal inválido')
@@ -120,8 +120,8 @@ def integration_snapshot(state, ledger, year):
             teachingCostWeekly=weekly/100,teachingCostWeeklyCents=weekly,
             teachingSharePercent=weekly/ledger['validated_cost_cents']*100,
             teachingCostMonthly=teaching_monthly/100,teachingCostAnnual=None,
-            teachingMonthlyFactor=4.5,
-            teachingMonthlyMethod='CUSTO_SEMANAL_CONFIRMADO_X_4_5',
+            teachingMonthlyFactor=4.0,
+            teachingMonthlyMethod='CUSTO_SEMANAL_CONFIRMADO_X_4_0',
             teachingMonthlyOrigin='Regra oficial confirmada pelo responsável financeiro para o PE 2027',
             dsrStatus='NAO_APLICADO_COMPOSICAO_NAO_COMPROVADA',
             chargesStatus='NAO_APLICADOS_COMPOSICAO_NAO_COMPROVADA',
@@ -135,7 +135,7 @@ def integration_snapshot(state, ledger, year):
             classifiedStudents=classified,unclassifiedStudents=students-classified,
             otherDirectCostsMonthly=None,assistantCostMonthly=None,internCostMonthly=None,
             indirectExpensesMonthly=None,totalCostMonthly=None if total_cost is None else total_cost/100,
-            costBasis='TOTAL_ORCAMENTARIO_VINCULADO_SEM_ADICAO_DOCENTE' if mapped_total_cost is not None else 'DOCENTE_MENSAL_BASE_X_4_5',
+            costBasis='TOTAL_ORCAMENTARIO_VINCULADO_SEM_ADICAO_DOCENTE' if mapped_total_cost is not None else 'DOCENTE_MENSAL_BASE_X_4_0',
             costCompositionStatus='COMPLETA' if mapped_total_cost is not None else 'PARCIAL_CUSTOS_COMPROVADOS',
             componentPendingReasons=component_pending,
             netRevenueAfterDelinquency=None if net_effective is None else net_effective/100,
@@ -149,7 +149,7 @@ def integration_snapshot(state, ledger, year):
             breakEvenPercentCapacity=pe_percent,physicalMarginStudents=physical_margin,
             structuralAlert='PE acima da capacidade física da turma' if physical_margin is not None and physical_margin<0 else None,
             structuralPendingReasons=structural_pending,
-            structuralStatus='CALCULADO' if pe is not None else 'PENDENTE',
+            structuralStatus='DEFINITIVO' if pe is not None and not structural_pending and not component_pending else 'PENDENTE',
             status='PE_ESTRUTURAL_CALCULADO' if pe is not None else 'PENDENTE_BASE_MENSAL_E_COMPOSICAO_DE_CUSTOS'))
     complete=all(r['netRevenueMonthly'] is not None for r in rows)
     expense=totals.get('totalExpensesMonthly')
@@ -161,12 +161,12 @@ def integration_snapshot(state, ledger, year):
     monthly_total=sum(monthly_teaching_base_cents(cost) for cost in costs.values())
     monthly_global_reference=monthly_teaching_base_cents(ledger['validated_cost_cents'])
     return dict(year=int(year),status='MONTHLY_BASE_INTEGRATED',teachingCostWeekly=ledger['validated_cost_cents']/100,
-        teachingCostMonthly=monthly_total/100,teachingCostAnnual=None,monthlyMethod='CUSTO_SEMANAL_CONFIRMADO_X_4_5',
-        monthlyFactor=4.5,
+        teachingCostMonthly=monthly_total/100,teachingCostAnnual=None,monthlyMethod='CUSTO_SEMANAL_CONFIRMADO_X_4_0',
+        monthlyFactor=4.0,
         monthlyRounding='HALF_UP_EM_CENTAVOS_POR_TURMA',
         monthlyGlobalReference=monthly_global_reference/100,
         monthlyClassRoundingDifferenceCents=monthly_total-monthly_global_reference,
-        monthlyDecision='Regra oficial do PE 2027: custo semanal confirmado × 4,5. DSR, encargos e hora-atividade não aplicados sem comprovação de composição.',
+        monthlyDecision='Regra oficial do PE 2027: custo semanal confirmado × 4,0. DSR, encargos e hora-atividade não aplicados sem comprovação de composição.',
         totalExpensesMonthlyBefore=expense,totalExpensesMonthly=expense,totalExpensesMonthlyDifference=0 if expense is not None else None,
         totalExpensesStatus='OFFICIAL_REFERENCE_UNCHANGED' if expense is not None else 'NO_OFFICIAL_PLAN_IN_STATE',
         nonTeachingPayrollMonthly=None,chargesMonthly=personnel.get('personalChargesAndBenefitsMonthly'),
@@ -187,4 +187,4 @@ def integration_snapshot(state, ledger, year):
         maxDeficit=min((r['operatingResultMonthly'] for r in rows if r['operatingResultMonthly'] is not None and r['operatingResultMonthly']<0),default=None),
         maxSurplus=max((r['operatingResultMonthly'] for r in rows if r['operatingResultMonthly'] is not None and r['operatingResultMonthly']>0),default=None),classes=rows,weeklyDifferenceCents=0,
         teachingAlreadyInPayroll='NOT_SEPARATELY_IDENTIFIED',additionalExpenseCents=0,
-        source=dict(weekly='Carga horária conciliada',monthly='Regra oficial confirmada pelo responsável financeiro: × 4,5 semanas; sem DSR ou adicionais',officialPlanId=plan.get('id')))
+        source=dict(weekly='Carga horária conciliada',monthly='Regra oficial confirmada pelo responsável financeiro: × 4,0 semanas; sem DSR ou adicionais',officialPlanId=plan.get('id')))
