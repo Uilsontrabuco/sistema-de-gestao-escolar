@@ -5,7 +5,7 @@ const breakEven=fs.readFileSync(path.join(__dirname,'../break_even.js'),'utf8');
 test('Master recebe acesso direto ao PE 2027 pelo menu financeiro existente',()=>{
   assert.match(professional,/Ponto de Equilíbrio 2027/);
   assert.match(professional,/x\[1\]==='financial'/);
-  assert.match(professional,/breakEvenOpen=true;page='financial';refreshShared\(\)/);
+  assert.match(professional,/page='financial';refreshShared\(\)\.then\(showBreakEven\)\.catch/);
 });
 
 test('atalho abre a tela existente sem criar outro módulo ou cálculo',()=>{
