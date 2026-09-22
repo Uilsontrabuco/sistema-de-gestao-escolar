@@ -11,7 +11,7 @@ import json
 import math
 from pathlib import Path
 import re
-from teaching_cost_snapshot import packaged_ledger
+from teaching_cost_snapshot import packaged_ledger, apply_2027_projection
 
 CENT = Decimal('0.01')
 ROOT = Path(__file__).resolve().parent
@@ -566,6 +566,6 @@ def load_documentary_costs(classes):
     if not path.exists():
         return packaged_ledger(classes)
     preview = json.loads(path.read_text(encoding='utf-8'))
-    result = build_cost_ledger(preview, classes)
+    result = apply_2027_projection(build_cost_ledger(preview, classes))
     result['extraction_sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
     return result

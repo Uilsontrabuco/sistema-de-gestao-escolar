@@ -1,0 +1,4927 @@
+{
+  "schemaVersion": 1,
+  "year": 2027,
+  "source": "Orçamento COLEGIO ADVENTISTA DE JUAZEIRO 2027 (1).pdf",
+  "auditSha256": "97d12c23fcc121d851e68359637f91bb2a9c0dd54457217cdecd300f32e99b7a",
+  "sourceHashes": {
+    "D:\\Orçamento COLEGIO ADVENTISTA DE JUAZEIRO 2027 (1).pdf": "bc3ef6a74cba96c7f67fe70a877fc6b722d8dbbe4eb95854f5f0ab40ea3fac82",
+    "D:\\Orcamento Escolar - Juazeiro.xlsm": "8d10f2b0a6691450865a817a52afc9db7ff9c3ac0b6aabc418ab67585972ddba"
+  },
+  "costBasis": "Grade homologada com tarifas 2027; pessoal nominal agosto/2026 e decisões C02/C28/C29. Cobertura incompleta.",
+  "verifiedComponents": [
+    "docentes",
+    "estagiarias",
+    "auxiliar-direta",
+    "auxiliares-segmento",
+    "coordenacao-segmento"
+  ],
+  "evidence": {
+    "docentes": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+    "estagiarias": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+    "auxiliar-direta": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+    "auxiliares-segmento": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+    "coordenacao-segmento": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados"
+  },
+  "tuitionSource": "PDF 2027, página 2, linha Reajustado",
+  "institutionalRevenue": {
+    "monthlyCents": 2692103,
+    "accounts": [
+      "3182019",
+      "3195130"
+    ],
+    "availableForManagement": false
+  },
+  "discountCoverage": {
+    "status": "COBERTURA DE DESCONTOS PENDENTE DE RECONCILIAÇÃO",
+    "monthlyCents": 17790108,
+    "accounts": [
+      "4126005",
+      "4126007"
+    ],
+    "reconciled": false
+  },
+  "pcld": {
+    "officialCents": 4211780,
+    "managementIncludedCents": 0,
+    "delinquencyPercent": 4.5
+  },
+  "unmatchedSourceRows": [
+    {
+      "sourceName": "Grupo 2 C",
+      "students": 0,
+      "capacity": null,
+      "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+      "sourcePage": 4,
+      "grossRevenue": "0",
+      "otherRevenue": "0",
+      "totalRevenue": "0",
+      "freeTuition": "0",
+      "commercialDiscount": "0",
+      "netRevenue": "0",
+      "payroll": "0",
+      "support": "0",
+      "generalExpenses": "0",
+      "loans": "0",
+      "totalCost": "0",
+      "result": "0",
+      "pe": "0",
+      "studentFinancials": {
+        "sourcePage": 10,
+        "tuition": "930.69",
+        "grossRevenue": "0",
+        "freePartial": "0",
+        "freeFull": "0",
+        "commercialDiscount": "0",
+        "collectivePartial": "0",
+        "collectiveFull": "0",
+        "delinquency": "0",
+        "netRevenue": "0",
+        "receivedRevenue": "0",
+        "netTuition": "0"
+      },
+      "ratio": null,
+      "reconstructedDisplayedPE": 0,
+      "minimumCoveringInteger": null,
+      "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+      "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+    },
+    {
+      "sourceName": "Grupo 3 C",
+      "students": 0,
+      "capacity": null,
+      "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+      "sourcePage": 4,
+      "grossRevenue": "0",
+      "otherRevenue": "0",
+      "totalRevenue": "0",
+      "freeTuition": "0",
+      "commercialDiscount": "0",
+      "netRevenue": "0",
+      "payroll": "0",
+      "support": "0",
+      "generalExpenses": "0",
+      "loans": "0",
+      "totalCost": "0",
+      "result": "0",
+      "pe": "0",
+      "studentFinancials": {
+        "sourcePage": 10,
+        "tuition": "930.69",
+        "grossRevenue": "0",
+        "freePartial": "0",
+        "freeFull": "0",
+        "commercialDiscount": "0",
+        "collectivePartial": "0",
+        "collectiveFull": "0",
+        "delinquency": "0",
+        "netRevenue": "0",
+        "receivedRevenue": "0",
+        "netTuition": "0"
+      },
+      "ratio": null,
+      "reconstructedDisplayedPE": 0,
+      "minimumCoveringInteger": null,
+      "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+      "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+    },
+    {
+      "sourceName": "Grupo 4 C",
+      "students": 0,
+      "capacity": null,
+      "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+      "sourcePage": 4,
+      "grossRevenue": "0",
+      "otherRevenue": "0",
+      "totalRevenue": "0",
+      "freeTuition": "0",
+      "commercialDiscount": "0",
+      "netRevenue": "0",
+      "payroll": "0",
+      "support": "0",
+      "generalExpenses": "0",
+      "loans": "0",
+      "totalCost": "0",
+      "result": "0",
+      "pe": "0",
+      "studentFinancials": {
+        "sourcePage": 10,
+        "tuition": "930.69",
+        "grossRevenue": "0",
+        "freePartial": "0",
+        "freeFull": "0",
+        "commercialDiscount": "0",
+        "collectivePartial": "0",
+        "collectiveFull": "0",
+        "delinquency": "0",
+        "netRevenue": "0",
+        "receivedRevenue": "0",
+        "netTuition": "0"
+      },
+      "ratio": null,
+      "reconstructedDisplayedPE": 0,
+      "minimumCoveringInteger": null,
+      "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+      "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+    },
+    {
+      "sourceName": "7º Ano C",
+      "students": 27,
+      "capacity": null,
+      "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+      "sourcePage": 4,
+      "grossRevenue": "33474.86",
+      "otherRevenue": "766.81",
+      "totalRevenue": "34241.67",
+      "freeTuition": "15497.62",
+      "commercialDiscount": "985.65",
+      "netRevenue": "17758.40",
+      "payroll": "5748.45",
+      "support": "3416.95",
+      "generalExpenses": "12928.60",
+      "loans": "0",
+      "totalCost": "22094.01",
+      "result": "-4335.61",
+      "pe": "34",
+      "studentFinancials": {
+        "sourcePage": 10,
+        "tuition": "1239.81",
+        "grossRevenue": "33474.86",
+        "freePartial": "619.90",
+        "freeFull": "14877.72",
+        "commercialDiscount": "985.65",
+        "collectivePartial": "0",
+        "collectiveFull": "0",
+        "delinquency": "764.62",
+        "netRevenue": "16991.59",
+        "receivedRevenue": "16226.97",
+        "netTuition": "629.32"
+      },
+      "ratio": "33.59189285070727092530858636",
+      "reconstructedDisplayedPE": 34,
+      "minimumCoveringInteger": 34,
+      "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+      "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+    },
+    {
+      "sourceName": "1º E. Médio B",
+      "students": 0,
+      "capacity": null,
+      "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+      "sourcePage": 4,
+      "grossRevenue": "0",
+      "otherRevenue": "0",
+      "totalRevenue": "0",
+      "freeTuition": "0",
+      "commercialDiscount": "0",
+      "netRevenue": "0",
+      "payroll": "0",
+      "support": "0",
+      "generalExpenses": "0",
+      "loans": "0",
+      "totalCost": "0",
+      "result": "0",
+      "pe": "0",
+      "studentFinancials": {
+        "sourcePage": 10,
+        "tuition": "1425.59",
+        "grossRevenue": "0",
+        "freePartial": "0",
+        "freeFull": "0",
+        "commercialDiscount": "0",
+        "collectivePartial": "0",
+        "collectiveFull": "0",
+        "delinquency": "0",
+        "netRevenue": "0",
+        "receivedRevenue": "0",
+        "netTuition": "0"
+      },
+      "ratio": null,
+      "reconstructedDisplayedPE": 0,
+      "minimumCoveringInteger": null,
+      "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+      "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+    },
+    {
+      "sourceName": "1º E. Médio C",
+      "students": 0,
+      "capacity": null,
+      "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+      "sourcePage": 4,
+      "grossRevenue": "0",
+      "otherRevenue": "0",
+      "totalRevenue": "0",
+      "freeTuition": "0",
+      "commercialDiscount": "0",
+      "netRevenue": "0",
+      "payroll": "0",
+      "support": "0",
+      "generalExpenses": "0",
+      "loans": "0",
+      "totalCost": "0",
+      "result": "0",
+      "pe": "0",
+      "studentFinancials": {
+        "sourcePage": 11,
+        "tuition": "1425.59",
+        "grossRevenue": "0",
+        "freePartial": "0",
+        "freeFull": "0",
+        "commercialDiscount": "0",
+        "collectivePartial": "0",
+        "collectiveFull": "0",
+        "delinquency": "0",
+        "netRevenue": "0",
+        "receivedRevenue": "0",
+        "netTuition": "0"
+      },
+      "ratio": null,
+      "reconstructedDisplayedPE": 0,
+      "minimumCoveringInteger": null,
+      "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+      "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+    },
+    {
+      "sourceName": "2º E. Médio B",
+      "students": 0,
+      "capacity": null,
+      "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+      "sourcePage": 4,
+      "grossRevenue": "0",
+      "otherRevenue": "0",
+      "totalRevenue": "0",
+      "freeTuition": "0",
+      "commercialDiscount": "0",
+      "netRevenue": "0",
+      "payroll": "0",
+      "support": "0",
+      "generalExpenses": "0",
+      "loans": "0",
+      "totalCost": "0",
+      "result": "0",
+      "pe": "0",
+      "studentFinancials": {
+        "sourcePage": 11,
+        "tuition": "1425.59",
+        "grossRevenue": "0",
+        "freePartial": "0",
+        "freeFull": "0",
+        "commercialDiscount": "0",
+        "collectivePartial": "0",
+        "collectiveFull": "0",
+        "delinquency": "0",
+        "netRevenue": "0",
+        "receivedRevenue": "0",
+        "netTuition": "0"
+      },
+      "ratio": null,
+      "reconstructedDisplayedPE": 0,
+      "minimumCoveringInteger": null,
+      "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+      "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+    },
+    {
+      "sourceName": "2º E. Médio C",
+      "students": 0,
+      "capacity": null,
+      "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+      "sourcePage": 4,
+      "grossRevenue": "0",
+      "otherRevenue": "0",
+      "totalRevenue": "0",
+      "freeTuition": "0",
+      "commercialDiscount": "0",
+      "netRevenue": "0",
+      "payroll": "0",
+      "support": "0",
+      "generalExpenses": "0",
+      "loans": "0",
+      "totalCost": "0",
+      "result": "0",
+      "pe": "0",
+      "studentFinancials": {
+        "sourcePage": 11,
+        "tuition": "1425.59",
+        "grossRevenue": "0",
+        "freePartial": "0",
+        "freeFull": "0",
+        "commercialDiscount": "0",
+        "collectivePartial": "0",
+        "collectiveFull": "0",
+        "delinquency": "0",
+        "netRevenue": "0",
+        "receivedRevenue": "0",
+        "netTuition": "0"
+      },
+      "ratio": null,
+      "reconstructedDisplayedPE": 0,
+      "minimumCoveringInteger": null,
+      "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+      "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+    },
+    {
+      "sourceName": "3º E. Médio B",
+      "students": 0,
+      "capacity": null,
+      "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+      "sourcePage": 4,
+      "grossRevenue": "0",
+      "otherRevenue": "0",
+      "totalRevenue": "0",
+      "freeTuition": "9496.80",
+      "commercialDiscount": "-21.92",
+      "netRevenue": "-9474.89",
+      "payroll": "0",
+      "support": "0",
+      "generalExpenses": "0",
+      "loans": "0",
+      "totalCost": "0",
+      "result": "-9474.89",
+      "pe": "0",
+      "studentFinancials": {
+        "sourcePage": 11,
+        "tuition": "1461.05",
+        "grossRevenue": "0",
+        "freePartial": "730.52",
+        "freeFull": "5844.19",
+        "commercialDiscount": "-21.92",
+        "collectivePartial": "0",
+        "collectiveFull": "2922.09",
+        "delinquency": "-294.88",
+        "netRevenue": "-9474.89",
+        "receivedRevenue": "-9180.01",
+        "netTuition": "0"
+      },
+      "ratio": "-0E+2",
+      "reconstructedDisplayedPE": 0,
+      "minimumCoveringInteger": 0,
+      "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+      "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+    },
+    {
+      "sourceName": "3º E. Médio C",
+      "students": 0,
+      "capacity": null,
+      "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+      "sourcePage": 4,
+      "grossRevenue": "0",
+      "otherRevenue": "0",
+      "totalRevenue": "0",
+      "freeTuition": "0",
+      "commercialDiscount": "0",
+      "netRevenue": "0",
+      "payroll": "0",
+      "support": "0",
+      "generalExpenses": "0",
+      "loans": "0",
+      "totalCost": "0",
+      "result": "0",
+      "pe": "0",
+      "studentFinancials": {
+        "sourcePage": 11,
+        "tuition": "1461.05",
+        "grossRevenue": "0",
+        "freePartial": "0",
+        "freeFull": "0",
+        "commercialDiscount": "0",
+        "collectivePartial": "0",
+        "collectiveFull": "0",
+        "delinquency": "0",
+        "netRevenue": "0",
+        "receivedRevenue": "0",
+        "netTuition": "0"
+      },
+      "ratio": null,
+      "reconstructedDisplayedPE": 0,
+      "minimumCoveringInteger": null,
+      "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+      "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+    }
+  ],
+  "rows": [
+    {
+      "id": "caj-2027-caj-g2-a",
+      "name": "G2 A",
+      "capacity": 18,
+      "tuitionCents": 93069,
+      "document": {
+        "sourceName": "Grupo 2 A",
+        "students": 16,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "14890.97",
+        "otherRevenue": "341.11",
+        "totalRevenue": "15232.08",
+        "freeTuition": "0",
+        "commercialDiscount": "446.73",
+        "netRevenue": "14785.35",
+        "payroll": "6271.93",
+        "support": "1520.00",
+        "generalExpenses": "5751.16",
+        "loans": "0",
+        "totalCost": "13543.09",
+        "result": "1242.25",
+        "pe": "15",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "930.69",
+          "grossRevenue": "14890.97",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "446.73",
+          "collectivePartial": "0",
+          "collectiveFull": "0",
+          "delinquency": "649.99",
+          "netRevenue": "14444.24",
+          "receivedRevenue": "13794.25",
+          "netTuition": "902.77"
+        },
+        "ratio": "14.65568552655162035393142536",
+        "reconstructedDisplayedPE": 15,
+        "minimumCoveringInteger": 15,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-g2-a/docentes",
+          "kind": "docentes",
+          "cents": 239760,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g2-a/estagiarias",
+          "kind": "estagiarias",
+          "cents": 83835,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g2-a/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g2-a/residual-g2",
+          "kind": "residual-g2",
+          "cents": 387433,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g2-a/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 68165,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g2-a/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 145824,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g2-a/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 110628,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g2-a/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 506383,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g2-a/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 330129,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 68733,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-g2-b",
+      "name": "G2 B",
+      "capacity": 18,
+      "tuitionCents": 93069,
+      "document": {
+        "sourceName": "Grupo 2 B",
+        "students": 16,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "14890.97",
+        "otherRevenue": "341.11",
+        "totalRevenue": "15232.08",
+        "freeTuition": "0",
+        "commercialDiscount": "446.73",
+        "netRevenue": "14785.35",
+        "payroll": "6271.93",
+        "support": "1520.00",
+        "generalExpenses": "5751.16",
+        "loans": "0",
+        "totalCost": "13543.09",
+        "result": "1242.25",
+        "pe": "15",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "930.69",
+          "grossRevenue": "14890.97",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "446.73",
+          "collectivePartial": "0",
+          "collectiveFull": "0",
+          "delinquency": "649.99",
+          "netRevenue": "14444.24",
+          "receivedRevenue": "13794.25",
+          "netTuition": "902.77"
+        },
+        "ratio": "14.65568552655162035393142536",
+        "reconstructedDisplayedPE": 15,
+        "minimumCoveringInteger": 15,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-g2-b/docentes",
+          "kind": "docentes",
+          "cents": 237447,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g2-b/estagiarias",
+          "kind": "estagiarias",
+          "cents": 83835,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g2-b/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g2-b/residual-g2",
+          "kind": "residual-g2",
+          "cents": 389746,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g2-b/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 68165,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g2-b/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 145824,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g2-b/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 110628,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g2-b/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 506383,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g2-b/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 330129,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 68733,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-g3-a",
+      "name": "G3 A",
+      "capacity": 24,
+      "tuitionCents": 93069,
+      "document": {
+        "sourceName": "Grupo 3 A",
+        "students": 22,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "20475.08",
+        "otherRevenue": "469.02",
+        "totalRevenue": "20944.11",
+        "freeTuition": "1628.70",
+        "commercialDiscount": "593.31",
+        "netRevenue": "18722.09",
+        "payroll": "8623.91",
+        "support": "2090.00",
+        "generalExpenses": "7907.85",
+        "loans": "0",
+        "totalCost": "18621.76",
+        "result": "100.34",
+        "pe": "22",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "930.69",
+          "grossRevenue": "20475.08",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "593.31",
+          "collectivePartial": "698.01",
+          "collectiveFull": "930.69",
+          "delinquency": "863.27",
+          "netRevenue": "18253.07",
+          "receivedRevenue": "17389.80",
+          "netTuition": "829.69"
+        },
+        "ratio": "21.88210397450284663731453059",
+        "reconstructedDisplayedPE": 22,
+        "minimumCoveringInteger": 22,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-g3-a/docentes",
+          "kind": "docentes",
+          "cents": 233280,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g3-a/estagiarias",
+          "kind": "estagiarias",
+          "cents": 83835,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g3-a/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g3-a/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g3-a/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g3-a/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 194431,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g3-a/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 110628,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g3-a/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 903429,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g3-a/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 440173,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 91644,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-g3-b",
+      "name": "G3 B",
+      "capacity": 24,
+      "tuitionCents": 93069,
+      "document": {
+        "sourceName": "Grupo 3 B",
+        "students": 23,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "21405.77",
+        "otherRevenue": "490.34",
+        "totalRevenue": "21896.11",
+        "freeTuition": "0",
+        "commercialDiscount": "642.17",
+        "netRevenue": "21253.94",
+        "payroll": "9015.90",
+        "support": "2185.00",
+        "generalExpenses": "8267.30",
+        "loans": "0",
+        "totalCost": "19468.20",
+        "result": "1785.74",
+        "pe": "21",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "930.69",
+          "grossRevenue": "21405.77",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "642.17",
+          "collectivePartial": "0",
+          "collectiveFull": "0",
+          "delinquency": "934.36",
+          "netRevenue": "20763.60",
+          "receivedRevenue": "19829.23",
+          "netTuition": "902.77"
+        },
+        "ratio": "21.06755735642426768872030315",
+        "reconstructedDisplayedPE": 21,
+        "minimumCoveringInteger": 22,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-g3-b/docentes",
+          "kind": "docentes",
+          "cents": 230661,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g3-b/estagiarias",
+          "kind": "estagiarias",
+          "cents": 85377,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g3-b/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g3-b/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g3-b/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g3-b/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 194431,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g3-b/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 110628,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g3-b/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 903430,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g3-b/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 440173,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 91643,
+      "unknownCosts": [
+        {
+          "person": "Paula",
+          "role": "Estagiária adicional G3 B",
+          "cents": null,
+          "reason": "Custo e inclusão orçamentária não comprovados"
+        }
+      ]
+    },
+    {
+      "id": "caj-2027-caj-g4-a",
+      "name": "G4 A",
+      "capacity": 25,
+      "tuitionCents": 93069,
+      "document": {
+        "sourceName": "Grupo 4 A",
+        "students": 25,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "23267.14",
+        "otherRevenue": "532.98",
+        "totalRevenue": "23800.12",
+        "freeTuition": "1396.03",
+        "commercialDiscount": "656.13",
+        "netRevenue": "21747.96",
+        "payroll": "9799.89",
+        "support": "2375.00",
+        "generalExpenses": "8986.19",
+        "loans": "0",
+        "totalCost": "21161.09",
+        "result": "586.87",
+        "pe": "24",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "930.69",
+          "grossRevenue": "23267.14",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "656.13",
+          "collectivePartial": "1396.03",
+          "collectiveFull": "0",
+          "delinquency": "954.67",
+          "netRevenue": "21214.98",
+          "receivedRevenue": "20260.30",
+          "netTuition": "848.60"
+        },
+        "ratio": "24.32537350629668253941978926",
+        "reconstructedDisplayedPE": 24,
+        "minimumCoveringInteger": 25,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-g4-a/docentes",
+          "kind": "docentes",
+          "cents": 236520,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g4-a/estagiarias",
+          "kind": "estagiarias",
+          "cents": 170754,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g4-a/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g4-a/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g4-a/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g4-a/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 202533,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g4-a/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 110628,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g4-a/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 941072,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g4-a/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 458513,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 95462,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-g4-b",
+      "name": "G4 B",
+      "capacity": 26,
+      "tuitionCents": 93069,
+      "document": {
+        "sourceName": "Grupo 4 B",
+        "students": 22,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "20475.08",
+        "otherRevenue": "469.02",
+        "totalRevenue": "20944.11",
+        "freeTuition": "698.01",
+        "commercialDiscount": "593.31",
+        "netRevenue": "19652.78",
+        "payroll": "8623.91",
+        "support": "2090.00",
+        "generalExpenses": "7907.85",
+        "loans": "0",
+        "totalCost": "18621.76",
+        "result": "1031.03",
+        "pe": "21",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "930.69",
+          "grossRevenue": "20475.08",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "593.31",
+          "collectivePartial": "698.01",
+          "collectiveFull": "0",
+          "delinquency": "863.27",
+          "netRevenue": "19183.76",
+          "receivedRevenue": "18320.49",
+          "netTuition": "871.99"
+        },
+        "ratio": "20.84584063933957435029547983",
+        "reconstructedDisplayedPE": 21,
+        "minimumCoveringInteger": 21,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-g4-b/docentes",
+          "kind": "docentes",
+          "cents": 237443,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g4-b/estagiarias",
+          "kind": "estagiarias",
+          "cents": 155574,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g4-b/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 263843,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g4-b/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g4-b/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g4-b/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 210634,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g4-b/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 110628,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g4-b/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 978715,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g4-b/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 476854,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 99280,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-g5-a",
+      "name": "G5 A",
+      "capacity": 21,
+      "tuitionCents": 93069,
+      "document": {
+        "sourceName": "Grupo 5 A",
+        "students": 25,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "23267.14",
+        "otherRevenue": "532.98",
+        "totalRevenue": "23800.12",
+        "freeTuition": "1861.37",
+        "commercialDiscount": "698.01",
+        "netRevenue": "21240.74",
+        "payroll": "9799.89",
+        "support": "2375.00",
+        "generalExpenses": "8986.19",
+        "loans": "0",
+        "totalCost": "21161.09",
+        "result": "79.65",
+        "pe": "25",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "930.69",
+          "grossRevenue": "23267.14",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "698.01",
+          "collectivePartial": "0",
+          "collectiveFull": "1861.37",
+          "delinquency": "1015.61",
+          "netRevenue": "20707.75",
+          "receivedRevenue": "19692.14",
+          "netTuition": "828.31"
+        },
+        "ratio": "24.90625326612914615969123486",
+        "reconstructedDisplayedPE": 25,
+        "minimumCoveringInteger": 25,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-g5-a/docentes",
+          "kind": "docentes",
+          "cents": 325508,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-a/estagiarias",
+          "kind": "estagiarias",
+          "cents": 85377,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-a/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-a/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g5-a/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g5-a/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 170127,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-a/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 110628,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-a/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 790500,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g5-a/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 385151,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 80188,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-g5-b",
+      "name": "G5 B",
+      "capacity": 18,
+      "tuitionCents": 93069,
+      "document": {
+        "sourceName": "Grupo 5 B",
+        "students": 21,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "19544.40",
+        "otherRevenue": "447.70",
+        "totalRevenue": "19992.10",
+        "freeTuition": "698.01",
+        "commercialDiscount": "565.39",
+        "netRevenue": "18728.70",
+        "payroll": "8231.91",
+        "support": "1995.00",
+        "generalExpenses": "7548.40",
+        "loans": "0",
+        "totalCost": "17775.31",
+        "result": "953.38",
+        "pe": "20",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "930.69",
+          "grossRevenue": "19544.40",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "565.39",
+          "collectivePartial": "698.01",
+          "collectiveFull": "0",
+          "delinquency": "822.64",
+          "netRevenue": "18280.99",
+          "receivedRevenue": "17458.35",
+          "netTuition": "870.52"
+        },
+        "ratio": "19.93098880328052667830655625",
+        "reconstructedDisplayedPE": 20,
+        "minimumCoveringInteger": 20,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-g5-b/docentes",
+          "kind": "docentes",
+          "cents": 325508,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-b/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-b/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-b/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g5-b/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g5-b/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 145824,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-b/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 110628,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-b/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 677571,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g5-b/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 330129,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 68733,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-g5-c",
+      "name": "G5 C",
+      "capacity": 22,
+      "tuitionCents": 93069,
+      "document": {
+        "sourceName": "Grupo 5 C",
+        "students": 20,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "18613.71",
+        "otherRevenue": "426.39",
+        "totalRevenue": "19040.10",
+        "freeTuition": "0",
+        "commercialDiscount": "558.41",
+        "netRevenue": "18481.69",
+        "payroll": "7839.92",
+        "support": "1900.00",
+        "generalExpenses": "7188.95",
+        "loans": "0",
+        "totalCost": "16928.87",
+        "result": "1552.82",
+        "pe": "18",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "930.69",
+          "grossRevenue": "18613.71",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "558.41",
+          "collectivePartial": "0",
+          "collectiveFull": "0",
+          "delinquency": "812.49",
+          "netRevenue": "18055.30",
+          "receivedRevenue": "17242.81",
+          "netTuition": "902.77"
+        },
+        "ratio": "18.31961254625523964529217837",
+        "reconstructedDisplayedPE": 18,
+        "minimumCoveringInteger": 19,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-g5-c/docentes",
+          "kind": "docentes",
+          "cents": 325508,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-c/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-c/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-c/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g5-c/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g5-c/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 178229,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-c/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 110627,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-g5-c/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 828143,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-g5-c/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 403492,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 84007,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-1-a",
+      "name": "1º A",
+      "capacity": 25,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "1º Ano A",
+        "students": 22,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "21222.78",
+        "otherRevenue": "486.15",
+        "totalRevenue": "21708.93",
+        "freeTuition": "1929.34",
+        "commercialDiscount": "636.68",
+        "netRevenue": "19142.90",
+        "payroll": "4760.09",
+        "support": "2166.32",
+        "generalExpenses": "8196.62",
+        "loans": "0",
+        "totalCost": "15123.03",
+        "result": "4019.87",
+        "pe": "17",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "21222.78",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "636.68",
+          "collectivePartial": "0",
+          "collectiveFull": "1929.34",
+          "delinquency": "926.37",
+          "netRevenue": "18656.75",
+          "receivedRevenue": "17730.38",
+          "netTuition": "848.03"
+        },
+        "ratio": "17.38015974591101661712697658",
+        "reconstructedDisplayedPE": 17,
+        "minimumCoveringInteger": 18,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-1-a/docentes",
+          "kind": "docentes",
+          "cents": 225990,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-a/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-a/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-a/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-a/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-a/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 14790,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-a/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15257,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-a/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 941072,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-a/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 458513,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 95462,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-1-b",
+      "name": "1º B",
+      "capacity": 19,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "1º Ano B",
+        "students": 22,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "21222.78",
+        "otherRevenue": "486.15",
+        "totalRevenue": "21708.93",
+        "freeTuition": "964.67",
+        "commercialDiscount": "636.68",
+        "netRevenue": "20107.58",
+        "payroll": "4760.09",
+        "support": "2166.32",
+        "generalExpenses": "8196.62",
+        "loans": "0",
+        "totalCost": "15123.03",
+        "result": "4984.54",
+        "pe": "17",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "21222.78",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "636.68",
+          "collectivePartial": "0",
+          "collectiveFull": "964.67",
+          "delinquency": "926.37",
+          "netRevenue": "19621.42",
+          "receivedRevenue": "18695.05",
+          "netTuition": "891.88"
+        },
+        "ratio": "16.54633028937346015781113391",
+        "reconstructedDisplayedPE": 17,
+        "minimumCoveringInteger": 17,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-1-b/docentes",
+          "kind": "docentes",
+          "cents": 221940,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-b/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-b/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-b/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-b/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-b/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 11240,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-b/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15257,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-b/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 715215,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-b/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 348470,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 72551,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-1-c",
+      "name": "1º C",
+      "capacity": 25,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "1º Ano C",
+        "students": 26,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "25081.47",
+        "otherRevenue": "574.54",
+        "totalRevenue": "25656.01",
+        "freeTuition": "2894.02",
+        "commercialDiscount": "752.44",
+        "netRevenue": "22009.55",
+        "payroll": "5625.56",
+        "support": "2560.20",
+        "generalExpenses": "9686.92",
+        "loans": "0",
+        "totalCost": "17872.68",
+        "result": "4136.87",
+        "pe": "21",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "25081.47",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "752.44",
+          "collectivePartial": "0",
+          "collectiveFull": "2894.02",
+          "delinquency": "1094.81",
+          "netRevenue": "21435.01",
+          "receivedRevenue": "20340.20",
+          "netTuition": "824.42"
+        },
+        "ratio": "21.11309318000595196176205329",
+        "reconstructedDisplayedPE": 21,
+        "minimumCoveringInteger": 22,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-1-c/docentes",
+          "kind": "docentes",
+          "cents": 299412,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-c/estagiarias",
+          "kind": "estagiarias",
+          "cents": 85377,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-c/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-c/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-c/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-c/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 14790,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-c/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15257,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-c/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 941072,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-c/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 458513,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 95462,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-1-d",
+      "name": "1º D",
+      "capacity": 19,
+      "tuitionCents": 96467,
+      "document": null,
+      "components": [
+        {
+          "id": "caj-2027-caj-1-d/docentes",
+          "kind": "docentes",
+          "cents": 284832,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-d/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-d/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-d/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-d/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-d/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 11240,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-d/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15257,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-d/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 715215,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-d/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 348470,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 72551,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-2-a",
+      "name": "2º A",
+      "capacity": 24,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "2º Ano A",
+        "students": 25,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "24116.80",
+        "otherRevenue": "552.44",
+        "totalRevenue": "24669.24",
+        "freeTuition": "964.67",
+        "commercialDiscount": "723.50",
+        "netRevenue": "22981.06",
+        "payroll": "5409.19",
+        "support": "2461.73",
+        "generalExpenses": "9314.35",
+        "loans": "0",
+        "totalCost": "17185.27",
+        "result": "5795.80",
+        "pe": "19",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "24116.80",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "723.50",
+          "collectivePartial": "0",
+          "collectiveFull": "964.67",
+          "delinquency": "1052.70",
+          "netRevenue": "22428.62",
+          "receivedRevenue": "21375.92",
+          "netTuition": "897.14"
+        },
+        "ratio": "18.69503626029434673596431148",
+        "reconstructedDisplayedPE": 19,
+        "minimumCoveringInteger": 19,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-2-a/docentes",
+          "kind": "docentes",
+          "cents": 239841,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-a/estagiarias",
+          "kind": "estagiarias",
+          "cents": 85377,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-a/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-a/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-a/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-a/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 14198,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-a/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15257,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-a/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 903430,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-a/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 440173,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 91643,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-2-b",
+      "name": "2º B",
+      "capacity": 19,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "2º Ano B",
+        "students": 19,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "18328.76",
+        "otherRevenue": "419.86",
+        "totalRevenue": "18748.62",
+        "freeTuition": "2411.68",
+        "commercialDiscount": "535.39",
+        "netRevenue": "15801.55",
+        "payroll": "4110.99",
+        "support": "1870.91",
+        "generalExpenses": "7078.90",
+        "loans": "0",
+        "totalCost": "13060.80",
+        "result": "2740.75",
+        "pe": "16",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "18328.76",
+          "freePartial": "482.34",
+          "freeFull": "1929.34",
+          "commercialDiscount": "535.39",
+          "collectivePartial": "0",
+          "collectiveFull": "0",
+          "delinquency": "692.18",
+          "netRevenue": "15381.69",
+          "receivedRevenue": "14689.52",
+          "netTuition": "809.56"
+        },
+        "ratio": "15.70448468662884337296024757",
+        "reconstructedDisplayedPE": 16,
+        "minimumCoveringInteger": 16,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-2-b/docentes",
+          "kind": "docentes",
+          "cents": 240165,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-b/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-b/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-b/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-b/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-b/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 11240,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-b/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15256,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-b/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 715215,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-b/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 348470,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 72551,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-2-c",
+      "name": "2º C",
+      "capacity": 19,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "2º Ano C",
+        "students": 39,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "37622.20",
+        "otherRevenue": "861.81",
+        "totalRevenue": "38484.01",
+        "freeTuition": "7717.37",
+        "commercialDiscount": "1128.67",
+        "netRevenue": "29637.97",
+        "payroll": "8438.34",
+        "support": "3840.29",
+        "generalExpenses": "14530.38",
+        "loans": "0",
+        "totalCost": "26809.01",
+        "result": "2828.96",
+        "pe": "35",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "37622.20",
+          "freePartial": "0",
+          "freeFull": "7717.37",
+          "commercialDiscount": "1128.67",
+          "collectivePartial": "0",
+          "collectiveFull": "0",
+          "delinquency": "1294.93",
+          "netRevenue": "28776.16",
+          "receivedRevenue": "27481.23",
+          "netTuition": "737.85"
+        },
+        "ratio": "35.27742925713198306091813981",
+        "reconstructedDisplayedPE": 35,
+        "minimumCoveringInteger": 36,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-2-c/docentes",
+          "kind": "docentes",
+          "cents": 233397,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-c/estagiarias",
+          "kind": "estagiarias",
+          "cents": 85377,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-c/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-c/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-c/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-c/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 11240,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-c/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15256,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-c/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 715215,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-c/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 348470,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 72551,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-2-d",
+      "name": "2º D",
+      "capacity": 24,
+      "tuitionCents": 96467,
+      "document": null,
+      "components": [
+        {
+          "id": "caj-2027-caj-2-d/docentes",
+          "kind": "docentes",
+          "cents": 227426,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-d/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-d/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-d/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-d/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-d/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 14198,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-d/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15256,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-d/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 903430,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-d/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 440173,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 91643,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-3-a",
+      "name": "3º A",
+      "capacity": 25,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "3º Ano A",
+        "students": 22,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "21222.78",
+        "otherRevenue": "486.15",
+        "totalRevenue": "21708.93",
+        "freeTuition": "964.67",
+        "commercialDiscount": "636.68",
+        "netRevenue": "20107.58",
+        "payroll": "4760.09",
+        "support": "2166.32",
+        "generalExpenses": "8196.62",
+        "loans": "0",
+        "totalCost": "15123.03",
+        "result": "4984.54",
+        "pe": "17",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "21222.78",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "636.68",
+          "collectivePartial": "0",
+          "collectiveFull": "964.67",
+          "delinquency": "926.37",
+          "netRevenue": "19621.42",
+          "receivedRevenue": "18695.05",
+          "netTuition": "891.88"
+        },
+        "ratio": "16.54633028937346015781113391",
+        "reconstructedDisplayedPE": 17,
+        "minimumCoveringInteger": 17,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-3-a/docentes",
+          "kind": "docentes",
+          "cents": 225990,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-a/estagiarias",
+          "kind": "estagiarias",
+          "cents": 85377,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-a/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-a/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-a/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-a/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 14789,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-a/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15256,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-a/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 941072,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-a/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 458513,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 95462,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-3-b",
+      "name": "3º B",
+      "capacity": 25,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "3º Ano B",
+        "students": 23,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "22187.45",
+        "otherRevenue": "508.25",
+        "totalRevenue": "22695.70",
+        "freeTuition": "0",
+        "commercialDiscount": "665.62",
+        "netRevenue": "22030.08",
+        "payroll": "4976.46",
+        "support": "2264.79",
+        "generalExpenses": "8569.20",
+        "loans": "0",
+        "totalCost": "15810.44",
+        "result": "6219.63",
+        "pe": "17",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "22187.45",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "665.62",
+          "collectivePartial": "0",
+          "collectiveFull": "0",
+          "delinquency": "968.48",
+          "netRevenue": "21521.83",
+          "receivedRevenue": "20553.35",
+          "netTuition": "935.73"
+        },
+        "ratio": "16.50652743884724885247806635",
+        "reconstructedDisplayedPE": 17,
+        "minimumCoveringInteger": 17,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-3-b/docentes",
+          "kind": "docentes",
+          "cents": 225585,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-b/estagiarias",
+          "kind": "estagiarias",
+          "cents": 83835,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-b/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-b/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-b/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-b/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 14789,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-b/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15256,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-b/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 941072,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-b/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 458513,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 95462,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-3-c",
+      "name": "3º C",
+      "capacity": 25,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "3º Ano C",
+        "students": 42,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "40516.22",
+        "otherRevenue": "928.11",
+        "totalRevenue": "41444.32",
+        "freeTuition": "13505.41",
+        "commercialDiscount": "1186.55",
+        "netRevenue": "26752.37",
+        "payroll": "9087.45",
+        "support": "4135.70",
+        "generalExpenses": "15648.10",
+        "loans": "0",
+        "totalCost": "28871.25",
+        "result": "-2118.88",
+        "pe": "45",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "40516.22",
+          "freePartial": "964.67",
+          "freeFull": "7717.37",
+          "commercialDiscount": "1186.55",
+          "collectivePartial": "0",
+          "collectiveFull": "4823.36",
+          "delinquency": "1379.14",
+          "netRevenue": "25824.26",
+          "receivedRevenue": "24445.12",
+          "netTuition": "614.86"
+        },
+        "ratio": "45.32654490050788023640522316",
+        "reconstructedDisplayedPE": 45,
+        "minimumCoveringInteger": 46,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-3-c/docentes",
+          "kind": "docentes",
+          "cents": 211932,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-c/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-c/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-c/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-c/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-c/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 14789,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-c/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15256,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-c/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 941072,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-c/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 458513,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 95462,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-3-d",
+      "name": "3º D",
+      "capacity": 25,
+      "tuitionCents": 96467,
+      "document": null,
+      "components": [
+        {
+          "id": "caj-2027-caj-3-d/docentes",
+          "kind": "docentes",
+          "cents": 226107,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-d/estagiarias",
+          "kind": "estagiarias",
+          "cents": 85377,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-d/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-d/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-d/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-d/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 14789,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-d/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15256,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-d/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 941072,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-d/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 458513,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 95462,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-4-a",
+      "name": "4º A",
+      "capacity": 35,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "4º Ano A",
+        "students": 24,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "23152.12",
+        "otherRevenue": "530.35",
+        "totalRevenue": "23682.47",
+        "freeTuition": "964.67",
+        "commercialDiscount": "694.56",
+        "netRevenue": "22023.23",
+        "payroll": "5192.83",
+        "support": "2363.26",
+        "generalExpenses": "8941.77",
+        "loans": "0",
+        "totalCost": "16497.86",
+        "result": "5525.38",
+        "pe": "18",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "23152.12",
+          "freePartial": "0",
+          "freeFull": "964.67",
+          "commercialDiscount": "694.56",
+          "collectivePartial": "0",
+          "collectiveFull": "0",
+          "delinquency": "967.18",
+          "netRevenue": "21492.89",
+          "receivedRevenue": "20525.71",
+          "netTuition": "895.54"
+        },
+        "ratio": "17.97868160120018725681927674",
+        "reconstructedDisplayedPE": 18,
+        "minimumCoveringInteger": 18,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-4-a/docentes",
+          "kind": "docentes",
+          "cents": 206388,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-a/estagiarias",
+          "kind": "estagiarias",
+          "cents": 27235,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-a/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-a/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-4-a/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-4-a/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 20705,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-a/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15256,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-a/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1317501,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-4-a/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 641919,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 133647,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-4-b",
+      "name": "4º B",
+      "capacity": 15,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "4º Ano B",
+        "students": 25,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "24116.80",
+        "otherRevenue": "552.44",
+        "totalRevenue": "24669.24",
+        "freeTuition": "6270.37",
+        "commercialDiscount": "709.03",
+        "netRevenue": "17689.84",
+        "payroll": "5409.19",
+        "support": "2461.73",
+        "generalExpenses": "9314.35",
+        "loans": "0",
+        "totalCost": "17185.27",
+        "result": "504.57",
+        "pe": "24",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "24116.80",
+          "freePartial": "482.34",
+          "freeFull": "3858.69",
+          "commercialDiscount": "709.03",
+          "collectivePartial": "0",
+          "collectiveFull": "1929.34",
+          "delinquency": "858.00",
+          "netRevenue": "17137.39",
+          "receivedRevenue": "16279.39",
+          "netTuition": "685.50"
+        },
+        "ratio": "24.28692119318207513465356385",
+        "reconstructedDisplayedPE": 24,
+        "minimumCoveringInteger": 25,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-4-b/docentes",
+          "kind": "docentes",
+          "cents": 163170,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-b/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-b/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-b/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-4-b/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-4-b/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 8874,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-b/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15256,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-b/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 564643,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-4-b/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 275108,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 57277,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-4-c",
+      "name": "4º C",
+      "capacity": 35,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "4º Ano C",
+        "students": 44,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "42445.56",
+        "otherRevenue": "972.30",
+        "totalRevenue": "43417.86",
+        "freeTuition": "14952.41",
+        "commercialDiscount": "1258.90",
+        "netRevenue": "27206.55",
+        "payroll": "9520.18",
+        "support": "4332.64",
+        "generalExpenses": "16393.25",
+        "loans": "0",
+        "totalCost": "30246.07",
+        "result": "-3039.52",
+        "pe": "49",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "42445.56",
+          "freePartial": "482.34",
+          "freeFull": "13505.41",
+          "commercialDiscount": "1258.90",
+          "collectivePartial": "0",
+          "collectiveFull": "964.67",
+          "delinquency": "1223.95",
+          "netRevenue": "26234.25",
+          "receivedRevenue": "25010.30",
+          "netTuition": "596.23"
+        },
+        "ratio": "48.91568684746871617312742704",
+        "reconstructedDisplayedPE": 49,
+        "minimumCoveringInteger": 49,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-4-c/docentes",
+          "kind": "docentes",
+          "cents": 222287,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-c/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-c/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-c/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-4-c/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-4-c/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 20705,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-c/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15256,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-4-c/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1317501,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-4-c/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 641919,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 133647,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-5-a",
+      "name": "5º A",
+      "capacity": 30,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "5º Ano A",
+        "students": 33,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "31834.17",
+        "otherRevenue": "729.23",
+        "totalRevenue": "32563.40",
+        "freeTuition": "2411.68",
+        "commercialDiscount": "911.61",
+        "netRevenue": "29240.10",
+        "payroll": "7140.14",
+        "support": "3249.48",
+        "generalExpenses": "12294.94",
+        "loans": "0",
+        "totalCost": "22684.55",
+        "result": "6555.55",
+        "pe": "26",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "31834.17",
+          "freePartial": "1447.01",
+          "freeFull": "0",
+          "commercialDiscount": "911.61",
+          "collectivePartial": "0",
+          "collectiveFull": "964.67",
+          "delinquency": "1326.40",
+          "netRevenue": "28510.88",
+          "receivedRevenue": "27184.48",
+          "netTuition": "863.97"
+        },
+        "ratio": "25.60149076097550965967968646",
+        "reconstructedDisplayedPE": 26,
+        "minimumCoveringInteger": 26,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-5-a/docentes",
+          "kind": "docentes",
+          "cents": 246281,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-a/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-a/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-a/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-5-a/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-5-a/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 17747,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-a/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15256,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-a/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1129287,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-5-a/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 550216,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 114554,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-5-b",
+      "name": "5º B",
+      "capacity": 27,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "5º Ano B",
+        "students": 19,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "18328.76",
+        "otherRevenue": "419.86",
+        "totalRevenue": "18748.62",
+        "freeTuition": "964.67",
+        "commercialDiscount": "549.86",
+        "netRevenue": "17234.09",
+        "payroll": "4110.99",
+        "support": "1870.91",
+        "generalExpenses": "7078.90",
+        "loans": "0",
+        "totalCost": "13060.80",
+        "result": "4173.29",
+        "pe": "14",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "18328.76",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "549.86",
+          "collectivePartial": "0",
+          "collectiveFull": "964.67",
+          "delinquency": "800.05",
+          "netRevenue": "16814.23",
+          "receivedRevenue": "16014.18",
+          "netTuition": "884.96"
+        },
+        "ratio": "14.39908924695182629312020536",
+        "reconstructedDisplayedPE": 14,
+        "minimumCoveringInteger": 15,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-5-b/docentes",
+          "kind": "docentes",
+          "cents": 424944,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-b/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-b/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-b/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-5-b/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-5-b/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 15973,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-b/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15256,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-b/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1016358,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-5-b/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 495194,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 103099,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-5-c",
+      "name": "5º C",
+      "capacity": 30,
+      "tuitionCents": 96467,
+      "document": {
+        "sourceName": "5º Ano C",
+        "students": 28,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "27010.81",
+        "otherRevenue": "618.74",
+        "totalRevenue": "27629.55",
+        "freeTuition": "10852.56",
+        "commercialDiscount": "774.15",
+        "netRevenue": "16002.84",
+        "payroll": "6058.30",
+        "support": "2757.13",
+        "generalExpenses": "10432.07",
+        "loans": "0",
+        "totalCost": "19247.50",
+        "result": "-3244.66",
+        "pe": "34",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "964.67",
+          "grossRevenue": "27010.81",
+          "freePartial": "482.34",
+          "freeFull": "9646.72",
+          "commercialDiscount": "774.15",
+          "collectivePartial": "723.50",
+          "collectiveFull": "0",
+          "delinquency": "692.28",
+          "netRevenue": "15384.10",
+          "receivedRevenue": "14691.82",
+          "netTuition": "549.43"
+        },
+        "ratio": "33.67714730635312232078806012",
+        "reconstructedDisplayedPE": 34,
+        "minimumCoveringInteger": 34,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-5-c/docentes",
+          "kind": "docentes",
+          "cents": 360797,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-c/estagiarias",
+          "kind": "estagiarias",
+          "cents": 32295,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-c/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-c/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-5-c/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-5-c/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 17747,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-c/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 15256,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-5-c/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1129287,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-5-c/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 550216,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 114554,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-6-a",
+      "name": "6º A",
+      "capacity": 35,
+      "tuitionCents": 123981,
+      "document": {
+        "sourceName": "6º Ano A",
+        "students": 29,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "35954.48",
+        "otherRevenue": "823.61",
+        "totalRevenue": "36778.09",
+        "freeTuition": "6199.05",
+        "commercialDiscount": "1078.63",
+        "netRevenue": "29500.41",
+        "payroll": "6174.27",
+        "support": "3670.06",
+        "generalExpenses": "13886.27",
+        "loans": "0",
+        "totalCost": "23730.60",
+        "result": "5769.81",
+        "pe": "23",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "1239.81",
+          "grossRevenue": "35954.48",
+          "freePartial": "0",
+          "freeFull": "4959.24",
+          "commercialDiscount": "1078.63",
+          "collectivePartial": "0",
+          "collectiveFull": "1239.81",
+          "delinquency": "1346.25",
+          "netRevenue": "28676.80",
+          "receivedRevenue": "27330.55",
+          "netTuition": "988.86"
+        },
+        "ratio": "23.32806222015219449492396885",
+        "reconstructedDisplayedPE": 23,
+        "minimumCoveringInteger": 24,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-6-a/docentes",
+          "kind": "docentes",
+          "cents": 315284,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-a/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-a/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-a/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-6-a/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-6-a/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-a/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-a/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1317501,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-6-a/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 641919,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 133647,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-6-b",
+      "name": "6º B",
+      "capacity": 26,
+      "tuitionCents": 123981,
+      "document": {
+        "sourceName": "6º Ano B",
+        "students": 30,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "37194.29",
+        "otherRevenue": "852.01",
+        "totalRevenue": "38046.30",
+        "freeTuition": "10228.43",
+        "commercialDiscount": "1069.34",
+        "netRevenue": "26748.53",
+        "payroll": "6387.17",
+        "support": "3796.61",
+        "generalExpenses": "14365.11",
+        "loans": "0",
+        "totalCost": "24548.90",
+        "result": "2199.64",
+        "pe": "28",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "1239.81",
+          "grossRevenue": "37194.29",
+          "freePartial": "619.90",
+          "freeFull": "6199.05",
+          "commercialDiscount": "1069.34",
+          "collectivePartial": "929.86",
+          "collectiveFull": "2479.62",
+          "delinquency": "1276.93",
+          "netRevenue": "25896.52",
+          "receivedRevenue": "24619.60",
+          "netTuition": "863.22"
+        },
+        "ratio": "27.53298966335720131162347987",
+        "reconstructedDisplayedPE": 28,
+        "minimumCoveringInteger": 28,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-6-b/docentes",
+          "kind": "docentes",
+          "cents": 315279,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-b/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-b/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-b/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-6-b/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-6-b/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-b/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-b/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 978715,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-6-b/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 476854,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 99280,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-6-c",
+      "name": "6º C",
+      "capacity": 35,
+      "tuitionCents": 123981,
+      "document": {
+        "sourceName": "6º Ano C",
+        "students": 38,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "47112.76",
+        "otherRevenue": "1079.21",
+        "totalRevenue": "48191.98",
+        "freeTuition": "16737.43",
+        "commercialDiscount": "1394.79",
+        "netRevenue": "30059.76",
+        "payroll": "8090.42",
+        "support": "4809.04",
+        "generalExpenses": "18195.81",
+        "loans": "0",
+        "totalCost": "31095.27",
+        "result": "-1035.51",
+        "pe": "39",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "1239.81",
+          "grossRevenue": "47112.76",
+          "freePartial": "619.90",
+          "freeFull": "13637.91",
+          "commercialDiscount": "1394.79",
+          "collectivePartial": "0",
+          "collectiveFull": "2479.62",
+          "delinquency": "1415.71",
+          "netRevenue": "28980.55",
+          "receivedRevenue": "27564.84",
+          "netTuition": "762.65"
+        },
+        "ratio": "39.30903839551613186532427405",
+        "reconstructedDisplayedPE": 39,
+        "minimumCoveringInteger": 40,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-6-c/docentes",
+          "kind": "docentes",
+          "cents": 297666,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-c/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-c/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-c/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-6-c/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-6-c/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-c/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-6-c/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1317500,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-6-c/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 641919,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 133647,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-7-a",
+      "name": "7º A",
+      "capacity": 30,
+      "tuitionCents": 123981,
+      "document": {
+        "sourceName": "7º Ano A",
+        "students": 32,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "39673.91",
+        "otherRevenue": "908.81",
+        "totalRevenue": "40582.72",
+        "freeTuition": "8058.76",
+        "commercialDiscount": "1171.62",
+        "netRevenue": "31352.34",
+        "payroll": "6812.98",
+        "support": "4049.72",
+        "generalExpenses": "15322.79",
+        "loans": "0",
+        "totalCost": "26185.49",
+        "result": "5166.85",
+        "pe": "27",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "1239.81",
+          "grossRevenue": "39673.91",
+          "freePartial": "619.90",
+          "freeFull": "2479.62",
+          "commercialDiscount": "1171.62",
+          "collectivePartial": "0",
+          "collectiveFull": "4959.24",
+          "delinquency": "1593.12",
+          "netRevenue": "30443.52",
+          "receivedRevenue": "28850.40",
+          "netTuition": "951.36"
+        },
+        "ratio": "26.72641595491755958247454576",
+        "reconstructedDisplayedPE": 27,
+        "minimumCoveringInteger": 27,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-7-a/docentes",
+          "kind": "docentes",
+          "cents": 321152,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-7-a/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-7-a/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-7-a/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-7-a/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-7-a/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-7-a/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-7-a/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1129287,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-7-a/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 550216,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 114554,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-7-b",
+      "name": "7º B",
+      "capacity": 30,
+      "tuitionCents": 123981,
+      "document": {
+        "sourceName": "7º Ano B",
+        "students": 30,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "37194.29",
+        "otherRevenue": "852.01",
+        "totalRevenue": "38046.30",
+        "freeTuition": "3719.43",
+        "commercialDiscount": "1115.83",
+        "netRevenue": "33211.04",
+        "payroll": "6387.17",
+        "support": "3796.61",
+        "generalExpenses": "14365.11",
+        "loans": "0",
+        "totalCost": "24548.90",
+        "result": "8662.15",
+        "pe": "22",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "1239.81",
+          "grossRevenue": "37194.29",
+          "freePartial": "0",
+          "freeFull": "1239.81",
+          "commercialDiscount": "1115.83",
+          "collectivePartial": "0",
+          "collectiveFull": "2479.62",
+          "delinquency": "1567.74",
+          "netRevenue": "32359.03",
+          "receivedRevenue": "30791.29",
+          "netTuition": "1078.63"
+        },
+        "ratio": "22.17536698639970323121468042",
+        "reconstructedDisplayedPE": 22,
+        "minimumCoveringInteger": 23,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-7-b/docentes",
+          "kind": "docentes",
+          "cents": 315266,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-7-b/estagiarias",
+          "kind": "estagiarias",
+          "cents": 85377,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-7-b/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-7-b/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-7-b/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-7-b/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-7-b/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-7-b/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1129287,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-7-b/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 550216,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 114554,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-8-a",
+      "name": "8º A",
+      "capacity": 35,
+      "tuitionCents": 123981,
+      "document": {
+        "sourceName": "8º Ano A",
+        "students": 30,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "37194.29",
+        "otherRevenue": "852.01",
+        "totalRevenue": "38046.30",
+        "freeTuition": "4339.33",
+        "commercialDiscount": "1097.23",
+        "netRevenue": "32609.73",
+        "payroll": "6387.17",
+        "support": "3796.61",
+        "generalExpenses": "14365.11",
+        "loans": "0",
+        "totalCost": "24548.90",
+        "result": "8060.84",
+        "pe": "23",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "1239.81",
+          "grossRevenue": "37194.29",
+          "freePartial": "619.90",
+          "freeFull": "2479.62",
+          "commercialDiscount": "1097.23",
+          "collectivePartial": "0",
+          "collectiveFull": "1239.81",
+          "delinquency": "1484.89",
+          "netRevenue": "31757.72",
+          "receivedRevenue": "30272.83",
+          "netTuition": "1058.59"
+        },
+        "ratio": "22.58427162690399460529112017",
+        "reconstructedDisplayedPE": 23,
+        "minimumCoveringInteger": 23,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-8-a/docentes",
+          "kind": "docentes",
+          "cents": 317237,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-a/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-a/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-a/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-8-a/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-8-a/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-a/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-a/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1317500,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-8-a/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 641918,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 133647,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-8-b",
+      "name": "8º B",
+      "capacity": 28,
+      "tuitionCents": 123981,
+      "document": {
+        "sourceName": "8º Ano B",
+        "students": 33,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "40913.72",
+        "otherRevenue": "937.21",
+        "totalRevenue": "41850.93",
+        "freeTuition": "15497.62",
+        "commercialDiscount": "1171.62",
+        "netRevenue": "25181.69",
+        "payroll": "7025.89",
+        "support": "4176.28",
+        "generalExpenses": "15801.62",
+        "loans": "0",
+        "totalCost": "27003.79",
+        "result": "-1822.10",
+        "pe": "35",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "1239.81",
+          "grossRevenue": "40913.72",
+          "freePartial": "1859.71",
+          "freeFull": "13637.91",
+          "commercialDiscount": "1171.62",
+          "collectivePartial": "0",
+          "collectiveFull": "0",
+          "delinquency": "1091.00",
+          "netRevenue": "24244.48",
+          "receivedRevenue": "23153.48",
+          "netTuition": "734.68"
+        },
+        "ratio": "35.38781829178264048203277858",
+        "reconstructedDisplayedPE": 35,
+        "minimumCoveringInteger": 36,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-8-b/docentes",
+          "kind": "docentes",
+          "cents": 317237,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-b/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-b/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-b/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-8-b/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-8-b/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-b/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-b/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1054001,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-8-b/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 513535,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 106917,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-8-c",
+      "name": "8º C",
+      "capacity": 28,
+      "tuitionCents": 123981,
+      "document": {
+        "sourceName": "8º Ano C",
+        "students": 0,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "0",
+        "otherRevenue": "0",
+        "totalRevenue": "0",
+        "freeTuition": "0",
+        "commercialDiscount": "0",
+        "netRevenue": "0",
+        "payroll": "0",
+        "support": "0",
+        "generalExpenses": "0",
+        "loans": "0",
+        "totalCost": "0",
+        "result": "0",
+        "pe": "0",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "1239.81",
+          "grossRevenue": "0",
+          "freePartial": "0",
+          "freeFull": "0",
+          "commercialDiscount": "0",
+          "collectivePartial": "0",
+          "collectiveFull": "0",
+          "delinquency": "0",
+          "netRevenue": "0",
+          "receivedRevenue": "0",
+          "netTuition": "0"
+        },
+        "ratio": null,
+        "reconstructedDisplayedPE": 0,
+        "minimumCoveringInteger": null,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-8-c/docentes",
+          "kind": "docentes",
+          "cents": 315279,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-c/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-c/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-c/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-8-c/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-8-c/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-c/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-8-c/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1054001,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-8-c/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 513535,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 106917,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-9-a",
+      "name": "9º A",
+      "capacity": 30,
+      "tuitionCents": 123981,
+      "document": {
+        "sourceName": "9º Ano A",
+        "students": 24,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "29755.43",
+        "otherRevenue": "681.61",
+        "totalRevenue": "30437.04",
+        "freeTuition": "6199.05",
+        "commercialDiscount": "892.66",
+        "netRevenue": "23345.33",
+        "payroll": "5109.74",
+        "support": "3037.29",
+        "generalExpenses": "11492.09",
+        "loans": "0",
+        "totalCost": "19639.12",
+        "result": "3706.21",
+        "pe": "20",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "1239.81",
+          "grossRevenue": "29755.43",
+          "freePartial": "0",
+          "freeFull": "4959.24",
+          "commercialDiscount": "892.66",
+          "collectivePartial": "0",
+          "collectiveFull": "1239.81",
+          "delinquency": "1075.66",
+          "netRevenue": "22663.72",
+          "receivedRevenue": "21588.06",
+          "netTuition": "944.32"
+        },
+        "ratio": "20.18985724339728759456388066",
+        "reconstructedDisplayedPE": 20,
+        "minimumCoveringInteger": 21,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-9-a/docentes",
+          "kind": "docentes",
+          "cents": 317237,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-a/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-a/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-a/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-9-a/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-9-a/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-a/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-a/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1129287,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-9-a/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 550216,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 114554,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-9-b",
+      "name": "9º B",
+      "capacity": 28,
+      "tuitionCents": 123981,
+      "document": {
+        "sourceName": "9º Ano B",
+        "students": 24,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "29755.43",
+        "otherRevenue": "681.61",
+        "totalRevenue": "30437.04",
+        "freeTuition": "6818.95",
+        "commercialDiscount": "874.07",
+        "netRevenue": "22744.02",
+        "payroll": "5109.74",
+        "support": "3037.29",
+        "generalExpenses": "11492.09",
+        "loans": "0",
+        "totalCost": "19639.12",
+        "result": "3104.90",
+        "pe": "21",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "1239.81",
+          "grossRevenue": "29755.43",
+          "freePartial": "619.90",
+          "freeFull": "6199.05",
+          "commercialDiscount": "874.07",
+          "collectivePartial": "0",
+          "collectiveFull": "0",
+          "delinquency": "992.81",
+          "netRevenue": "22062.41",
+          "receivedRevenue": "21069.60",
+          "netTuition": "919.27"
+        },
+        "ratio": "20.72363988424209968158663244",
+        "reconstructedDisplayedPE": 21,
+        "minimumCoveringInteger": 21,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-9-b/docentes",
+          "kind": "docentes",
+          "cents": 323109,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-b/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-b/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-b/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-9-b/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-9-b/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-b/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-b/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1054001,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-9-b/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 513535,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 106917,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-9-c",
+      "name": "9º C",
+      "capacity": 30,
+      "tuitionCents": 123981,
+      "document": {
+        "sourceName": "9º Ano C",
+        "students": 27,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "33474.86",
+        "otherRevenue": "766.81",
+        "totalRevenue": "34241.67",
+        "freeTuition": "15497.62",
+        "commercialDiscount": "985.65",
+        "netRevenue": "17758.40",
+        "payroll": "5748.45",
+        "support": "3416.95",
+        "generalExpenses": "12928.60",
+        "loans": "0",
+        "totalCost": "22094.01",
+        "result": "-4335.61",
+        "pe": "34",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "1239.81",
+          "grossRevenue": "33474.86",
+          "freePartial": "619.90",
+          "freeFull": "13637.91",
+          "commercialDiscount": "985.65",
+          "collectivePartial": "0",
+          "collectiveFull": "1239.81",
+          "delinquency": "820.41",
+          "netRevenue": "16991.59",
+          "receivedRevenue": "16171.18",
+          "netTuition": "629.32"
+        },
+        "ratio": "33.59189285070727092530858636",
+        "reconstructedDisplayedPE": 34,
+        "minimumCoveringInteger": 34,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-9-c/docentes",
+          "kind": "docentes",
+          "cents": 311360,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-c/estagiarias",
+          "kind": "estagiarias",
+          "cents": 85377,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-c/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-c/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-9-c/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-9-c/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-c/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-9-c/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1129287,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-9-c/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 550216,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 114554,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-1-em",
+      "name": "1º EM",
+      "capacity": 48,
+      "tuitionCents": 142559,
+      "document": {
+        "sourceName": "1º E. Médio A",
+        "students": 49,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "69853.87",
+        "otherRevenue": "1600.15",
+        "totalRevenue": "71454.02",
+        "freeTuition": "32432.15",
+        "commercialDiscount": "2020.77",
+        "netRevenue": "37001.09",
+        "payroll": "12262.70",
+        "support": "7130.35",
+        "generalExpenses": "26978.84",
+        "loans": "0",
+        "totalCost": "46371.88",
+        "result": "-9370.79",
+        "pe": "61",
+        "studentFinancials": {
+          "sourcePage": 10,
+          "tuition": "1425.59",
+          "grossRevenue": "69853.87",
+          "freePartial": "1425.59",
+          "freeFull": "22809.43",
+          "commercialDiscount": "2020.77",
+          "collectivePartial": "1069.19",
+          "collectiveFull": "7127.95",
+          "delinquency": "1913.80",
+          "netRevenue": "35400.94",
+          "receivedRevenue": "33487.14",
+          "netTuition": "722.47"
+        },
+        "ratio": "61.40959955504013530412212181",
+        "reconstructedDisplayedPE": 61,
+        "minimumCoveringInteger": 62,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-1-em/docentes",
+          "kind": "docentes",
+          "cents": 641025,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-em/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-em/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-em/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-em/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-em/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-em/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 157794,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-1-em/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1806858,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-1-em/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 880345,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 183287,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-2-em",
+      "name": "2º EM",
+      "capacity": 43,
+      "tuitionCents": 142559,
+      "document": {
+        "sourceName": "2º E. Médio A",
+        "students": 45,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "64151.51",
+        "otherRevenue": "1469.52",
+        "totalRevenue": "65621.04",
+        "freeTuition": "16394.28",
+        "commercialDiscount": "1903.16",
+        "netRevenue": "47323.60",
+        "payroll": "11261.66",
+        "support": "6548.28",
+        "generalExpenses": "24776.48",
+        "loans": "0",
+        "totalCost": "42586.42",
+        "result": "4737.18",
+        "pe": "40",
+        "studentFinancials": {
+          "sourcePage": 11,
+          "tuition": "1425.59",
+          "grossRevenue": "64151.51",
+          "freePartial": "712.79",
+          "freeFull": "12830.30",
+          "commercialDiscount": "1903.16",
+          "collectivePartial": "0",
+          "collectiveFull": "2851.18",
+          "delinquency": "2191.74",
+          "netRevenue": "45854.08",
+          "receivedRevenue": "43662.34",
+          "netTuition": "1018.98"
+        },
+        "ratio": "40.49541666314481569449492431",
+        "reconstructedDisplayedPE": 40,
+        "minimumCoveringInteger": 41,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-2-em/docentes",
+          "kind": "docentes",
+          "cents": 641025,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-em/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-em/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-em/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-em/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-em/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-em/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 157794,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-2-em/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1618643,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-2-em/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 788643,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 164195,
+      "unknownCosts": []
+    },
+    {
+      "id": "caj-2027-caj-3-em",
+      "name": "3º EM",
+      "capacity": 35,
+      "tuitionCents": 146105,
+      "document": {
+        "sourceName": "3º E. Médio A",
+        "students": 44,
+        "capacity": null,
+        "capacityStatus": "COLUNA_CAPACIDADE_EM_BRANCO",
+        "sourcePage": 4,
+        "grossRevenue": "64286.06",
+        "otherRevenue": "1472.60",
+        "totalRevenue": "65758.67",
+        "freeTuition": "21185.18",
+        "commercialDiscount": "1906.67",
+        "netRevenue": "42666.82",
+        "payroll": "11285.28",
+        "support": "6562.01",
+        "generalExpenses": "24828.45",
+        "loans": "0",
+        "totalCost": "42675.74",
+        "result": "-8.92",
+        "pe": "44",
+        "studentFinancials": {
+          "sourcePage": 11,
+          "tuition": "1461.05",
+          "grossRevenue": "64286.06",
+          "freePartial": "730.52",
+          "freeFull": "13149.42",
+          "commercialDiscount": "1906.67",
+          "collectivePartial": "0",
+          "collectiveFull": "7305.23",
+          "delinquency": "2182.48",
+          "netRevenue": "41194.22",
+          "receivedRevenue": "39011.74",
+          "netTuition": "936.23"
+        },
+        "ratio": "44.00919871694211098928863224",
+        "reconstructedDisplayedPE": 44,
+        "minimumCoveringInteger": 45,
+        "formula": "alunos * custo / receita líquida; exibição sem casas; zero em linha sem base",
+        "formulaEvidence": "Reconstrução 2027 compatível com fórmulas inspecionadas no modelo histórico 2024"
+      },
+      "components": [
+        {
+          "id": "caj-2027-caj-3-em/docentes",
+          "kind": "docentes",
+          "cents": 641025,
+          "evidence": "Grade homologada × 4,5, tarifas oficiais; sem encargos adicionais presumidos",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-em/estagiarias",
+          "kind": "estagiarias",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação C02; bolsa, seguro e consultoria",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-em/auxiliar-direta",
+          "kind": "auxiliar-direta",
+          "cents": 0,
+          "evidence": "Folha agosto/2026 e lotação exclusiva de Maria Edna em G4 B",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-em/residual-g2",
+          "kind": "residual-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-em/apoio-direto-g2",
+          "kind": "apoio-direto-g2",
+          "cents": 0,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-em/auxiliares-segmento",
+          "kind": "auxiliares-segmento",
+          "cents": 0,
+          "evidence": "Folha nominal agosto/2026; C29; rateio homologado por capacidade do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-em/coordenacao-segmento",
+          "kind": "coordenacao-segmento",
+          "cents": 157794,
+          "evidence": "Folha nominal agosto/2026; C28; divisão igual por turma do segmento, pesos congelados",
+          "verified": true
+        },
+        {
+          "id": "caj-2027-caj-3-em/gerais-liquidos-pcld",
+          "kind": "gerais-liquidos-pcld",
+          "cents": 1317500,
+          "evidence": null,
+          "verified": false
+        },
+        {
+          "id": "caj-2027-caj-3-em/pessoal-institucional",
+          "kind": "pessoal-institucional",
+          "cents": 641918,
+          "evidence": null,
+          "verified": false
+        }
+      ],
+      "historicalPCLDNeutralizedCents": 133647,
+      "unknownCosts": []
+    }
+  ]
+}

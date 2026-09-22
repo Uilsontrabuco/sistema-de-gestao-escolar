@@ -17,3 +17,6 @@ assets/
 *.db
 *.zip
 *.log
+.venv/
+.local-build/
+.local-dependencies/

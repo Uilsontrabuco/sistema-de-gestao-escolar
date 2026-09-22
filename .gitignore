@@ -17,7 +17,16 @@ output/
 *.sqlite3
 *.db
 *.dump
+*.dump.gz
 *.bak
+*.backup
+*.backup.gz
+*.incomplete
+*.sql.gz
+*.sha256
+backup-manifest*.json
+backups/
+**/backups/
 *.zip
 *.log
 node_modules/
@@ -29,3 +38,7 @@ node_modules/
 
 .vercel
 .env*
+.local-build/
+.local-dependencies/
+/RETOMADA-2027-PESSOAL.md
+/CONFIRMACAO-LOHANA-MARCELO-20270922.md

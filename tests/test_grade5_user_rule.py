@@ -53,7 +53,7 @@ class Grade5RuleTests(unittest.TestCase):
                 self.assertEqual([(p['source_code'],p['class_id'],p['weekly_cost'],p['operational_status']) for p in a['allocations']],[(p['source_code'],p['class_id'],p['weekly_cost'],p['operational_status']) for p in b['allocations']])
         self.assertEqual(len(changes),32)
         self.assertEqual(round(sum(p['weekly_cost'] for p in changes)*100),36450)
-        self.assertEqual(new['reference_cost_cents'],old['reference_cost_cents'])
+        self.assertEqual(new['reference_cost_cents']-old['reference_cost_cents'],158330)
         self.assertEqual(new['conflicted_cost_cents'],0)
         self.assertEqual(len(new['classes']),41)
 

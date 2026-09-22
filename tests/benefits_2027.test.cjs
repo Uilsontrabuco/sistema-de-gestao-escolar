@@ -1,0 +1,6 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+const {summary,renderPlanned}=require('../benefits_2027.js');
+const fixture=()=>({classes:[{id:'g3',name:'G3 A',students:19}],benefits:[{id:'b',sourceKind:'planned-2027',name:'Marcando Vidas',studentName:'Aluno fixture',studentId:'ID1',classId:'g3',rate:'0.45',state:'PREVISTO',linkStatus:'AGUARDANDO_MATRICULA',discountCents:41881,source:'Fonte local',sourceRow:3}]});
+test('Forecast counters do not count enrollment as benefit activation',()=>{const s=fixture();assert.deepEqual(summary(s),{total:1,active:0,waiting:1,pending:0});const before=JSON.stringify(s);renderPlanned(s);assert.equal(JSON.stringify(s),before);});
+test('Forecast UI shows state, exact rule and source',()=>{const h=renderPlanned(fixture());for(const text of ['PREVISTO','AGUARDANDO_MATRICULA','45% uma vez','50% uma vez','95% individual','linha 3'])assert.ok(h.includes(text));});
+test('Invalid class is preserved and source names are escaped',()=>{const s=fixture();s.benefits[0].classId=null;s.benefits[0].sourceClass='EFUND04TD';s.benefits[0].linkStatus='TURMA_INVALIDA';s.benefits[0].studentName='<img src=x>';assert.equal(summary(s).pending,1);assert.match(renderPlanned(s),/EFUND04TD/);assert.doesNotMatch(renderPlanned(s),/<img src=x>/);});

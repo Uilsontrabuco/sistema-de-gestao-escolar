@@ -1,0 +1,2 @@
+# Preserve the exact approved bytes and SHA-256 across Windows/Linux checkouts.
+approved_pe_2027_snapshot.json -text whitespace=cr-at-eol

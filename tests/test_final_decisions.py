@@ -80,8 +80,8 @@ class FinalDecisionsTests(unittest.TestCase):
                 current=mapped[tuple(row['original_source_indices'])]
                 self.assertTrue(all(tuple(p[k] for k in fields) in [tuple(q[k] for k in fields) for q in current['allocations']] for p in previous))
         self.assertEqual(sorted(i for r in d['occurrences'] for i in r['original_source_indices']),list(range(len(d['source_records']))))
-        self.assertEqual(d['validated_cost_cents']-old['validated_cost_cents'],160714)
-        self.assertEqual(d['reference_cost_cents'],2567735)
+        self.assertEqual(d['validated_cost_cents']-old['validated_cost_cents'],319044)
+        self.assertEqual(d['reference_cost_cents'],2726065)
         self.assertEqual(d['summary']['reconciled_professors'],50)
         self.assertEqual(len(d['classes']),41)
         self.assertEqual(d['summary']['financial_duplicates'],0)

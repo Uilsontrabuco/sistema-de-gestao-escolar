@@ -1,0 +1,16 @@
+# Ambiente local Windows / Python 3.13; requisitos oficiais em requirements.txt.
+cffi==2.1.1
+charset-normalizer==3.5.1
+cryptography==50.0.1
+et-xmlfile==2.0.0
+openpyxl==3.1.5
+pdfminer.six==20260107
+pdfplumber==0.11.10
+pillow==12.3.0
+psycopg==3.2.10
+psycopg-binary==3.2.10
+pycparser==3.0
+pypdf==6.18.1
+pypdfium2==5.13.0
+reportlab==4.5.1
+tzdata==2026.4

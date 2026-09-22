@@ -94,7 +94,7 @@ class DefinitiveClosureTests(unittest.TestCase):
                 after=[tuple(p[k] for k in keys) for p in mapped[row['occurrence_id']]['allocations']]
                 self.assertTrue(all(p in after for p in before))
         self.assertEqual(sorted(i for r in d['occurrences'] for i in r['original_source_indices']),list(range(1256)))
-        self.assertEqual(d['validated_cost_cents']-old['validated_cost_cents'],117450)
+        self.assertEqual(d['validated_cost_cents']-old['validated_cost_cents'],275780)
         self.assertEqual(d['validated_cost_cents'],d['reference_cost_cents'])
         self.assertEqual(d['summary']['unexplained_cost_cents'],0)
         self.assertEqual(d['summary']['financial_duplicates'],0)

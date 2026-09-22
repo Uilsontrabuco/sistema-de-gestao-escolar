@@ -51,7 +51,7 @@ class OperationalTests(unittest.TestCase):
         self.assertEqual(len(data['operational_allocations']),1)
     def test_real_integral_reconciliation(self):
         data=load_documentary_costs(blank()['classes'])
-        self.assertEqual((data['validated_cost_cents'],data['conflicted_cost_cents'],data['unassigned_cost_cents'],data['reference_cost_cents']),(2567735,0,0,2567735))
+        self.assertEqual((data['validated_cost_cents'],data['conflicted_cost_cents'],data['unassigned_cost_cents'],data['reference_cost_cents']),(2726065,0,0,2726065))
         self.assertEqual(data['summary']['pending_allocations'],0)
         self.assertEqual(data['summary']['reconciled_professors'],50)
         self.assertEqual(data['summary']['classified_records'],1235)

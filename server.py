@@ -109,6 +109,10 @@ def validate(s,previous=None):
         datetime.strptime(h.get('date',''),'%Y-%m-%d')
     for b in s['benefits']:
         if not b.get('name','').strip() or not integer(b.get('quantity')):raise ValueError('Benefício inválido.')
+    for student in s['enrollments'].get('students',[]):
+        if not student.get('id') or student.get('year')!=2027 or student.get('status') not in ('active','cancelled') or student.get('classId') not in {c['id'] for c in s['classes']} or not (student.get('studentId') or student.get('studentName')):raise ValueError('Vínculo nominal de matrícula inválido.')
+    nominal_ids=[str(x['id']) for x in s['enrollments'].get('students',[])]
+    if len(nominal_ids)!=len(set(nominal_ids)):raise ValueError('Vínculo nominal duplicado.')
     old_requests={str(r['id']):r for r in (previous or {}).get('requests',[])}
     for r in s['requests']:
         if not r.get('title','').strip() or r.get('status') not in ['requested','waiting','approved','rejected','doing','completed']:raise ValueError('Solicitação inválida.')
@@ -208,6 +212,8 @@ def recalculate(s):
         c['students']=new+re+c.get('unclassified',0);fresh+=new;renewed+=re
     s['enrollments']['new']=fresh+s['enrollments'].get('unallocated',{}).get('new',0)
     s['enrollments']['re']=renewed+s['enrollments'].get('unallocated',{}).get('re',0)
+    from benefits_2027 import sync_benefits
+    sync_benefits(s)
 
 class Store:
     def __init__(self,path):
@@ -300,6 +306,8 @@ CREATE TABLE IF NOT EXISTS outbox(id TEXT PRIMARY KEY,payload TEXT NOT NULL);'''
                     visible=allowed(user,module) or (key=='classes' and allowed(user,'classes')) or allowed(user,'dashboard') or allowed(user,'reports')
                     if not visible:s[key]=blank()[key]
                 if not allowed(user,'financial'):s['academicYears']=[{'id':str(x['year']),'year':x['year'],'parameters':[],'classifications':{}} for x in s['academicYears']]
+                if not (allowed(user,'benefits') or allowed(user,'financial')):
+                    s['benefits']=[b for b in s['benefits'] if b.get('sourceKind')!='planned-2027']
                 s['requests']=[r for r in s['requests'] if r.get('creatorId')==user['id'] or r.get('recipientId')==user['id']]
             s['users']=self.users(db) if user.get('isAdmin') else [dict(id=u['id'],name=u['name'],phone=u.get('phone',''),active=u['active'],isAdmin=u.get('isAdmin',False)) for u in self.users(db) if not u.get('deleted')]
             s['audit']=[dict(json.loads(r['payload']),id=r['id']) for r in db.execute('SELECT * FROM audit ORDER BY id DESC LIMIT 2000')] if user.get('isAdmin') else []
@@ -340,7 +348,9 @@ CREATE TABLE IF NOT EXISTS outbox(id TEXT PRIMARY KEY,payload TEXT NOT NULL);'''
                     value=hidden+value
                 if key=='meta':
                     if not user.get('isAdmin'):raise PermissionError('Somente administradores podem alterar a meta de matrículas.')
-                elif key=='enrollments':self._check_list(user,'enrollments',old[key]['history'],value['history']);require(user,'enrollments','edit' if old[key].get('unallocated')!=value.get('unallocated') else 'view')
+                elif key=='enrollments':
+                    self._check_list(user,'enrollments',old[key]['history'],value['history'])
+                    require(user,'enrollments','edit' if old[key].get('unallocated')!=value.get('unallocated') or old[key].get('students',[])!=value.get('students',[]) else 'view')
                 elif key=='classes':
                     # Lançamentos modificam apenas o total derivado; reconciliação modifica saldos de matrícula.
                     a={str(c['id']):c for c in old[key]};b={str(c['id']):c for c in value}
@@ -376,6 +386,10 @@ CREATE TABLE IF NOT EXISTS outbox(id TEXT PRIMARY KEY,payload TEXT NOT NULL);'''
                 else:require(user,key,'edit')
                 new[key]=value
             if 'benefits' in changes:
+                from benefits_2027 import is_planned
+                old_planned={b['id']:b for b in old['benefits'] if is_planned(b)}
+                new_planned={b['id']:b for b in new['benefits'] if is_planned(b)}
+                if old_planned!=new_planned:raise ValueError('Benefícios previstos importados são preservados; vínculo é automático pela matrícula nominal.')
                 for benefit in new['benefits']:
                     prior=next((x for x in old['benefits'] if x['id']==benefit['id']),None)
                     events=copy.deepcopy(prior.get('history',[])) if prior else []
@@ -400,6 +414,10 @@ CREATE TABLE IF NOT EXISTS outbox(id TEXT PRIMARY KEY,payload TEXT NOT NULL);'''
                         if not prior:r['creatorName']=user['name'];r['createdAt']=now()
                         if not prior or prior.get('status')!=r['status']:self.queue_notification(db,r,r['status'])
             validate(new,old);recalculate(new)
+            for benefit in new['benefits']:
+                prior=next((b for b in old['benefits'] if b['id']==benefit['id']),None)
+                if prior and benefit.get('sourceKind')=='planned-2027' and benefit!=prior:
+                    self.audit(db,user,'benefits','automatic-link',benefit['id'],{'state':prior.get('state'),'linkStatus':prior.get('linkStatus')},{'state':benefit.get('state'),'linkStatus':benefit.get('linkStatus')})
             for key,value in changes.items():
                 if isinstance(value,list):
                     a={str(x['id']):x for x in old[key]};b={str(x['id']):x for x in new[key]}
@@ -455,7 +473,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Content-Length',str(len(content)));self.end_headers();self.wfile.write(content)
     def body(self):
         size=int(self.headers.get('Content-Length',0))
-        if size>16*1024*1024:raise ValueError('Arquivo excede o limite de 16 MB.')
+        if size<0 or size>16*1024*1024:raise ValueError('Tamanho inválido ou arquivo excede o limite de 16 MB.')
         return json.loads(self.rfile.read(size) or b'{}',parse_constant=lambda _:(_ for _ in ()).throw(ValueError('Número inválido.')))
     def current(self,mutation=False):
         user,csrf=self.store.session(self.token())
@@ -471,6 +489,44 @@ class Handler(BaseHTTPRequestHandler):
                 if not user:return self.respond(401,{'error':'Entre para acessar a base compartilhada.'})
                 return self.respond(200,{'user':user,'csrf':csrf})
             if path=='/api/state':return self.respond(200,self.store.snapshot(self.current()))
+            if path=='/api/break-even/approved':
+                require(self.current(),'financial','view')
+                year=parse_qs(urlparse(self.path).query).get('year',['2027'])[0]
+                if year!='2027':return self.respond(400,{'error':'Fechamento aprovado disponível somente para 2027.'})
+                from approved_pe_snapshot import load_approved_snapshot, SnapshotIntegrityError, SNAPSHOT_SHA256
+                try:
+                    snapshot=load_approved_snapshot()
+                except (FileNotFoundError,SnapshotIntegrityError,KeyError,TypeError,ValueError):
+                    return self.respond(409,{'error':'Snapshot aprovado ausente ou divergente; leitura bloqueada.'})
+                return self.respond(200,dict(snapshot,snapshotSha256=SNAPSHOT_SHA256,readOnly=True))
+            if path in ('/api/break-even/real','/api/break-even/report.pdf'):
+                require(self.current(),'financial','view')
+                year=int(parse_qs(urlparse(self.path).query).get('year',['2027'])[0])
+                if year!=2027:return self.respond(400,{'error':'Auditoria real disponível somente para 2027.'})
+                from pe_real import load_report
+                from enrollment_2027 import project_current
+                from benefits_2027 import apply_benefit_view, is_planned
+                try:
+                    local_state=self.store.state()[0]
+                    report=load_report()
+                    if report.get('packagedRuntime') and (not any(is_planned(b) for b in local_state['benefits']) or
+                            {c['id'] for c in local_state['classes']}!={r['id'] for r in report['rows']}):
+                        return self.respond(409,{'error':'PE 2027 aguarda validação da carga de turmas e benefícios previstos nesta base. Nenhum dado local foi publicado automaticamente.'})
+                    report=project_current(report,state=local_state)
+                    if any(is_planned(b) for b in local_state['benefits']):report=apply_benefit_view(report,local_state)
+                    from pe_final_2027 import final_view,executive
+                    report=final_view(report,local_state);report['executive']=executive(report)
+                    if path.endswith('report.pdf'):
+                        from pe_executive_pdf import executive_pdf
+                        return self.binary(executive_pdf(report),'application/pdf','relatorio-pe-2027.pdf')
+                    return self.respond(200,report)
+                except FileNotFoundError:return self.respond(409,{'error':'Importação local de auditoria ainda não disponível.'})
+            if path=='/api/break-even/layers':
+                require(self.current(),'financial','view')
+                year=int(parse_qs(urlparse(self.path).query).get('year',['2027'])[0])
+                if year!=2027:return self.respond(400,{'error':'Camadas documentais disponíveis somente para 2027.'})
+                from pe_layers import build_layers
+                return self.respond(200,build_layers())
             if path in ('/api/financial/teaching-integration','/api/break-even/integrated'):
                 require(self.current(),'financial','view')
                 state,version=self.store.state()
@@ -500,6 +556,12 @@ class Handler(BaseHTTPRequestHandler):
                 return self.binary(logo.read_bytes(),'image/png')
             if path.startswith('/api/'):return self.respond(404,{'error':'Rota não encontrada.'})
             permitted={'/':'index.html','/index.html':'index.html','/app.css':'app.css','/app.js':'app.js','/enhancements.js':'enhancements.js','/domain.js':'domain.js','/professional.js':'professional.js','/professional.css':'professional.css','/break_even.js':'break_even.js','/recovered_ui.js':'recovered_ui.js'}
+            permitted['/pe_layers.js']='pe_layers.js'
+            permitted['/pe_real.js']='pe_real.js'
+            permitted['/pe_approved.js']='pe_approved.js'
+            permitted['/pe_executive.js']='pe_executive.js'
+            permitted['/enrollment_2027.js']='enrollment_2027.js'
+            permitted['/benefits_2027.js']='benefits_2027.js'
             if path not in permitted:return self.respond(404,{'error':'Arquivo não público.'})
             target=ROOT/permitted[path];typ='text/html' if target.suffix=='.html' else 'text/css' if target.suffix=='.css' else 'text/javascript';return self.binary(target.read_bytes(),typ+'; charset=utf-8')
         except (ConnectionError,TimeoutError):pass

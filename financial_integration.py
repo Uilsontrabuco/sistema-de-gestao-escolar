@@ -1,5 +1,7 @@
 """Consulta financeira sem lançamentos; não mensaliza uma tarifa semanal sem regra."""
 from decimal import Decimal, ROUND_HALF_UP, ROUND_CEILING
+from direct_personnel_snapshot import official_projection
+from budget_2027_snapshot import structural_budget_allocation, OFFICIAL_TOTAL_MONTHLY_CENTS
 
 
 def cents(value):
@@ -73,6 +75,40 @@ def allocated_costs_by_class(plan, class_ids):
     return result
 
 
+def allocate_direct_personnel(records, class_ids):
+    """Rateia estagiárias/auxiliares por pessoa sem somar descontos pessoais."""
+    class_ids={str(value) for value in class_ids}
+    result={value:{'intern':0,'assistant':0,'details':[]} for value in class_ids}
+    pending=[]
+    from direct_personnel_snapshot import normalized_person_name
+    seen=set()
+    for record in records:
+        person=str(record.get('person') or '').strip()
+        normalized=normalized_person_name(person)
+        if not person or normalized in seen:
+            raise ValueError('Pessoa direta ausente ou duplicada')
+        seen.add(normalized)
+        targets=sorted({str(value) for value in record.get('classIds',[]) if str(value) in class_ids})
+        shifts=sorted({str(value).strip().casefold() for value in record.get('shifts',[]) if str(value).strip()})
+        if not targets or len(shifts) not in (1,2):
+            pending.append(dict(person=person,reason='turno ou turmas atendidas sem comprovação suficiente'))
+            continue
+        kind='intern' if len(shifts)==1 else 'assistant'
+        amount=75000 if kind=='intern' else 176400
+        base,remainder=divmod(amount,len(targets))
+        for index,target in enumerate(targets):
+            value=base+(1 if index<remainder else 0)
+            result[target][kind]+=value
+            result[target]['details'].append(dict(type='ESTAGIARIA' if kind=='intern' else 'AUXILIAR_FIXA',
+                person=person,name=person,shifts=shifts,originalValue=amount/100,
+                monthlyIndividualCost=amount/100,criterion=f'rateio igualitário entre {len(targets)} turma(s) comprovadas',
+                servedClasses=targets,assignedValue=value/100,personalDeductionsAdded=False,
+                source=record.get('source'),nature=record.get('nature','custo direto'),
+                projectionLabel=record.get('projectionLabel'),sourceClasses=record.get('sourceClasses',[]),
+                personnelIdentityUse=record.get('personnelIdentityUse')))
+    return result,pending
+
+
 def consolidate_expenses(components, teaching_monthly_cents, embedded_teaching_cents=None):
     """Substituição só com componente docente identificado dentro da folha."""
     if len({r['id'] for r in components})!=len(components):raise ValueError('Componente duplicado')
@@ -93,6 +129,8 @@ def integration_snapshot(state, ledger, year):
     costs={r['class_id']:cents(r['weekly_cost']) for r in ledger['classes']}
     if len(costs)!=len(ledger['classes']) or set(costs)!={r['id'] for r in state['classes']}:raise ValueError('Turmas do custeio divergem do cadastro')
     if sum(costs.values())!=ledger['validated_cost_cents']:raise ValueError('Custos das turmas não reconciliam')
+    teaching_basis_accepted=ledger.get('basis_status') in ('CONCILIADO','CONCILIADO_PROJECAO_2026')
+    teaching_status_by_class={row['class_id']:row.get('direct_cost_status') for row in ledger['classes']}
     academic=next((r for r in state.get('academicYears',[]) if int(r['year'])==int(year)),{})
     plans=[p for p in state.get('breakEven',{}).get('plans',[]) if int(p['year'])==int(year)]
     if not plans and int(year)==2027:
@@ -114,7 +152,19 @@ def integration_snapshot(state, ledger, year):
     if structural_discount is None:
         structural_discount=totals.get('commercialDiscountPercent')
         structural_discount_origin='Orçamento oficial 2027 · desconto comercial' if structural_discount is not None else None
+    expense=totals.get('totalExpensesMonthly')
+    expense_reconciliation=plan.get('expenseReconciliation',{})
+    official_allocation_complete=(expense_reconciliation.get('status')=='complete')
     assigned_costs=allocated_costs_by_class(plan,(room['id'] for room in state['classes']))
+    personnel_projection=plan.get('directPersonnelProjection') or official_projection(state['classes'])
+    personnel_costs,personnel_pending=allocate_direct_personnel(personnel_projection,(room['id'] for room in state['classes']))
+    verified_mappings=[m for m in plan.get('mappings',[]) if m.get('status')=='mapped' and m.get('costEvidence',{}).get('status')=='verified']
+    has_custom_allocation=bool(verified_mappings or any(line.get('reconciliation')=='mapped' for line in plan.get('costLines',[])))
+    budget_allocation=None
+    if not has_custom_allocation and expense is not None and cents(expense)==OFFICIAL_TOTAL_MONTHLY_CENTS:
+        budget_allocation=structural_budget_allocation(state['classes'],
+            sum(monthly_teaching_base_cents(cost) for cost in costs.values()),
+            sum(bucket['intern']+bucket['assistant'] for bucket in personnel_costs.values()),cents(expense))
     rows=[]
     for room in state['classes']:
         history=[r for r in state.get('enrollments',{}).get('history',[]) if str(r.get('classId'))==str(room['id'])]
@@ -130,17 +180,22 @@ def integration_snapshot(state, ledger, year):
         known=None if tuition is None else sum(cents(Decimal(str(tuition))*n*(1-Decimal(str(pct))/100)) for n,pct in groups)
         complete=tuition is not None and classified==students
         weekly=costs[room['id']];capacity=room['capacity']
+        teaching_verified=teaching_basis_accepted and teaching_status_by_class[room['id']] in ('VERIFIED','VERIFIED_PROJECTION_2026_BASE')
         teaching_monthly=monthly_teaching_base_cents(weekly)
         mappings=[m for m in plan.get('mappings',[]) if str(m.get('operationalClassId'))==str(room['id']) and m.get('status')=='mapped' and m.get('costEvidence',{}).get('status')=='verified']
         mapping=mappings[0] if len(mappings)==1 else None
         source=next((r for r in plan.get('officialBudget',{}).get('classRows',[]) if mapping and r.get('id')==mapping.get('sourceRowId') and r.get('className')==mapping.get('budgetClassName') and r.get('status')=='recognized'),None)
         mapped_total_cost=cents(mapping['costMonthly']) if source and mapping.get('costMonthly') is not None else None
         assigned=assigned_costs[str(room['id'])]
-        other_direct=assigned['direct'];shared=assigned['shared']
+        direct_people=personnel_costs[str(room['id'])]
+        budget_row=budget_allocation['rows'][str(room['id'])] if budget_allocation else {'shared':0,'details':[]}
+        other_direct=assigned['direct']+direct_people['intern']+direct_people['assistant'];shared=assigned['shared']+budget_row['shared']
+        cost_coverage_complete=mapped_total_cost is not None or official_allocation_complete or budget_allocation is not None
         # Um custo total orçamentário comprovado prevalece; na ausência dele, o
         # PE usa somente a base docente mensal agora homologada, sem somar DSR,
         # encargos ou custos não comprovados.
-        total_cost=mapped_total_cost if mapped_total_cost is not None else teaching_monthly+other_direct+shared
+        known_cost_subtotal=teaching_monthly+other_direct+shared
+        total_cost=mapped_total_cost if mapped_total_cost is not None else (known_cost_subtotal if cost_coverage_complete else None)
         # O vínculo é custo total orçamentário, não uma nova parcela docente.
         net_effective=cents(Decimal(known)/100*(1-Decimal(str(delinquency))/100)) if complete and delinquency is not None else None
         structural_ticket=structural_ticket_cents(tuition,structural_discount,delinquency)
@@ -152,11 +207,17 @@ def integration_snapshot(state, ledger, year):
         if structural_discount is None:structural_pending.append('premissa de ticket estrutural pendente')
         if delinquency is None:structural_pending.append('inadimplência do PE não configurada')
         component_pending=[]
+        if not teaching_verified:
+            component_pending.append('G5 C: EINFA05TC possui aulistas, mas a regente de 24 h/a não está identificada; EINFA05TD pertence à seção D e não pode ser transferido por inferência')
+        if not cost_coverage_complete:
+            component_pending.append('despesas oficiais elegíveis ainda sem classificação e critério de atribuição às turmas')
+        if personnel_pending:
+            component_pending.append('estagiárias/auxiliares sem turno e turmas atendidas integralmente comprovados')
         component_contracts={
-            'teachingWeekly':dict(value=weekly/100,status='loaded',source='Carga horária 2026 conciliada com tarifas 2027',reason=None),
-            'teachingMonthly':dict(value=teaching_monthly/100,status='loaded',source='Custo semanal confirmado × 4,5',reason=None),
-            'otherDirect':dict(value=other_direct/100,status='loaded' if other_direct else 'zero_real',source='Linhas de custo atribuídas e conciliadas do plano',reason=None),
-            'sharedAllocation':dict(value=shared/100,status='loaded' if shared else 'zero_real',source='Rateios ativos com alocações explícitas de 100%',reason=None),
+            'teachingWeekly':dict(value=weekly/100,status='loaded' if teaching_verified else 'pending',source='Carga horária 2026 conciliada com tarifas 2027',reason=None if teaching_verified else component_pending[0]),
+            'teachingMonthly':dict(value=teaching_monthly/100,status='loaded' if teaching_verified else 'pending',source='Custo semanal de referência × 4,5',reason=None if teaching_verified else component_pending[0]),
+            'otherDirect':dict(value=other_direct/100 if other_direct or cost_coverage_complete else None,status='loaded' if other_direct else ('zero_real' if cost_coverage_complete else 'pending'),source='Linhas de custo atribuídas e conciliadas do plano',reason=None if cost_coverage_complete else component_pending[0]),
+            'sharedAllocation':dict(value=shared/100 if shared or cost_coverage_complete else None,status='loaded' if shared else ('zero_real' if cost_coverage_complete else 'pending'),source='Rateios ativos com alocações explícitas de 100%',reason=None if cost_coverage_complete else component_pending[0]),
         }
         rows.append(dict(class_id=room['id'],name=room['name'],students=students,capacity=capacity,
             vacancies=max(0,capacity-students),tuition=tuition,
@@ -177,8 +238,13 @@ def integration_snapshot(state, ledger, year):
             netTicketMonthly=known/students/100 if complete and students else None,
             tuitionRevenueAnnual=known*11/100 if complete and int(year)==2027 else None,
             classifiedStudents=classified,unclassifiedStudents=students-classified,
-            otherDirectCostsMonthly=other_direct/100,assistantCostMonthly=None,internCostMonthly=None,
-            indirectExpensesMonthly=shared/100,totalCostMonthly=None if total_cost is None else total_cost/100,
+            otherDirectCostsMonthly=other_direct/100 if other_direct or cost_coverage_complete else None,
+            assistantCostMonthly=direct_people['assistant']/100 if direct_people['assistant'] else None,
+            internCostMonthly=direct_people['intern']/100 if direct_people['intern'] else None,
+            directPersonnelDetails=direct_people['details'],
+            structuralAllocationDetails=budget_row['details'],
+            indirectExpensesMonthly=shared/100 if shared or cost_coverage_complete else None,totalCostMonthly=None if total_cost is None else total_cost/100,
+            knownCostSubtotalMonthly=known_cost_subtotal/100,
             costBasis='TOTAL_ORCAMENTARIO_VINCULADO_SEM_ADICAO_DOCENTE' if mapped_total_cost is not None else 'DOCENTE_X_4_5_MAIS_DIRETOS_E_RATEIOS_ATRIBUIDOS',
             costCompositionStatus='COMPLETA_CUSTOS_ATRIBUIDOS',
             attributedCostLineIds=assigned['sources'],
@@ -199,7 +265,6 @@ def integration_snapshot(state, ledger, year):
             structuralStatus='DEFINITIVO' if pe is not None and not structural_pending and not component_pending else 'PENDENTE',
             status='PE_ESTRUTURAL_CALCULADO' if pe is not None else 'PENDENTE_BASE_MENSAL_E_COMPOSICAO_DE_CUSTOS'))
     complete=all(r['netRevenueMonthly'] is not None for r in rows)
-    expense=totals.get('totalExpensesMonthly')
     count=sum(r['students'] for r in rows)
     net_effective=sum(cents(r['netRevenueAfterDelinquency']) for r in rows) if all(r['netRevenueAfterDelinquency'] is not None for r in rows) else None
     general_pe=break_even_students(cents(expense),Decimal(net_effective)/count) if expense is not None and net_effective is not None and count else None
@@ -243,4 +308,13 @@ def integration_snapshot(state, ledger, year):
             pendingClassification=None if pending_official is None else pending_official/100,
             difference=0 if official_cents is not None else None,
             reason='Saldo oficial ainda não possui critério comprovado de atribuição por turma; não foi rateado artificialmente.'),
-        source=dict(weekly='Carga horária conciliada',monthly='Regra oficial confirmada pelo responsável financeiro: × 4,5 semanas; sem DSR ou adicionais',officialPlanId=plan.get('id')))
+        directPersonnelSummary=dict(
+            interns=sum(len(record.get('shifts',[]))==1 for record in personnel_projection),
+            fixedAssistants=sum(len(record.get('shifts',[]))==2 for record in personnel_projection),
+            internMonthly=sum(cents(row['internCostMonthly']) for row in rows if row['internCostMonthly'] is not None)/100,
+            fixedAssistantMonthly=sum(cents(row['assistantCostMonthly']) for row in rows if row['assistantCostMonthly'] is not None)/100,
+            source='Relação Estagiárias OF.xlsx',projectionLabel='Projeção 2027 — estrutura de estagiárias baseada na relação vigente 2026'),
+        budgetReconciliation=budget_allocation,
+        projectionLabel='Projeção 2027 — base estrutural: Carga Horária Oficial 2026',
+        directPersonnelPending=personnel_pending,
+        source=dict(weekly='Carga Horária Oficial 2026 aplicada às tarifas 2027',monthly='Regra oficial confirmada pelo responsável financeiro: × 4,5 semanas; sem DSR ou adicionais',officialPlanId=plan.get('id')))

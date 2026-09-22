@@ -1,0 +1,3 @@
+const test=require('node:test'),assert=require('node:assert/strict');const ex=require('../pe_executive.js');
+test('Executive filters preserve pending unknown PE and school segment',()=>{const r={name:'8º C',id:'8',distanceToPE:null,vacancies:8,status:'EM AUDITORIA'};assert.ok(ex.matches(r,'FII','','pending'));assert.ok(!ex.matches(r,'','','below'));assert.ok(!ex.matches(r,'EI','',''));});
+test('Charts escape class labels and preserve unknown values',()=>{const h=ex.charts([{name:'<img>',enrolled:1,pe:null,occupancyPercent:20,distanceToPE:null,costs:[],ticketCents:100,averageFinancialDiscountCents:0,consideredCostCents:null,projectedRevenueCents:100}]);assert.ok(!h.includes('<img>'));assert.ok(h.includes('Pendente'));});
