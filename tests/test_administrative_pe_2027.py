@@ -2,7 +2,7 @@ import json,unittest
 from copy import deepcopy
 from pathlib import Path
 from administrative_pe_2027 import administrative_view,balanced_additions,exact_ticket
-from personnel_confirmations_2027 import personnel_evidence
+from personnel_evidence import personnel_evidence
 
 ROOT=Path(__file__).resolve().parents[1]
 

@@ -1,10 +1,11 @@
 """Três contratos independentes de PE. Somente leitura; sem importação ou banco."""
+from private_artifacts import private_path
 from copy import deepcopy
 from decimal import Decimal, ROUND_CEILING, ROUND_HALF_UP
 import json
 from pathlib import Path
 
-SOURCE=Path(__file__).with_name('pe_layers_2027_source.json')
+SOURCE=private_path('pe_layers_2027_source.json')
 STATUSES={'COMPROVADO','PROVISÓRIO','PENDENTE DOCUMENTAL','SEM CORRESPONDÊNCIA','INVIÁVEL FISICAMENTE'}
 
 

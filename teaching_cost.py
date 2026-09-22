@@ -11,7 +11,7 @@ import json
 import math
 from pathlib import Path
 import re
-from teaching_cost_snapshot import packaged_ledger, apply_2027_projection
+from teaching_projection import packaged_ledger, apply_2027_projection
 
 CENT = Decimal('0.01')
 ROOT = Path(__file__).resolve().parent

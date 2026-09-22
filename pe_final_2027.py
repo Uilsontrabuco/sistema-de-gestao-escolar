@@ -43,7 +43,7 @@ def final_view(report,state):
     out['summary']['audit']=sum(r['status']=='EM AUDITORIA' for r in out['rows'])
     out['enrollmentSummary']['knownProjectedRevenueCents']=sum(r['projectedRevenueCents'] or 0 for r in out['rows'])
     out['enrollmentSummary']['missingRevenueClasses']=sum(r['projectedRevenueCents'] is None for r in out['rows'])
-    from personnel_confirmations_2027 import personnel_evidence
+    from personnel_evidence import personnel_evidence
     out['personnelConfirmations']=personnel_evidence()
     out['finalRuleVersion']='final-planning-12-v1'
     out['structureNotice']='ESTRUTURA EM REVISÃO FINANCEIRA: correção administrativa mais recente confirma 41 turmas, com 7º A/B e 8º A/B/C. O 8º C mantém 20 matriculados e capacidade 28; nenhuma redistribuição. A composição de custos ainda requer fechamento.'

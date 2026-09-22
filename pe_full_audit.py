@@ -3,12 +3,13 @@
 Consome a prévia aprovada, preserva seus valores e distribui o saldo institucional
 por capacidade. Conciliação aritmética não substitui comprovação documental.
 """
+from private_artifacts import private_text
 from copy import deepcopy
 from decimal import Decimal, ROUND_HALF_UP
 
 from budget_2027_snapshot import allocate_by_capacity, OFFICIAL_TOTAL_ANNUAL_CENTS
 from financial_integration import cents, break_even_students
-from scripts.generate_approved_pe_2027_preview import build_preview, G2_SUPPORT_SOURCE_CENTS
+from scripts.approved_preview import build_preview, preview_value
 
 
 def teaching_identity_review():
@@ -44,8 +45,8 @@ def full_cost_audit(preview=None):
     accounts = []
     for row in rows:
         cid = row['classId']
-        support = (G2_SUPPORT_SOURCE_CENTS[row['class']] - cents(row['internsMonthly'])
-                   if row['class'] in G2_SUPPORT_SOURCE_CENTS else 0)
+        support = (preview_value('value_0010')[row['class']] - cents(row['internsMonthly'])
+                   if row['class'] in preview_value('value_0010') else 0)
         values = [
             ('docentes', 'A', cents(row['teachingCostMonthly'])),
             ('estagiarias', 'A', cents(row['internsMonthly'])),
@@ -115,8 +116,8 @@ def full_cost_audit(preview=None):
                                            monthly=177901.08, classification='F',
                                            treatment='PRESERVADO_NO_ENVELOPE_ATE_CONCILIACAO_COM_DESCONTOS'),
                 personnelDecisions=[
-                    dict(person='Jailane', decision='SUBSTITUI_ROMILTON_MESMO_POSTO', additionalCost=None),
-                    dict(person='Veroneide', decision='VAGA_NOVA', additionalCost=None),
+                    dict(person=private_text('text_8e185279694f5c45'), decision='SUBSTITUI_ROMILTON_MESMO_POSTO', additionalCost=None),
+                    dict(person=private_text('text_dbdb1b9e6cdbe12f'), decision='VAGA_NOVA', additionalCost=None),
                     dict(person='Lohana', decision='SOMENTE_AUXILIAR_DE_COORDENACAO', additionalCost=0),
                     dict(person='Marcelo', decision='NAO_DOCENTE', additionalCost=0),
                 ], teachingIdentityReview=teaching_identity_review())

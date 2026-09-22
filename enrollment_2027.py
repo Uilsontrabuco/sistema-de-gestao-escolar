@@ -1,11 +1,12 @@
 """Fotografia documental de matrículas; projeção não altera o custo ou PE."""
+from private_artifacts import private_path
 from copy import deepcopy
 from decimal import Decimal
 import json
 from pathlib import Path
 from pe_real import money
 
-SOURCE=Path(__file__).with_name('enrollment_2027_source.json')
+SOURCE=private_path('enrollment_2027_source.json')
 
 
 def snapshot():return json.loads(SOURCE.read_text(encoding='utf-8'))

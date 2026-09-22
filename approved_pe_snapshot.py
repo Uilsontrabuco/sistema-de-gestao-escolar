@@ -1,10 +1,11 @@
 """Leitura do fechamento aprovado: sem motor de cálculo, banco ou rede."""
+from private_artifacts import private_path
 import hashlib
 import json
 from pathlib import Path
 
 CHECKPOINT_ID = 'PE-2027-FECHAMENTO-TECNICO-APROVADO-2026-09-22'
-SNAPSHOT_FILE = Path(__file__).with_name('approved_pe_2027_snapshot.json')
+SNAPSHOT_FILE = private_path('approved_pe_2027_snapshot.json')
 # Hash fixado ao copiar a fonte congelada; não aceitar outro conteúdo por config.
 SNAPSHOT_SHA256 = 'a86183ae79d77b1b5ec1125b196e3c0b94ae2d7229e80fcd7c0a34928b0a198e'
 

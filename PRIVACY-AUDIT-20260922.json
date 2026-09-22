@@ -1,0 +1,1535 @@
+{
+  "published_commit": "8be76a1433a71181b91162bc32a05ef30c1f4e99",
+  "repository_public": true,
+  "original_files": 187,
+  "private_files": 51,
+  "confirmed_secrets": 0,
+  "extended_secret_candidates": 0,
+  "historical_identifier_files": 43,
+  "commit_message_identifier_occurrences": 0,
+  "branches": [
+    {
+      "branch": "codex/pe-2027-fechamento-20260922",
+      "commits": 20,
+      "files_with_identifiers": 43
+    },
+    {
+      "branch": "main",
+      "commits": 4,
+      "files_with_identifiers": 0
+    },
+    {
+      "branch": "recovery/validated-20260915",
+      "commits": 20,
+      "files_with_identifiers": 3
+    },
+    {
+      "branch": "recovery/validated-20260916",
+      "commits": 19,
+      "files_with_identifiers": 3
+    }
+  ],
+  "residual_person_identifiers": [],
+  "inventory": [
+    {
+      "arquivo": ".gitattributes",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": ".gitignore",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": ".vercelignore",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "BACKUP-EXTERNO.md",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "DESENVOLVIMENTO.md",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "ENTREGA-VALIDACAO.md",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "README.md",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "RECUPERACAO-AUDITORIA-2026-09-15.md",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "documento interno / contato"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "RECUPERACAO-CHECKPOINT-625.md",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "documento interno / contato"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "RECUPERACAO-PRODUCAO-2026-09-15.md",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "documento interno / contato"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "RELATORIO-CORRECAO-RATEIO-2027.md",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "documento interno / contato"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "RELATORIO-RATEIO-2027.md",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "documento interno / contato"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "administrative_pe_2027.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "api/index.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "app.css",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "app.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "approved_pe_2027_snapshot.json",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "snapshot interno de matriculas / financas"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "approved_pe_snapshot.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "approved_residual_allocation_2027.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "assets/educacao-adventista.jpg",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "benefits_2027.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "benefits_2027.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "break_even.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "budget_2027_snapshot.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "cloud_runtime.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "cloud_store.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "direct_personnel_snapshot.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 20
+    },
+    {
+      "arquivo": "domain.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "enhancements.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "enrollment_2027.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "enrollment_2027.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "enrollment_2027_source.json",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "snapshot interno de matriculas / financas"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "financial_integration.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "index.html",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "local_backup.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "password_recovery.html",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "pe_approved.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "pe_executive.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "pe_executive_pdf.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "pe_final_2027.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "pe_full_audit.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 2
+    },
+    {
+      "arquivo": "pe_layers.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "pe_layers.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "pe_layers_2027_source.json",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais",
+        "snapshot interno de matriculas / financas"
+      ],
+      "ocorrencias_identificadores": 1
+    },
+    {
+      "arquivo": "pe_real.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "pe_real.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "pe_real_2027_snapshot.json",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais",
+        "snapshot interno de matriculas / financas"
+      ],
+      "ocorrencias_identificadores": 1
+    },
+    {
+      "arquivo": "personnel_confirmations_2027.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais",
+        "remuneracao / vinculos individuais"
+      ],
+      "ocorrencias_identificadores": 9
+    },
+    {
+      "arquivo": "professional.css",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "professional.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "recovered_ui.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "requirements-local.lock",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "requirements.txt",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/audit_administrative_pe.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 8
+    },
+    {
+      "arquivo": "scripts/audit_balance_composition.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 3
+    },
+    {
+      "arquivo": "scripts/audit_documentary_41_pe.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 2
+    },
+    {
+      "arquivo": "scripts/audit_final_administrative_rules.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 3
+    },
+    {
+      "arquivo": "scripts/audit_full_pe_2027.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 4
+    },
+    {
+      "arquivo": "scripts/audit_pe_real.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 11
+    },
+    {
+      "arquivo": "scripts/audit_simulation_criteria.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/audit_three_pending.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 6
+    },
+    {
+      "arquivo": "scripts/backup-from-vercel-preview.cmd",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/backup-from-vercel-preview.ps1",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/backup-supabase.ps1",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/build_local.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/close_approved_residuals_2027.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 3
+    },
+    {
+      "arquivo": "scripts/close_three_pending.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 8
+    },
+    {
+      "arquivo": "scripts/final_pe_reports.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 12
+    },
+    {
+      "arquivo": "scripts/final_report_pe_real.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 7
+    },
+    {
+      "arquivo": "scripts/finalize_documentary_41_evidence.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/finalize_g2_bridge_evidence.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/finalize_pe_audit_evidence.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/finalize_pe_layers.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/finalize_pe_pending_evidence.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/freeze_pe_2027_checkpoint.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 3
+    },
+    {
+      "arquivo": "scripts/generate_approved_pe_2027_preview.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 40
+    },
+    {
+      "arquivo": "scripts/import_enrollment_2027.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/import_planned_benefits_2027.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/map_financial_pending_decisions.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 10
+    },
+    {
+      "arquivo": "scripts/package_pe_layers.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 1
+    },
+    {
+      "arquivo": "scripts/prepublication_2027.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 1
+    },
+    {
+      "arquivo": "scripts/preview_pe_layers.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/preview_pe_real.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/reconcile_class_coverage.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 3
+    },
+    {
+      "arquivo": "scripts/reconcile_g2_documentary_pe.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 6
+    },
+    {
+      "arquivo": "scripts/reconcile_pe_pending.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 20
+    },
+    {
+      "arquivo": "scripts/reconcile_pe_real_costs.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 7
+    },
+    {
+      "arquivo": "scripts/report_pe_layers.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 6
+    },
+    {
+      "arquivo": "scripts/research_pe_sanitation.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 6
+    },
+    {
+      "arquivo": "scripts/run-backup-interactive.ps1",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/sanitize_pe_real.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 8
+    },
+    {
+      "arquivo": "scripts/setup_local_environment.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/simulate_series_budget.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/trace_pe_document_sources.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/unblock_pe_forensic.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 3
+    },
+    {
+      "arquivo": "scripts/validate-backup.ps1",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/validate_frozen_backup_2027.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/verify_pe_publication_snapshot.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "scripts/verify_pe_real_preservation.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "series_budget_simulation.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "server.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "services.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 1
+    },
+    {
+      "arquivo": "source_import.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/.gitignore",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/.vercelignore",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/PORTABILIDADE.md",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/README-7E7.md",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/REVISAO-PRE-PUBLICACAO.md",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/finance-2027-ui.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/finance-2027.js",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/index.html",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/package.json",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/review/ENTREGA-SQL-FINAL.md",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/review/FINAL-ESTRUTURA.sql",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/review/FINAL-ROLLBACK.sql",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/review/FINAL-VALIDAR.sql",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/review/LOTE-FINAL.md",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/review/SQL-FINAL-REVISAO.md",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/review/additive-schema.sql",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/review/correct-authorization.sql",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/review/final-administrative.template.sql",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/review/insert-snapshot.sql",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/review/inspect-authorization.sql",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/review/profiles-rls-prerequisite.sql",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/supabase_schema.sql",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/tests/final_sql_static.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/tests/finance.test.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/tests/preview.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "supabase-port/vercel.json",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "teaching_cost.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "teaching_cost_snapshot.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais",
+        "remuneracao / vinculos individuais"
+      ],
+      "ocorrencias_identificadores": 55
+    },
+    {
+      "arquivo": "teaching_pools.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/benefits_2027.test.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/domain.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/enrollment_2027.test.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/financial_pending_ui.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/fixtures/HOMOLOGACAO-FICTICIA-NAO-CONFIRMAR.xlsx",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/login_flow.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/login_ui.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/pe_approved.test.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/pe_audit.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/pe_executive.test.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/pe_layers.test.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/pe_navigation.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/pe_real.test.cjs",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 1
+    },
+    {
+      "arquivo": "tests/prepublication.test.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/recovered_ui.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/regression.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/teaching_cost.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/teaching_operational.cjs",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_administrative_pe_2027.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_approved_pe_preview.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 3
+    },
+    {
+      "arquivo": "tests/test_approved_residual_allocation_2027.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_approved_snapshot_adapter.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_class_coverage_reconciliation.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_cloud_login_flow.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_cloud_pe_runtime.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_cloud_runtime.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_definitive_closure.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 1
+    },
+    {
+      "arquivo": "tests/test_documentary_41_audit.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_final_decisions.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 1
+    },
+    {
+      "arquivo": "tests/test_financial_integration.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 1
+    },
+    {
+      "arquivo": "tests/test_full_pe_audit.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 5
+    },
+    {
+      "arquivo": "tests/test_g2_documentary_bridge.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_g2_planning_discount.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_grade5_user_rule.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_http.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_pe_final_report.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_pe_layers.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_pe_layers_http.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_pe_pending_documents.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 5
+    },
+    {
+      "arquivo": "tests/test_pe_real.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_pe_real_http.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 1
+    },
+    {
+      "arquivo": "tests/test_pe_sanitation.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 1
+    },
+    {
+      "arquivo": "tests/test_pe_unblock_forensic.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 2
+    },
+    {
+      "arquivo": "tests/test_personnel_confirmations_2027.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "remuneracao / vinculos individuais"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_planned_benefits.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_prepublication_2027.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 1
+    },
+    {
+      "arquivo": "tests/test_rateio_integrity.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_real_costs_enrollment.py",
+      "classificacao": "PRIVADO — REMOVER DO GIT",
+      "categorias": [
+        "identificacao de pessoas / referencias individuais"
+      ],
+      "ocorrencias_identificadores": 1
+    },
+    {
+      "arquivo": "tests/test_series_budget_simulation.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_server.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_teaching_cost.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_teaching_operational.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/test_user_shared_rule.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "tests/visual_server.py",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    },
+    {
+      "arquivo": "vercel.json",
+      "classificacao": "PÚBLICO SEGURO",
+      "categorias": [
+        "codigo / configuracao / teste sintetico; sem dados privados identificados"
+      ],
+      "ocorrencias_identificadores": 0
+    }
+  ]
+}

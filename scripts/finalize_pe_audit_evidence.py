@@ -18,8 +18,8 @@ def digest(path):
 def finalize():
     paths=[ROOT/name for name in (
         'server.py','domain.js','break_even.js','financial_integration.py',
-        'teaching_cost.py','teaching_cost_snapshot.py','budget_2027_snapshot.py',
-        'direct_personnel_snapshot.py','data/caj.sqlite3',
+        'teaching_cost.py','teaching_projection.py','budget_2027_snapshot.py',
+        'personnel_projection.py','data/caj.sqlite3',
         'scripts/generate_approved_pe_2027_preview.py',
         'output/previa-auditavel-aprovada-2027/previa.json',
         'output/previa-auditavel-aprovada-2027/RELATORIO.md',

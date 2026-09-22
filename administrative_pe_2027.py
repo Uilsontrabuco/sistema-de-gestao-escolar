@@ -5,7 +5,7 @@ Não altera a fotografia documental, o banco ou as regras financeiras homologada
 from copy import deepcopy
 from decimal import Decimal
 from pe_real import money,ceil_ratio
-from personnel_confirmations_2027 import personnel_evidence
+from personnel_evidence import personnel_evidence
 
 APPROVAL='Premissa administrativa aprovada pelo usuário em 22/09/2026'
 

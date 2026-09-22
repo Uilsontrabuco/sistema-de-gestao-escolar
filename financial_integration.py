@@ -1,6 +1,6 @@
 """Consulta financeira sem lançamentos; não mensaliza uma tarifa semanal sem regra."""
 from decimal import Decimal, ROUND_HALF_UP, ROUND_CEILING
-from direct_personnel_snapshot import official_projection
+from personnel_projection import official_projection
 from budget_2027_snapshot import structural_budget_allocation, OFFICIAL_TOTAL_MONTHLY_CENTS
 
 
@@ -80,7 +80,7 @@ def allocate_direct_personnel(records, class_ids):
     class_ids={str(value) for value in class_ids}
     result={value:{'intern':0,'assistant':0,'details':[]} for value in class_ids}
     pending=[]
-    from direct_personnel_snapshot import normalized_person_name
+    from personnel_projection import normalized_person_name
     seen=set()
     for record in records:
         person=str(record.get('person') or '').strip()

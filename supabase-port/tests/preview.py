@@ -10,7 +10,7 @@ for i,r in enumerate(ledger['classes']):
     rooms.append(dict(id=f'id-{i}',serie=serie,turma=turma,capacidade=30,matriculados=10))
 mock='''<script>
 const testProfile={id:'test-user',nome:'QA isolado',email:'qa@example.invalid',role:'master',ativo:true};
-const testClient={auth:{getSession:async()=>({data:{session:{user:{id:'test-user'}}}}),getUser:async()=>({data:{user:{id:'test-user'}}}),signOut:async()=>({})},from(table){const q={select(){return q},eq(){return q},order(){return q},limit(){return q},range:async()=>({data:await fetch('/fixture-rooms').then(r=>r.json())}),single:async()=>({data:testProfile}),maybeSingle:async()=>table==='teaching_cost_snapshots'?{data:{version:1,payload:await fetch('/fixture-ledger').then(r=>r.json())}}:{data:null}};return q;}};
+const testClient={auth:{getSession:async()=>({data:{session:{user:{id:'test-user'}}}}),getUser:async()=>({data:{user:{id:'test-user'}}}),signOut:async()=>({})},from(table){const q={select(){return q},eq(){return q},order(){return q},limit(){return q},range:async()=>({data:await fetch('/fixture-rooms').then(r=>r.json())}),single:async()=>({data:testProfile}),maybeSingle:async()=>table==='teaching_projections'?{data:{version:1,payload:await fetch('/fixture-ledger').then(r=>r.json())}}:{data:null}};return q;}};
 window.seven7Supabase=testClient;
 window.SEVEN7_CONFIG={supabaseUrl:'',supabaseAnonKey:''};
 window.initSeven7Supabase=()=>false;

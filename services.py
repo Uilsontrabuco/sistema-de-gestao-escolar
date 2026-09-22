@@ -63,7 +63,7 @@ def teaching_load_positional_pilot(content,classes,page_number=1):
         name=weekday_names.get(fold(word['text']).replace('\ufffd','c'))
         if name:headers.append((name,word))
     headers.sort(key=lambda item:item[1]['x0'])
-    # As linhas verticais longas delimitam fisicamente as células; os nomes dos dias apenas nomeiam cada faixa.
+    # Private source details are configured separately.
     raw_verticals={round(line['x0'],1) for line in raw_lines if abs(line['x0']-line['x1'])<0.2 and line['top']<=134 and line['bottom']>=198}
     for rect in page.rects:
         if rect['top']<=134 and rect['bottom']>=198:

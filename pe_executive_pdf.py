@@ -9,7 +9,7 @@ from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer,PageBreak,Tabl
 from reportlab.graphics.shapes import Drawing,Rect,String,Line
 from pe_final_2027 import executive,diagnostic
 from services import SCHOOL,ADDRESS,CNPJ
-from personnel_confirmations_2027 import personnel_note
+from personnel_evidence import personnel_note
 BLUE=colors.HexColor('#063b76');GOLD=colors.HexColor('#f6c62f');RED=colors.HexColor('#a43139');PALE=colors.HexColor('#edf3fa')
 
 def br(c):return 'PENDENTE' if c is None else 'R$ '+f'{c/100:,.2f}'.replace(',','_').replace('.',',').replace('_','.')

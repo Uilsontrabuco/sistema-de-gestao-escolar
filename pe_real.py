@@ -1,4 +1,5 @@
 """PE com distribuição individual local. Não acessa banco ou serviços remotos."""
+from private_artifacts import private_path
 from collections import Counter, defaultdict
 from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
@@ -172,7 +173,7 @@ def calculate(records, layers=None, *, allow_partial_mix=False):
 def load_report():
     """Somente agregados; arquivo nominal da auditoria não é servido."""
     source=AUDIT/'resultado.json'
-    if not source.exists():source=ROOT/'pe_real_2027_snapshot.json'
+    if not source.exists():source=private_path('pe_real_2027_snapshot.json')
     result=json.loads(source.read_text(encoding='utf-8'))
     if source.name=='pe_real_2027_snapshot.json':result['packagedRuntime']=True
     return result

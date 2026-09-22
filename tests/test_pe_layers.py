@@ -129,7 +129,7 @@ class PELayersTests(unittest.TestCase):
         self.assertEqual(self.data['summary']['managerialCompletelyClosed'],0)
 
     def test_teacher_identity_and_total_remain_homologated(self):
-        from scripts.generate_approved_pe_2027_preview import teacher_projection_2027
+        from scripts.approved_preview import teacher_projection_2027
         people=teacher_projection_2027()
         self.assertEqual(len(people),50)
         self.assertEqual(len({p['name'] for p in people}),50)
