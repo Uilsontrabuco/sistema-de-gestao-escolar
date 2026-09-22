@@ -27,6 +27,11 @@ class CloudHandler(Handler):
     def do_GET(self):
         path = urlparse(self.path).path
         try:
+            if path == '/admin/private-runtime':
+                user = self.current()
+                if not user.get('isAdmin'):
+                    raise PermissionError()
+                return self.binary(Path(__file__).with_name('private_runtime_import.html').read_bytes(), 'text/html; charset=utf-8')
             if path == '/auth/recovery':
                 return self.binary(Path(__file__).with_name('password_recovery.html').read_bytes(), 'text/html; charset=utf-8')
             if path == '/api/health':
@@ -95,6 +100,21 @@ class CloudHandler(Handler):
 
     def do_POST(self):
         path = urlparse(self.path).path
+        if path in ('/api/private-runtime/preview', '/api/private-runtime/confirm'):
+            try:
+                origin = self.headers.get('Origin')
+                if not origin or urlparse(origin).netloc != self.headers.get('Host'):
+                    raise PermissionError()
+                user = self.current(True)
+                from private_runtime_import import process_import
+                result = process_import(self.store, self.body(), user, confirm=path.endswith('/confirm'))
+                return self.respond(200, result)
+            except PermissionError:
+                return self.respond(403, {'error':'Acesso administrativo autorizado necessário.'})
+            except (ValueError, KeyError, TypeError):
+                return self.respond(409, {'error':'Pacote, prévia ou dados divergentes. Nenhuma alteração aplicada.'})
+            except Exception:
+                return self.respond(503, {'error':'Configuração indisponível. Nenhuma alteração parcial aplicada.'})
         if path == '/api/recovery/complete':
             try:
                 origin = self.headers.get('Origin')

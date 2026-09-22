@@ -1,5 +1,5 @@
-"""Leitura do fechamento aprovado: sem motor de cálculo, banco ou rede."""
-from private_artifacts import private_path
+"""Leitura autenticada do fechamento congelado, sem motor de cálculo."""
+from private_artifacts import private_path, read_private_bytes
 import hashlib
 import json
 from pathlib import Path
@@ -13,7 +13,7 @@ class SnapshotIntegrityError(ValueError):
     pass
 
 def load_approved_snapshot():
-    raw=SNAPSHOT_FILE.read_bytes()
+    raw=read_private_bytes(SNAPSHOT_FILE.name, local_path=SNAPSHOT_FILE)
     if hashlib.sha256(raw).hexdigest()!=SNAPSHOT_SHA256:
         raise SnapshotIntegrityError('Snapshot aprovado diverge do hash congelado')
     snapshot=json.loads(raw)

@@ -1,5 +1,5 @@
 """Fotografia documental de matrículas; projeção não altera o custo ou PE."""
-from private_artifacts import private_path
+from private_artifacts import private_path, read_private_bytes
 from copy import deepcopy
 from decimal import Decimal
 import json
@@ -9,7 +9,7 @@ from pe_real import money
 SOURCE=private_path('enrollment_2027_source.json')
 
 
-def snapshot():return json.loads(SOURCE.read_text(encoding='utf-8'))
+def snapshot():return json.loads(read_private_bytes(SOURCE.name, local_path=SOURCE))
 
 
 def apply_snapshot_to_state(state, data=None):

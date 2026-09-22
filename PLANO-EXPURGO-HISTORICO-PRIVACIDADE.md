@@ -1,0 +1,61 @@
+# Plano de expurgo histórico — execução adiada
+
+Não executar reescrita ou force-push sem nova autorização humana.
+
+Branches afetadas: codex/pe-2027-fechamento-20260922, recovery/validated-20260915 e recovery/validated-20260916. Nenhuma tag foi encontrada na auditoria.
+
+Expurgo com git-filter-repo e force-push controlado será necessário para as referências afetadas. Os hashes históricos mudarão; colaboradores precisarão renovar os clones. Preservar previamente um bundle completo fora do Git e verificar sua integridade. Preservar a lógica legítima e sanear apenas os literais pessoais históricos de services.py e pe_full_audit.py. Conferir novamente referências e caches do GitHub.
+
+Caminhos a expurgar:
+
+- RECUPERACAO-AUDITORIA-2026-09-15.md
+- RECUPERACAO-CHECKPOINT-625.md
+- RECUPERACAO-PRODUCAO-2026-09-15.md
+- RELATORIO-CORRECAO-RATEIO-2027.md
+- RELATORIO-RATEIO-2027.md
+- approved_pe_2027_snapshot.json
+- direct_personnel_snapshot.py
+- enrollment_2027_source.json
+- pe_layers_2027_source.json
+- pe_real_2027_snapshot.json
+- personnel_confirmations_2027.py
+- scripts/audit_administrative_pe.py
+- scripts/audit_balance_composition.py
+- scripts/audit_documentary_41_pe.py
+- scripts/audit_final_administrative_rules.py
+- scripts/audit_full_pe_2027.py
+- scripts/audit_pe_real.py
+- scripts/audit_three_pending.py
+- scripts/close_approved_residuals_2027.py
+- scripts/close_three_pending.py
+- scripts/final_pe_reports.py
+- scripts/final_report_pe_real.py
+- scripts/freeze_pe_2027_checkpoint.py
+- scripts/generate_approved_pe_2027_preview.py
+- scripts/map_financial_pending_decisions.py
+- scripts/package_pe_layers.py
+- scripts/prepublication_2027.py
+- scripts/reconcile_class_coverage.py
+- scripts/reconcile_g2_documentary_pe.py
+- scripts/reconcile_pe_pending.py
+- scripts/reconcile_pe_real_costs.py
+- scripts/report_pe_layers.py
+- scripts/research_pe_sanitation.py
+- scripts/sanitize_pe_real.py
+- scripts/unblock_pe_forensic.py
+- teaching_cost_snapshot.py
+- tests/pe_real.test.cjs
+- tests/test_approved_pe_preview.py
+- tests/test_definitive_closure.py
+- tests/test_final_decisions.py
+- tests/test_financial_integration.py
+- tests/test_full_pe_audit.py
+- tests/test_pe_pending_documents.py
+- tests/test_pe_real_http.py
+- tests/test_pe_sanitation.py
+- tests/test_pe_unblock_forensic.py
+- tests/test_personnel_confirmations_2027.py
+- tests/test_prepublication_2027.py
+- tests/test_real_costs_enrollment.py
+
+Plano detalhado em PRIVACY-CONTAINMENT.md. Nenhuma operação histórica foi autorizada nesta execução.

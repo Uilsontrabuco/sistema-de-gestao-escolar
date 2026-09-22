@@ -53,9 +53,12 @@ def main():
     data=load_approved_snapshot()
     stamp=datetime.now().strftime('%Y%m%dT%H%M%S%f')
     out=ROOT/'.local-build'/stamp;app=out/'app';app.mkdir(parents=True)
-    files=list(ROOT.glob('*.py'))+list(ROOT.glob('*.js'))+list(ROOT.glob('*.css'))+list(ROOT.glob('*.html'))+list(ROOT.glob('*.json'))+[ROOT/'requirements.txt']
-    files+=list((ROOT/'api').glob('*.py'))
-    if pinned.exists():files.append(pinned)
+    # Git's public file set excludes preserved private originals, even if they
+    # remain beside the source tree. Never package using root-level globs.
+    public=subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','-z'],cwd=ROOT).decode().split('\0')
+    files=[ROOT/name for name in sorted(set(public)) if name and
+           not name.startswith(('tests/','supabase-port/')) and
+           (Path(name).suffix in ('.py','.js','.css','.html','.json') or name in ('requirements.txt','requirements-local.lock'))]
     manifest={}
     for p in files:
         rel=p.relative_to(ROOT);target=app/rel;target.parent.mkdir(parents=True,exist_ok=True)
@@ -68,10 +71,13 @@ socket.socket.connect=blocked
 socket.create_connection=blocked
 from api.index import handler
 from approved_pe_snapshot import load_approved_snapshot
-s=load_approved_snapshot()
-assert len(s["rows"])==41
-assert s["costTotalCents"]==60564103
-print("Entrada serverless e snapshot privados importados sem rede")
+try:
+ load_approved_snapshot()
+except FileNotFoundError:
+ pass
+else:
+ raise AssertionError("Artefato privado incluído indevidamente no build público")
+print("Entrada serverless importada; dados privados ausentes do pacote público")
 '''
     subprocess.run([sys.executable,'-c',verify],cwd=app,check=True)
     report=dict(mode='BUILD_LOCAL_OFFLINE_PYTHON',runtime=sys.version,requirements=versions,

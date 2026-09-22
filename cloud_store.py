@@ -320,7 +320,7 @@ class CloudStore(Store):
 
     def documentary_costs(self, classes):
         with self.db() as db:
-            row = db.execute("SELECT payload,source_sha256 FROM public.teaching_projections WHERE year=2027 AND version=1 AND status='approved'").fetchone()
+            row = db.execute("SELECT payload,source_sha256 FROM public.teaching_cost_snapshots WHERE year=2027 AND version=1 AND status='approved'").fetchone()
             if not row or row['source_sha256'] != SOURCE_HASH:
                 raise RuntimeError('Snapshot docente aprovado indisponível.')
             return row['payload'] if isinstance(row['payload'],dict) else json.loads(row['payload'])

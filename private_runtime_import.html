@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Configuração privada · 7&7</title>
+<style>body{font:16px system-ui;max-width:760px;margin:50px auto;padding:24px;color:#17243a}button,input{font:inherit;margin:12px 8px 12px 0;padding:12px}pre{white-space:pre-wrap;background:#f1f4f8;padding:20px}button:disabled{opacity:.5}</style>
+<h1>Configuração privada</h1><p>Acesso administrativo. O pacote homologado será guardado na base privada do servidor. Matrículas, turmas e PEs aprovados permanecem intactos.</p>
+<label>Pacote privado homologado <input id="bundle" type="file" accept="application/json,.json"></label><br>
+<button id="preview">Analisar sem alterar dados</button><button id="confirm" disabled>Aplicar com rollback</button>
+<pre id="result" role="status">Selecione o pacote preservado.</pre><p><a href="/">Voltar ao 7&7</a></p>
+<script>
+let pack,review,csrf;
+const result=document.getElementById('result'),confirmButton=document.getElementById('confirm');
+async function send(action){
+ const response=await fetch('/api/private-runtime/'+action,{method:'POST',headers:{'Content-Type':'application/json','X-CSRF-Token':csrf},body:JSON.stringify({...pack,expectedVersion:review?.version})});
+ const data=await response.json();if(!response.ok)throw Error(data.error||'Operação bloqueada.');return data;
+}
+document.getElementById('bundle').onchange=()=>{review=null;pack=null;confirmButton.disabled=true;};
+document.getElementById('preview').onclick=async()=>{try{
+ confirmButton.disabled=true;review=null;
+ const file=document.getElementById('bundle').files[0];if(!file)throw Error('Selecione o pacote.');
+ if(file.size>4*1024*1024)throw Error('Pacote excede o limite.');pack=JSON.parse(await file.text());
+ const me=await fetch('/api/me');if(!me.ok)throw Error('Entre no 7&7 com perfil administrador.');csrf=(await me.json()).csrf;
+ review=await send('preview');result.textContent=JSON.stringify(review,null,2);confirmButton.disabled=false;
+}catch(error){result.textContent=error.message;}};
+confirmButton.onclick=async()=>{confirmButton.disabled=true;try{const data=await send('confirm');result.textContent=JSON.stringify(data,null,2);}catch(error){result.textContent=error.message;}};
+</script></html>

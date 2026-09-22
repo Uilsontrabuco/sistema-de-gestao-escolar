@@ -3,10 +3,12 @@ import json
 import os
 from pathlib import Path
 import tempfile
+import hashlib
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 
 from private_artifacts import PrivateConfigurationError, load_private_json, private_path
+import private_artifacts
 from personnel_evidence import personnel_evidence
 from personnel_projection import official_projection
 
@@ -38,6 +40,24 @@ class PrivateArtifactTests(unittest.TestCase):
             (Path(directory) / "invalid.json").write_text("invalid", encoding="utf-8")
             with self.assertRaises(json.JSONDecodeError):
                 load_private_json("invalid.json")
+
+    def test_cloud_artifact_requires_private_schema_identity_and_hash(self):
+        import cloud_store
+        raw=b'{"synthetic":true}'
+        db=Mock();db.execute.return_value.fetchone.side_effect=[(cloud_store.PROJECT,cloud_store.SOURCE_HASH),(False,),(raw,)]
+        connection=Mock();connection.__enter__=Mock(return_value=db);connection.__exit__=Mock(return_value=False)
+        private_artifacts._read_cloud_artifact.cache_clear()
+        with patch('private_artifact_manifest.ARTIFACT_SHA256',{'fixture.json':hashlib.sha256(raw).hexdigest()}), patch('cloud_store.configuration',return_value=('postgresql://fixture/db','fixture','fixture')),patch('cloud_store.connection_options',return_value={}),patch('psycopg.connect',return_value=connection):
+            self.assertEqual(private_artifacts._read_cloud_artifact('fixture.json'),raw)
+        private_artifacts._read_cloud_artifact.cache_clear()
+        db.execute.return_value.fetchone.side_effect=[(cloud_store.PROJECT,cloud_store.SOURCE_HASH),(True,)]
+        with patch('private_artifact_manifest.ARTIFACT_SHA256',{'fixture.json':hashlib.sha256(raw).hexdigest()}),patch('cloud_store.configuration',return_value=('postgresql://fixture/db','fixture','fixture')),patch('cloud_store.connection_options',return_value={}),patch('psycopg.connect',return_value=connection):
+            with self.assertRaises(PrivateConfigurationError):private_artifacts._read_cloud_artifact('fixture.json')
+
+    def test_cloud_artifact_does_not_accept_unpinned_filename(self):
+        with patch('psycopg.connect') as connection:
+            with self.assertRaises(PrivateConfigurationError):private_artifacts._read_cloud_artifact('unapproved-fixture.json')
+            connection.assert_not_called()
 
 
 if __name__ == "__main__":

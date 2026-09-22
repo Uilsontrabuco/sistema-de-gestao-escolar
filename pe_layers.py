@@ -1,5 +1,5 @@
 """Três contratos independentes de PE. Somente leitura; sem importação ou banco."""
-from private_artifacts import private_path
+from private_artifacts import private_path, read_private_bytes
 from copy import deepcopy
 from decimal import Decimal, ROUND_CEILING, ROUND_HALF_UP
 import json
@@ -46,7 +46,7 @@ def validate_recognition(events,delinquency_percent=4.5):
 
 
 def build_layers(source=None,capacities=None):
-    source=deepcopy(source) if source is not None else json.loads(SOURCE.read_text(encoding='utf-8'))
+    source=deepcopy(source) if source is not None else json.loads(read_private_bytes(SOURCE.name, local_path=SOURCE))
     inputs=source['rows']
     if len(inputs)!=41 or len({r['id'] for r in inputs})!=41 or sum(r['capacity'] for r in inputs)!=1103:
         raise ValueError('Cadastro homologado divergente')
