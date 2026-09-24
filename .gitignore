@@ -96,3 +96,21 @@ node_modules/
 /tests/test_definitive_closure.py
 /tests/test_final_decisions.py
 /tests/test_real_costs_enrollment.py
+
+# Local evidence and source documents are never part of the public release.
+cache/
+*.env
+*.p12
+*.pfx
+*.sqlitedb
+*.pdf
+*.xlsx
+*.xls
+*.xlsm
+*.7z
+*.tar
+*.tar.gz
+*credentials*.json
+*service-account*.json
+/pe_analytic_report.py
+/pe_local_reconciliation_2027.py

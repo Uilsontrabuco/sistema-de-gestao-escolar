@@ -74,3 +74,12 @@ tests/test_real_costs_enrollment.py
 *.bundle
 *.pem
 *.key
+
+# Local audit engines are not production report dependencies.
+pe_analytic_report.py
+pe_local_reconciliation_2027.py
+approved_residual_allocation_2027.py
+
+# Offline tools and audit manifests never belong to the runtime package.
+scripts/
+PRIVACY-AUDIT-*.json

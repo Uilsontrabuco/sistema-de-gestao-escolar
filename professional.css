@@ -6,3 +6,11 @@
 .table-wrap th:first-child,.table-wrap td:first-child{min-width:150px;overflow-wrap:break-word}.table-wrap th,.table-wrap td{min-width:75px}.dashboard-grid>.card,.dashboard-third>.card,.dashboard-fourth>.card{margin-top:0}
 .class-actions-cell{vertical-align:top;background:#fff}.class-actions{display:grid;gap:5px;min-width:158px}.class-actions .btn{width:100%;padding:7px 8px;text-align:center}.class-actions:empty{display:none}@media(min-width:1051px){.class-actions-cell{position:sticky;left:0;z-index:2;box-shadow:8px 0 12px -12px #274b7566}.table-wrap:has(.class-actions-cell) th:first-child{position:sticky;left:0;z-index:3;background:var(--card);box-shadow:8px 0 12px -12px #274b7566}}
 .opening-preview{margin-top:18px;padding:15px;border:1px solid #d5e6f7;border-left:4px solid var(--yellow);border-radius:10px;background:linear-gradient(110deg,#edf5ff,#fff)}.opening-preview h3{margin:0 0 12px}.preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.preview-grid>div{padding:10px;border-radius:8px;background:#fff}.preview-grid span{display:block;color:var(--muted);font-size:11px}.preview-grid b{display:block;margin-top:3px;font-size:14px}.preview-grid .preview-status{grid-column:1/-1}.preview-alert{margin:12px 0 0;padding:10px;border-radius:8px;background:#fff0f0;color:var(--red);font-weight:700;font-size:12px}@media(max-width:680px){.preview-grid{grid-template-columns:1fr}}
+
+/* PE reports: preserve monetary strings while allowing horizontal table scroll. */
+#pe-turmas table{table-layout:auto;min-width:100%;width:max-content}
+#pe-turmas th,#pe-turmas td{overflow-wrap:normal;word-break:normal;white-space:nowrap}
+#pe-turmas [data-analytic-class] td:nth-child(8){white-space:normal;min-width:260px;max-width:340px}
+#pe-turmas [data-surplus-class] td:nth-child(n+17){white-space:normal;min-width:220px;max-width:300px}
+#pe-turmas [data-surplus-class] td:last-child{white-space:nowrap}
+@media(min-width:681px) and (max-width:1050px){aside #nav .nav-item{font-size:0;justify-content:center;gap:0}aside #nav .nav-item::before{font-size:16px;flex-shrink:0}}

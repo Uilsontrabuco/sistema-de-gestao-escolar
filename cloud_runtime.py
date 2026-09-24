@@ -13,6 +13,10 @@ from server import Handler, require
 
 
 class CloudHandler(Handler):
+    def load_pe_report(self):
+        from pe_production_report import load_production_report
+        return load_production_report()
+
     @property
     def store(self):
         if not hasattr(self, '_cloud_store'):

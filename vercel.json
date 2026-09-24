@@ -4,8 +4,13 @@
   "functions": {
     "api/index.py": {
       "maxDuration": 60,
-      "excludeFiles": "{recovery,references,output,tmp,tests,supabase-port,.git}/**"
+      "excludeFiles": "{private,recovery,references,output,tmp,tests,supabase-port,.git,.local-build,.local-dependencies}/**"
     }
   },
-  "routes": [{"src": "/(.*)", "dest": "/api/index"}]
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api/index"
+    }
+  ]
 }

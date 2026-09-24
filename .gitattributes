@@ -1,2 +1,47 @@
 # Preserve the exact approved bytes and SHA-256 across Windows/Linux checkouts.
 approved_pe_2027_snapshot.json -text whitespace=cr-at-eol
+
+# Preserve validated production files without staging or checkout conversion.
+.gitignore -text whitespace=cr-at-eol
+.vercelignore -text whitespace=cr-at-eol
+cloud_runtime.py -text whitespace=cr-at-eol
+index.html -text whitespace=cr-at-eol
+pe_analytic.js -text whitespace=cr-at-eol
+pe_analytic_pdf.py -text whitespace=cr-at-eol
+pe_financial_results_2027.json -text whitespace=cr-at-eol
+pe_production_report.py -text whitespace=cr-at-eol
+pe_surplus.js -text whitespace=cr-at-eol
+pe_surplus_pdf.py -text whitespace=cr-at-eol
+pe_surplus_report.py -text whitespace=cr-at-eol
+professional.css -text whitespace=cr-at-eol
+server.py -text whitespace=cr-at-eol
+vercel.json -text whitespace=cr-at-eol
+.gitattributes -text whitespace=cr-at-eol
+
+# Remaining approved runtime files: retain original bytes across platforms.
+administrative_pe_2027.py -text whitespace=cr-at-eol
+app.css -text whitespace=cr-at-eol
+app.js -text whitespace=cr-at-eol
+approved_pe_snapshot.py -text whitespace=cr-at-eol
+break_even.js -text whitespace=cr-at-eol
+cloud_store.py -text whitespace=cr-at-eol
+domain.js -text whitespace=cr-at-eol
+enhancements.js -text whitespace=cr-at-eol
+enrollment_2027.py -text whitespace=cr-at-eol
+financial_integration.py -text whitespace=cr-at-eol
+local_backup.py -text whitespace=cr-at-eol
+pe_executive.js -text whitespace=cr-at-eol
+pe_executive_pdf.py -text whitespace=cr-at-eol
+pe_final_2027.py -text whitespace=cr-at-eol
+pe_full_audit.py -text whitespace=cr-at-eol
+pe_layers.py -text whitespace=cr-at-eol
+pe_real.js -text whitespace=cr-at-eol
+pe_real.py -text whitespace=cr-at-eol
+personnel_evidence.py -text whitespace=cr-at-eol
+personnel_projection.py -text whitespace=cr-at-eol
+private_artifact_manifest.py -text whitespace=cr-at-eol
+professional.js -text whitespace=cr-at-eol
+requirements-local.lock -text whitespace=cr-at-eol
+services.py -text whitespace=cr-at-eol
+teaching_cost.py -text whitespace=cr-at-eol
+teaching_projection.py -text whitespace=cr-at-eol

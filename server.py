@@ -480,6 +480,12 @@ class Handler(BaseHTTPRequestHandler):
         if not user:raise PermissionError('Sessão encerrada. Entre novamente.')
         if mutation and not hmac.compare_digest(csrf,self.headers.get('X-CSRF-Token','')):raise PermissionError('Token de sessão inválido.')
         return user
+    def load_pe_report(self):
+        if self.server.server_address[0] not in ('127.0.0.1','::1'):
+            raise ValueError('Candidata disponível somente no servidor local.')
+        from pe_analytic_report import load_analytic_report
+        return load_analytic_report()
+
     def do_GET(self):
         path=urlparse(self.path).path
         try:
@@ -489,6 +495,29 @@ class Handler(BaseHTTPRequestHandler):
                 if not user:return self.respond(401,{'error':'Entre para acessar a base compartilhada.'})
                 return self.respond(200,{'user':user,'csrf':csrf})
             if path=='/api/state':return self.respond(200,self.store.snapshot(self.current()))
+            if path in ('/api/break-even/analytic','/api/break-even/analytic.pdf','/api/break-even/surplus','/api/break-even/surplus.pdf'):
+                require(self.current(),'financial','view')
+                query=parse_qs(urlparse(self.path).query)
+                if query.get('year',['2027'])[0]!='2027':
+                    return self.respond(400,{'error':'Relatório disponível somente para 2027.'})
+                try:report=self.load_pe_report()
+                except (FileNotFoundError,ValueError,KeyError,TypeError):
+                    return self.respond(409,{'error':'Composição indisponível ou divergente. Relatório bloqueado.'})
+                if '/surplus' in path:
+                    from pe_surplus_report import build_surplus_report
+                    report=build_surplus_report(report)
+                if path.endswith('.pdf'):
+                    if query.get('snapshot',[''])[0]!=report['snapshotSha256']:
+                        return self.respond(409,{'error':'Candidata mudou. Atualize a tela antes de gerar o PDF.'})
+                    if '/surplus' in path:
+                        from pe_surplus_pdf import render_surplus_pdf
+                        return self.binary(render_surplus_pdf(report),'application/pdf','superavit-deficit-pe-2027.pdf')
+                    from pe_analytic_pdf import render_pdf
+                    class_id=query.get('classId',[None])[0]
+                    if class_id is not None and class_id not in {r['id'] for r in report['rows']}:
+                        return self.respond(404,{'error':'Turma não encontrada.'})
+                    return self.binary(render_pdf(report,class_id),'application/pdf','relatorio-analitico-pe-2027.pdf')
+                return self.respond(200,report)
             if path=='/api/break-even/approved':
                 require(self.current(),'financial','view')
                 year=parse_qs(urlparse(self.path).query).get('year',['2027'])[0]
@@ -559,6 +588,8 @@ class Handler(BaseHTTPRequestHandler):
             permitted['/pe_layers.js']='pe_layers.js'
             permitted['/pe_real.js']='pe_real.js'
             permitted['/pe_approved.js']='pe_approved.js'
+            permitted['/pe_analytic.js']='pe_analytic.js'
+            permitted['/pe_surplus.js']='pe_surplus.js'
             permitted['/pe_executive.js']='pe_executive.js'
             permitted['/enrollment_2027.js']='enrollment_2027.js'
             permitted['/benefits_2027.js']='benefits_2027.js'
