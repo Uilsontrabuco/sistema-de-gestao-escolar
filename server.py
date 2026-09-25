@@ -246,6 +246,10 @@ CREATE TABLE IF NOT EXISTS outbox(id TEXT PRIMARY KEY,payload TEXT NOT NULL);'''
         if db is None:
             with self.db() as conn:return self.state(conn)
         row=db.execute('SELECT * FROM state WHERE id=1').fetchone();return json.loads(row['payload']),row['version']
+    def state_version(self,db=None):
+        if db is None:
+            with self.db() as conn:return self.state_version(conn)
+        return db.execute('SELECT version FROM state WHERE id=1').fetchone()['version']
     def audit(self,db,user,module,action,field,before=None,after=None):
         db.execute('INSERT INTO audit(payload) VALUES(?)',(json.dumps({'userId':user['id'],'user':user['name'],'module':module,'action':action,'date':now(),'field':field,'before':before,'after':after},ensure_ascii=False),))
     def create_user(self,name,email,password,access=None,is_admin=False,actor=None,user_id=None):
@@ -309,10 +313,21 @@ CREATE TABLE IF NOT EXISTS outbox(id TEXT PRIMARY KEY,payload TEXT NOT NULL);'''
                 if not (allowed(user,'benefits') or allowed(user,'financial')):
                     s['benefits']=[b for b in s['benefits'] if b.get('sourceKind')!='planned-2027']
                 s['requests']=[r for r in s['requests'] if r.get('creatorId')==user['id'] or r.get('recipientId')==user['id']]
-            s['users']=self.users(db) if user.get('isAdmin') else [dict(id=u['id'],name=u['name'],phone=u.get('phone',''),active=u['active'],isAdmin=u.get('isAdmin',False)) for u in self.users(db) if not u.get('deleted')]
-            s['audit']=[dict(json.loads(r['payload']),id=r['id']) for r in db.execute('SELECT * FROM audit ORDER BY id DESC LIMIT 2000')] if user.get('isAdmin') else []
-            s['notifications']=[json.loads(r['payload']) for r in db.execute('SELECT payload FROM outbox') if user.get('isAdmin') or json.loads(r['payload']).get('userId')==user['id']]
-            return {'state':s,'version':version,'user':user}
+            s.update(self.snapshot_metadata(user,db))
+            return {'state':s,'version':version,'user':user,'read_revision':self.metadata_revision(s)}
+    @staticmethod
+    def metadata_revision(s):
+        return hashlib.sha256(json.dumps({k:s[k] for k in ('users','audit','notifications')},sort_keys=True,ensure_ascii=False,separators=(',',':')).encode()).hexdigest()
+    def snapshot_metadata(self,user,db):
+        s={}
+        s['users']=self.users(db) if user.get('isAdmin') else [dict(id=u['id'],name=u['name'],phone=u.get('phone',''),active=u['active'],isAdmin=u.get('isAdmin',False)) for u in self.users(db) if not u.get('deleted')]
+        s['audit']=[dict(json.loads(r['payload']),id=r['id']) for r in db.execute('SELECT * FROM audit ORDER BY id DESC LIMIT 2000')] if user.get('isAdmin') else []
+        s['notifications']=[json.loads(r['payload']) for r in db.execute('SELECT payload FROM outbox') if user.get('isAdmin') or json.loads(r['payload']).get('userId')==user['id']]
+        return s
+    def navigation_version(self,user):
+        with self.db() as db:
+            return {'version':self.state_version(db),'user':user,'read_revision':self.metadata_revision(self.snapshot_metadata(user,db))}
+
     def _check_list(self,user,module,old,new):
         before={str(x['id']):x for x in old};after={str(x['id']):x for x in new}
         for uid in before.keys()|after.keys():
@@ -494,6 +509,9 @@ class Handler(BaseHTTPRequestHandler):
                 user,csrf=self.store.session(self.token())
                 if not user:return self.respond(401,{'error':'Entre para acessar a base compartilhada.'})
                 return self.respond(200,{'user':user,'csrf':csrf})
+            if path=='/api/state-version':
+                user=self.current()
+                return self.respond(200,self.store.navigation_version(user))
             if path=='/api/state':return self.respond(200,self.store.snapshot(self.current()))
             if path in ('/api/break-even/analytic','/api/break-even/analytic.pdf','/api/break-even/surplus','/api/break-even/surplus.pdf'):
                 require(self.current(),'financial','view')

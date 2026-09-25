@@ -12,7 +12,28 @@ const val=name=>$('#f_'+name)?.value?.trim()||'',numval=name=>Number(val(name));
 const optionalPercent=x=>x==null?'Não informado':formatPct(Number(x));
 function allowedButton(module,action,label,code,style='alt small'){return can(module,action)?btn(label,code,style):'';}
 async function api(path,body,binary=false){const response=await fetch('/api/'+path,{method:body?'POST':'GET',cache:'no-store',headers:body?{'Content-Type':'application/json','X-CSRF-Token':App.csrf||''}:{},body:body?JSON.stringify(body):undefined,credentials:'same-origin'});if(!response.ok){let problem;try{problem=await response.json();}catch{problem={error:'Servidor indisponível.'};}if(response.status===401)showLogin();const error=Error(problem.error||'Não foi possível concluir.');error.httpStatus=response.status;error.responseBody=problem;error.endpoint='/api/'+path;throw error;}return binary?response.blob():response.json();}
-async function refreshShared(){const snapshot=await api('state');S=M.migrate(snapshot.state);App.version=snapshot.version;App.user=snapshot.user;App.remotePending=false;render();}
+function sharedScope(){return String(App.user?.id||'')+'|'+String(App.csrf||'');}
+function refreshShared(force=false){
+  const scope=sharedScope();
+  if(!force&&App.sharedRefresh?.scope===scope)return App.sharedRefresh.promise;
+  const sequence=(App.sharedSequence||0)+1;App.sharedSequence=sequence;
+  const current=()=>scope===sharedScope()&&sequence===App.sharedSequence&&!!App.user;
+  const promise=(async()=>{
+    if(!force&&App.sharedLoaded&&!App.remotePending){
+      const check=await api('state-version');
+      if(!current())return;
+      if(check.read_revision&&check.read_revision===App.sharedRevision&&check.version===App.version&&check.version>=(App.minimumSharedVersion||0)&&JSON.stringify(check.user)===JSON.stringify(App.user)){render();return;}
+    }
+    let snapshot=await api('state');
+    if(!current())return;
+    if(snapshot.version<(App.minimumSharedVersion||0))snapshot=await api('state');
+    if(!current())return;
+    if(snapshot.version<App.version||snapshot.version<(App.minimumSharedVersion||0)){App.remotePending=true;return;}
+    S=M.migrate(snapshot.state);App.version=snapshot.version;App.user=snapshot.user;
+    App.sharedRevision=snapshot.read_revision;App.sharedLoaded=true;App.remotePending=false;render();
+  })().finally(()=>{if(App.sharedRefresh?.promise===promise)App.sharedRefresh=null;});
+  App.sharedRefresh={scope,promise};return promise;
+}
 async function commit(module,action,update,message='Alteração salva.',confirmation){
   if(App.mode!=='shared')return toast('Conecte-se à base compartilhada antes de alterar dados.');if(!can(module,action))return toast('Seu perfil não permite esta ação.');if(App.busy)return;if(App.remotePending)return toast('Há alterações de outra sessão. Feche o formulário e abra novamente para revisar os dados.');
   const before=M.clone(S),next=M.clone(S);let requestPayload=null;try{update(next);M.validate(next,before);M.recalculate(next);App.busy=true;
@@ -22,14 +43,14 @@ async function commit(module,action,update,message='Alteração salva.',confirma
 }
 persistState=function(){throw Error('Use as ações integradas para salvar com validação e auditoria.');};
 function connectionLabel(){return App.mode==='shared'?'Base compartilhada · atualização ao vivo':'Base compartilhada necessária';}
-function startEvents(){App.events?.close();App.events=new EventSource('/api/events');App.events.addEventListener('changed',async event=>{const {version}=JSON.parse(event.data);if(version===App.version||App.busy)return;if($('#modalBg').classList.contains('open')){App.remotePending=true;toast('Alteração recebida de outra sessão. O formulário foi preservado; feche para atualizar.');}else try{await refreshShared();}catch(error){toast(error.message);}});App.events.addEventListener('revoked',()=>{App.events.close();App.user=null;S=M.migrate({});showLogin('Sessão encerrada ou permissões alteradas. Entre novamente.');});}
-function showLogin(note=''){page='login';$('#nav').innerHTML='';$('#page').innerHTML=head('Acesso à Gestão Escolar','Base compartilhada do Colégio Adventista de Juazeiro')+card('Entrar',`<p class="hint">${e(note||'Use o usuário cadastrado pelo administrador.')}</p>${form([['email','E-mail','email'],['password','Senha','password']])}<div class="modal-actions">${btn('Entrar','login()')}</div>`)+(!App.health?.configured?'<div class="notice">Nenhum administrador configurado. No computador do servidor, execute <code>python server.py --create-admin</code> e informe seus dados reais. Depois inicie <code>python server.py</code>.</div>':'');$('.profile b').textContent='Acesso restrito';$('.profile small').textContent='Autenticação necessária';}
+function startEvents(){App.events?.close();App.events=new EventSource('/api/events');App.events.addEventListener('changed',async event=>{const {version}=JSON.parse(event.data);App.minimumSharedVersion=Math.max(App.minimumSharedVersion||0,version);if(version===App.version||App.busy)return;if($('#modalBg').classList.contains('open')){App.remotePending=true;toast('Alteração recebida de outra sessão. O formulário foi preservado; feche para atualizar.');}else try{await refreshShared();}catch(error){toast(error.message);}});App.events.addEventListener('revoked',()=>{App.events.close();App.user=null;S=M.migrate({});showLogin('Sessão encerrada ou permissões alteradas. Entre novamente.');});}
+function showLogin(note=''){App.sharedSequence=(App.sharedSequence||0)+1;App.sharedLoaded=false;App.sharedRefresh=null;page='login';$('#nav').innerHTML='';$('#page').innerHTML=head('Acesso à Gestão Escolar','Base compartilhada do Colégio Adventista de Juazeiro')+card('Entrar',`<p class="hint">${e(note||'Use o usuário cadastrado pelo administrador.')}</p>${form([['email','E-mail','email'],['password','Senha','password']])}<div class="modal-actions">${btn('Entrar','login()')}</div>`)+(!App.health?.configured?'<div class="notice">Nenhum administrador configurado. No computador do servidor, execute <code>python server.py --create-admin</code> e informe seus dados reais. Depois inicie <code>python server.py</code>.</div>':'');$('.profile b').textContent='Acesso restrito';$('.profile small').textContent='Autenticação necessária';}
 function showSharedRequired(note='Inicie ou acesse o servidor compartilhado para consultar e alterar os dados escolares.') {App.events?.close();App.mode='unavailable';App.user=null;page='unavailable';$('#nav').innerHTML='';$('#page').innerHTML=head('Base compartilhada necessária','Os dados escolares não são abertos nem gravados em cópias locais.')+card('Conexão necessária',`<p class="hint">${e(note)}</p><p class="hint">Acesse o mesmo endereço do servidor usado pelos demais usuários. O arquivo <code>index.html</code> não deve ser aberto diretamente.</p>`);$('.profile b').textContent='Sem conexão';$('.profile small').textContent='Base compartilhada necessária';}
-async function login(){try{const result=await api('login',{email:val('email'),password:$('#f_password')?.value||''});App.user=result.user;App.csrf=result.csrf;App.mode='shared';await refreshShared();page=can('dashboard')?'dashboard':'enrollments';render();startEvents();}catch(error){const hint=$('#page .hint');if(hint){hint.textContent=error.message;hint.setAttribute('role','alert');}toast(error.message);}}
+async function login(){try{const result=await api('login',{email:val('email'),password:$('#f_password')?.value||''});App.sharedLoaded=false;App.minimumSharedVersion=0;App.user=result.user;App.csrf=result.csrf;App.mode='shared';page=can('dashboard')?'dashboard':'enrollments';await refreshShared();startEvents();}catch(error){const hint=$('#page .hint');if(hint){hint.textContent=error.message;hint.setAttribute('role','alert');}toast(error.message);}}
 async function logout(){try{await api('logout',{});}finally{App.events?.close();App.user=null;S=M.migrate({});showLogin();}}
 async function bootstrapShared(){showSharedRequired('Conectando à base compartilhada…');if(location.protocol==='file:'){showSharedRequired('Abra o sistema pelo endereço do servidor compartilhado; não use o arquivo HTML diretamente.');return;}try{const health=await fetch('/api/health',{cache:'no-store'});if(!health.ok)throw Error('Servidor indisponível.');App.health=await health.json();if(!App.health.available)throw Error('Base compartilhada indisponível.');App.mode='shared';try{const me=await api('me');App.user=me.user;App.csrf=me.csrf;await refreshShared();startEvents();}catch{showLogin();}}catch(error){showSharedRequired(error.message||'Não foi possível conectar à base compartilhada.');}}
 go=function(target){if(App.mode!=='shared'){showSharedRequired();return;}if(target==='financial'&&typeof breakEvenOpen!=='undefined')breakEvenOpen=false;page=target;refreshShared().catch(error=>toast(error.message));};
-async function refreshCurrentPage(){if(App.mode!=='shared')return showSharedRequired();try{await refreshShared();toast('Dados atualizados a partir da base compartilhada.');}catch(error){toast(error.message);}}
+async function refreshCurrentPage(){if(App.mode!=='shared')return showSharedRequired();try{await refreshShared(true);toast('Dados atualizados a partir da base compartilhada.');}catch(error){toast(error.message);}}
 
 function statsOf(c){return M.classStats(S,c);}
 totals=function(){const t=M.totals(S),planned=S.budget.reduce((a,x)=>a+n(x.budget),0),actual=S.budget.reduce((a,x)=>a+n(x.actual),0);return {...t,enrolled:t.total,seats:t.capacity,occupancy:t.capacity?t.total/t.capacity*100:0,planned,actual,remaining:planned-actual,goalPercent:t.percent,late:S.requests.filter(x=>x.due&&x.due<localDate()&&!['completed','rejected'].includes(x.status)).length};};

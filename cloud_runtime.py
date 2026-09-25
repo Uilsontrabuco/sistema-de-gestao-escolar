@@ -55,7 +55,7 @@ class CloudHandler(Handler):
             if path == '/api/events':
                 try:
                     self.current()
-                    _, version = self.store.state()
+                    version = self.store.state_version()
                     content = ('retry: 10000\nevent: changed\ndata: ' + json.dumps({'version':version}) + '\n\n').encode()
                 except PermissionError:
                     content = b'event: revoked\ndata: {}\n\n'
